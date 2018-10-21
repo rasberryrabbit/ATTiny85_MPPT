@@ -1,5 +1,8 @@
 # ATTiny85
-Solar MPPT circuit.
+Solar MPPT circuit. (Not tested yet)
+
+Coding by Arduino 1.8.7 / ATTinycore.
+Algorithm convert from old MPPT code of mine.
 
 This is simple MPPT for solar panel.
 
