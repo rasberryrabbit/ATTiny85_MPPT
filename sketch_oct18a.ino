@@ -1,5 +1,6 @@
 /*
-  simple MPPT with ATTiny85
+  simple MPPT with ATTiny85 by rasberryrabbit @ github
+  
   It need ATTinycore. https://github.com/SpenceKonde/ATTinyCore
   
  */
