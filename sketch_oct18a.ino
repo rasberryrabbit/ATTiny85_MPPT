@@ -87,19 +87,20 @@ void setup() {
 
 #ifndef DIABLE_CAL  
   if(digitalRead(OCAL)==0) {
-    delay(300);
+    delay(200);
     adc_cur = analogRead(ADC_CUR);
     EEPROM.write(0,lowByte(adc_cur));
   }
   delay(100);
   LM358_diff = EEPROM.read(0);
 #else
-  delay(100);
   adc_cur = analogRead(ADC_CUR);
   LM358_diff = lowByte(adc_cur);
 #endif
-  if(LM358_diff==0)
+  if(LM358_diff==0) {
     digitalWrite(LED,HIGH);
+    delay(100);
+  }
 
   IncPWM_EQ = 0;
 #ifndef DISBALE_INCPWM  
