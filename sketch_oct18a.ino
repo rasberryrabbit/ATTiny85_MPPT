@@ -46,15 +46,15 @@ void setup() {
 
   cli();
 
+  pinMode(PWM, OUTPUT);
   /* 
   // Timer0 PWM, Fast PWM, OC0B non-inverting
-  pinMode(PWM, OUTPUT);
   TCCR0A |= (1<<WGM01)|(1<<WGM00)|(1<<COM0B1);
   TCCR0B |= (1<<CS00);
   OCR0B = 0;
   */
 
-  // Timer1 PWM
+  // Timer1 PWM, 128KHz
   PLLCSR |= (1<<PLLE);
   while ((PLLCSR & (1<<PLOCK)) == 0x00)
     {
@@ -66,7 +66,7 @@ void setup() {
           (1<<(CS11))  | // PCK/2
           (1<<COM1A1);   // Clear the OC1A output line.
   OCR1C = PWM_MAX;
-  TIMSK = (1<<OCIE1A) | (1<<TOIE1);
+  TIMSK = (1<<OCIE1A);
   OCR1A = 0;
 
   sei();
@@ -79,9 +79,11 @@ void setup() {
   
   // ADC Voltage
   pinMode(ADC_VOL, INPUT);
-  
+
+#ifndef DISABLE_CAL  
   // OPAMP Cal. Set FUSE disable RESET
-  //pinMode(OCAL, INPUT);
+  pinMode(OCAL, INPUT);
+#endif
 
   // init
   LED1_tm = 500;
