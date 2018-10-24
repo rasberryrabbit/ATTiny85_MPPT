@@ -2,12 +2,14 @@
   simple MPPT with ATTiny85 by rasberryrabbit @ github
   
   It need ATTinycore. https://github.com/SpenceKonde/ATTinyCore
-  
+
+  it works 1MHz clock. >>3 @ time value.
  */
 
+#include <ATTinyCore.h>
 #include <EEPROM.h> 
 
-//#define DISABLE_CAL
+#define DISABLE_CAL
 #define DISABLE_INCPWM
 
 // constants
@@ -31,54 +33,44 @@ word wPWM, wTemp;
 unsigned long prevtime, currtime;
 
 // pin 
-#define AREF 0
-#define PWM 1
-#define ADC_CUR 2
-#define LED 3
-#define ADC_VOL 4
-#define OCAL 5  // disable reset on FUSE
+#define AREF PIN_B0
+#define PWM PIN_B1
+#define ADC_CUR A1
+#define ADC_CUR_PIN PIN_B2
+#define LED PIN_B3
+#define ADC_VOL A2
+#define ADC_VOL_PIN PIN_B4
+#define OCAL PIN_B5  // disable reset on FUSE
 
 void setup() {
+  // ADC current
+  pinMode(ADC_CUR_PIN, INPUT);
+  // ADC Voltage
+  pinMode(ADC_VOL_PIN, INPUT);
   // AREF
   pinMode(AREF, INPUT);
   analogReference(EXTERNAL);
   analogRead(ADC_CUR);  // prevent short
 
-  cli();
-
   pinMode(PWM, OUTPUT);
-  /* 
-  // Timer0 PWM, Fast PWM, OC0B non-inverting
-  TCCR0A |= (1<<WGM01)|(1<<WGM00)|(1<<COM0B1);
-  TCCR0B |= (1<<CS00);
-  OCR0B = 0;
-  */
-
   // Timer1 PWM, 128KHz
   PLLCSR |= (1<<PLLE);
   while ((PLLCSR & (1<<PLOCK)) == 0x00)
     {
-        // Do nothing until plock bit is set
+        // Do nothing
     }
   PLLCSR |= (1<<PCKE);
-  TCCR1 = (1<<CTC1)    | // Enable PWM
-          (1<<PWM1A)   | // Set source to pck
-          (1<<(CS11))  | // PCK/2
-          (1<<COM1A1);   // Clear the OC1A output line.
-  OCR1C = PWM_MAX;
-  TIMSK = (1<<OCIE1A);
+  TCCR1 = (1<<CTC1)    |  // Enable PWM
+          (1<<PWM1A)   |  // Set source to pck
+          (1<<(CS11))  |  // PCK/2
+          (1<<COM1A1);    // Clear the OC1A output line.
+  GTCCR |= (1<<COM1B1);  // fix bug
+  //TIMSK = (1<<OCIE1A) | (1<<TOIE1);
   OCR1A = 0;
-
-  sei();
-  
-  // ADC current
-  pinMode(ADC_CUR, INPUT);
+  OCR1C = PWM_MAX;
   
   // LED
   pinMode(LED, OUTPUT);
-  
-  // ADC Voltage
-  pinMode(ADC_VOL, INPUT);
 
 #ifndef DISABLE_CAL  
   // OPAMP Cal. Set FUSE disable RESET
@@ -86,22 +78,23 @@ void setup() {
 #endif
 
   // init
-  LED1_tm = 500;
+  LED1_tm = (500>>3);
   VOL_PWM = 0;
   TICK_1000 = 0;
 
   LM358_diff = CLM358_DIFF;
-  delay(100);
+  delay(100>>3);
 
 #ifndef DIABLE_CAL  
   if(digitalRead(OCAL)==0) {
-    delay(300);
+    delay(300>>3);
     adc_cur = analogRead(ADC_CUR);
     EEPROM.write(0,lowByte(adc_cur));
   }
-  delay(100);
+  delay(100>>3);
   LM358_diff = EEPROM.read(0);
 #else
+  delay(100>>3);
   adc_cur = analogRead(ADC_CUR);
   LM358_diff = lowByte(adc_cur);
 #endif
@@ -116,13 +109,14 @@ void setup() {
   power_curr = 0;
   vol1 = 0;
   vol2 = 0;
-  prevtime = millis();
 
   VOL_PWM = PWM_LOW;
   lo_PWM = PWM_LOW;
   hi_PWM = PWM_MAX;
   flag_inc = true;
   adc_prev = 0; 
+  OCR1A = PWM_LOW;
+  prevtime = millis();
 }
 
 void loop() {
@@ -137,9 +131,9 @@ void loop() {
         digitalWrite(LED,HIGH);
   }
   if(VOL_PWM>=(PWM_MAX-1)) 
-    LED1_tm = 125;
+    LED1_tm = (125>>3);
     else 
-      LED1_tm = 250;
+      LED1_tm = (250>>3);
   // save previous adc values
   power_prev = power_curr;
   adc_prev = adc_cur;
@@ -171,7 +165,7 @@ void loop() {
       else
         flag_inc = !flag_inc;
       vol2 = 0;
-      LED1_tm = 500;
+      LED1_tm = (500>>3);
       goto CONTINUE;
     } else {
       if(Inc_pwm<INC_PWM_MAX)
@@ -233,6 +227,5 @@ void loop() {
       VOL_PWM = lo_PWM;
   }
 CONTINUE:
-  /* OCR0B = VOL_PWM; */
   OCR1A = VOL_PWM; 
 }
