@@ -3,7 +3,7 @@
   
   It need ATTinycore. https://github.com/SpenceKonde/ATTinyCore
 
-  it works 1MHz clock. >>3 @ time value.
+  it works 1MHz clock.
  */
 
 #include <ATTinyCore.h>
@@ -78,23 +78,23 @@ void setup() {
 #endif
 
   // init
-  LED1_tm = (500>>3);
+  LED1_tm = (500);
   VOL_PWM = 0;
   TICK_1000 = 0;
 
   LM358_diff = CLM358_DIFF;
-  delay(100>>3);
+  delay(100);
 
 #ifndef DIABLE_CAL  
   if(digitalRead(OCAL)==0) {
-    delay(300>>3);
+    delay(300);
     adc_cur = analogRead(ADC_CUR);
     EEPROM.write(0,lowByte(adc_cur));
   }
-  delay(100>>3);
+  delay(100);
   LM358_diff = EEPROM.read(0);
 #else
-  delay(100>>3);
+  delay(100);
   adc_cur = analogRead(ADC_CUR);
   LM358_diff = lowByte(adc_cur);
 #endif
@@ -131,9 +131,9 @@ void loop() {
         digitalWrite(LED,HIGH);
   }
   if(VOL_PWM>=(PWM_MAX-1)) 
-    LED1_tm = (125>>3);
+    LED1_tm = (125);
     else 
-      LED1_tm = (250>>3);
+      LED1_tm = (250);
   // save previous adc values
   power_prev = power_curr;
   adc_prev = adc_cur;
@@ -165,7 +165,7 @@ void loop() {
       else
         flag_inc = !flag_inc;
       vol2 = 0;
-      LED1_tm = (500>>3);
+      LED1_tm = (500);
       goto CONTINUE;
     } else {
       if(Inc_pwm<INC_PWM_MAX)
