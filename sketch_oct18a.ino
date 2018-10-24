@@ -98,6 +98,8 @@ void setup() {
   adc_cur = analogRead(ADC_CUR);
   LM358_diff = lowByte(adc_cur);
 #endif
+  if(LM358_diff==0)
+    digitalWrite(LED,HIGH);
 
   IncPWM_EQ = 0;
 #ifndef DISBALE_INCPWM  
