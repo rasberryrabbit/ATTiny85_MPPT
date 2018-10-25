@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2018-10-18"
-Rev "1.0"
+Date "2018-10-25"
+Rev "1.1"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -1103,4 +1103,6 @@ Wire Wire Line
 	8700 2200 8700 2550
 Wire Wire Line
 	8700 2850 8700 3050
+Text Notes 7650 6350 0    50   ~ 0
+Q1 = IRLZ44 -> R1 = 4.7K(2X) OR R15 = 4.7K( 1/2 )
 $EndSCHEMATC
