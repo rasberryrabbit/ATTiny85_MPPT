@@ -1103,6 +1103,20 @@ Wire Wire Line
 	8700 2200 8700 2550
 Wire Wire Line
 	8700 2850 8700 3050
-Text Notes 7650 6350 0    50   ~ 0
-Q1 = IRLZ44 -> R1 = 4.7K(2X) OR R15 = 4.7K( 1/2 )
+Text Notes 6850 6250 0    50   ~ 0
+Q1 = IRLZ44 ->
+Text Notes 7550 6250 0    50   ~ 0
+3.6{Aref}/(35*10-3{rds}*6{current})=17.14/10{U2B}=1.74
+Text Notes 7550 6350 0    50   ~ 0
+R15 = 2.2k{R1} * 1.74 = 3.828k
+Text Notes 8900 6350 0    50   ~ 0
+or
+Text Notes 9100 6350 0    50   ~ 0
+R1 = 10k{R15}/1.74 = 5.74k{Best, 4.7k}
+Text Notes 3200 6250 0    50   ~ 0
+Q1 = BUK9511-55A127 ->
+Text Notes 4350 6250 0    50   ~ 0
+3.6{Aref}/(11*10-3{rds}*6{current}=54.54/10{U2B}=5.45
+Text Notes 4350 6350 0    50   ~ 0
+R1 = 10k{R15}/5.45 = 1.83k{2.2k}
 $EndSCHEMATC
