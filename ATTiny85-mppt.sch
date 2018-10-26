@@ -1119,4 +1119,6 @@ Text Notes 4350 6250 0    50   ~ 0
 3.6{Aref}/(11*10-3{rds}*6{current}=54.54/10{U2B}=5.45
 Text Notes 4350 6350 0    50   ~ 0
 R1 = 10k{R15}/5.45 = 1.83k{2.2k}
+Text Notes 7600 6450 0    50   ~ 0
+40milli Ohm, R15 = 2.2k{R1} * 1.5 = 3.3k or R1 = 10k{R15} / 1.5 = 6.8k
 $EndSCHEMATC
