@@ -1122,5 +1122,5 @@ R1 = 10k{R15}/4.45 = 2.24k{2.2k}
 Text Notes 6200 6450 0    50   ~ 0
 40milli Ohm, R15 = 2.2k{R1} * (1.5-1) = 1.1{best, 1k} or R1 = 10k{R15} / (1.5-1) = 20k(22k)
 Text Notes 2000 6450 0    50   ~ 0
-Q1 rds <= 55milli Ohm
+Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
 $EndSCHEMATC
