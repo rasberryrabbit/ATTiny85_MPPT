@@ -29,7 +29,6 @@ byte i, LM358_diff;
 boolean flag_inc, got_max, main_continue;
 byte Inc_pwm, eq_cnt;
 byte vol1, vol2, lo_PWM, hi_PWM;
-byte IncPWM_EQ;
 word wPWM, wTemp;
 unsigned long prevtime, currtime, udtime;
 
@@ -95,8 +94,6 @@ void setup() {
   LM358_diff = EEPROM.read(0);
 #endif
 
-  IncPWM_EQ = 0;
-
   adc_vol = 0;
   adc_cur = 0;
   power_curr = 0;
@@ -152,20 +149,20 @@ void loop() {
       adc_cur = 0;
   //
   if(adc_cur>0) {
-    if(lo_PWM==0)
+    if(lo_PWM==PWM_LOW)
       lo_PWM = VOL_PWM;
     power_curr = (unsigned long) adc_cur * adc_vol;
     if(power_curr==power_prev) {
-      Inc_pwm = INC_PWM_MIN;
+      Inc_pwm = INC_PWM_MIN+1;
       if(adc_cur>adc_prev)
         flag_inc = false;
       else if(adc_cur<adc_prev)
         flag_inc = true;
-      else
+      else 
         flag_inc = !flag_inc;
       vol2 = 0;
       LED1_tm = 500;
-      goto CONTINUE;
+      goto CONT_PWM;
     } else {
       if(Inc_pwm<INC_PWM_MAX)
         ++Inc_pwm;
@@ -213,6 +210,7 @@ void loop() {
     lo_PWM = PWM_LOW;
     hi_PWM = PWM_MAX;
   }
+CONT_PWM:
   // PWM
   if(flag_inc) {
     if(VOL_PWM<(hi_PWM-Inc_pwm))
