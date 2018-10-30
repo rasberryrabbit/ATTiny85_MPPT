@@ -10,7 +10,6 @@
 #include <EEPROM.h> 
 
 //#define DISABLE_CAL_RESET
-#define DISABLE_INCPWM
 #define USE_ADC_LOOP
 
 // constants
@@ -80,10 +79,10 @@ void setup() {
   TICK_1000 = 0;
 
   LM358_diff = CLM358_DIFF;
-  delay(300);
 
 #ifndef DISABLE_CAL_RESET  
   if(MCUSR & (1<<EXTRF)) {
+    delay(500);    
     adc_cur = analogRead(ADC_CUR);
     EEPROM.write(0,lowByte(adc_cur));
     // EEPROM Write
@@ -97,9 +96,6 @@ void setup() {
 #endif
 
   IncPWM_EQ = 0;
-#ifndef DISABLE_INCPWM  
-  IncPWM_EQ = EEPROM.read(3);
-#endif
 
   adc_vol = 0;
   adc_cur = 0;
@@ -183,21 +179,21 @@ void loop() {
           wPWM = vol1;
           wPWM = (wPWM+vol2+1) / 2 + 3;
           if(highByte(wPWM)!=0 || lowByte(wPWM)>PWM_MAX)
-            wPWM = word(PWM_MAX);
+            wPWM = (word)PWM_MAX;
           else if(lowByte(wPWM)<PWM_LOW)
-            wPWM = word(PWM_LOW);
+            wPWM = (word)PWM_LOW;
           VOL_PWM = lowByte(wPWM);
           
           vol2 = 0;
           //
-          wPWM = word(PWM_MAX-VOL_PWM)+((PWMHI_DIV+1) / 2) / PWMHI_DIV;
-          wPWM += word(VOL_PWM);
+          wPWM = (word)(PWM_MAX-VOL_PWM)+((PWMHI_DIV+1) / 2) / PWMHI_DIV;
+          wPWM += (word)VOL_PWM;
           if(highByte(wPWM)!=0 || lowByte(wPWM)>PWM_MAX)
             wPWM = PWM_MAX;
           hi_PWM = lowByte(wPWM);
           //
-          wPWM = word(VOL_PWM-PWM_LOW)+((PWMLO_DIV+1) / 2) / PWMLO_DIV;
-          wPWM = word(VOL_PWM) - wPWM;
+          wPWM = (word)(VOL_PWM-PWM_LOW)+((PWMLO_DIV+1) / 2) / PWMLO_DIV;
+          wPWM = (word)VOL_PWM - wPWM;
           if(highByte(wPWM)!=0 || lowByte(wPWM)<PWM_LOW)
             wPWM = PWM_LOW;
           lo_PWM = lowByte(wPWM);
