@@ -9,17 +9,19 @@
 #include <ATTinyCore.h>
 #include <EEPROM.h> 
 
-#define DISABLE_CAL
+//#define DISABLE_CAL_RESET
 #define DISABLE_INCPWM
+#define USE_ADC_LOOP
 
 // constants
-#define PWM_LOW 2
+#define PWM_LOW 1
 #define PWM_MAX 255
 #define PWMHI_DIV 6
 #define PWMLO_DIV 15
 #define CLM358_DIFF 0
-#define INC_PWM_MAX 8
+#define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 1
+#define INC_PWM_MIN 0
 
 byte TICK_1000, VOL_PWM, LED1_tm;
 word adc_vol, adc_cur, offset_cur, adc_prev, adc_diff;
@@ -30,7 +32,7 @@ byte Inc_pwm, eq_cnt;
 byte vol1, vol2, lo_PWM, hi_PWM;
 byte IncPWM_EQ;
 word wPWM, wTemp;
-unsigned long prevtime, currtime;
+unsigned long prevtime, currtime, udtime;
 
 // pin 
 #define AREF PIN_B0
@@ -40,7 +42,6 @@ unsigned long prevtime, currtime;
 #define LED PIN_B3
 #define ADC_VOL A2
 #define ADC_VOL_PIN PIN_B4
-#define OCAL PIN_B5  // disable reset on FUSE
 
 void setup() {
   // ADC current
@@ -62,48 +63,41 @@ void setup() {
   PLLCSR |= (1<<PCKE);
   TCCR1 = (1<<CTC1)    |  // Enable PWM
           (1<<PWM1A)   |  // Set source to pck
-          (1<<(CS11))  |  // PCK/2
-          (1<<COM1A1);    // Clear the OC1A output line.
-  GTCCR |= (1<<COM1B1);  // fix bug
+          (1<<CS11)    |  // PCK/2
+          (1<<COM1A0)  |  // Invert PWM
+          (1<<COM1A1);
+  GTCCR |= (1<<COM1B1) | (1<<COM1B0);  // fix bug
   //TIMSK = (1<<OCIE1A) | (1<<TOIE1);
   OCR1A = 0;
-  OCR1C = PWM_MAX;
+  OCR1C = 255;
   
   // LED
   pinMode(LED, OUTPUT);
 
-#ifndef DISABLE_CAL  
-  // OPAMP Cal. Set FUSE disable RESET
-  pinMode(OCAL, INPUT);
-#endif
-
   // init
-  LED1_tm = (500);
+  LED1_tm = 500;
   VOL_PWM = 0;
   TICK_1000 = 0;
 
   LM358_diff = CLM358_DIFF;
-  delay(100);
+  delay(300);
 
-#ifndef DIABLE_CAL  
-  if(digitalRead(OCAL)==0) {
-    delay(200);
+#ifndef DISABLE_CAL_RESET  
+  if(MCUSR & (1<<EXTRF)) {
     adc_cur = analogRead(ADC_CUR);
     EEPROM.write(0,lowByte(adc_cur));
-  }
+    // EEPROM Write
+    delay(100);
+    digitalWrite(LED,1);
+    delay(700);
+    digitalWrite(LED,0);
+  }  
   delay(100);
   LM358_diff = EEPROM.read(0);
-#else
-  adc_cur = analogRead(ADC_CUR);
-  LM358_diff = lowByte(adc_cur);
 #endif
-  if(LM358_diff==0) {
-    digitalWrite(LED,HIGH);
-    delay(100);
-  }
 
   IncPWM_EQ = 0;
-#ifndef DISBALE_INCPWM  
+#ifndef DISABLE_INCPWM  
   IncPWM_EQ = EEPROM.read(3);
 #endif
 
@@ -120,6 +114,7 @@ void setup() {
   adc_prev = 0; 
   OCR1A = PWM_LOW;
   prevtime = millis();
+  udtime = prevtime;
 }
 
 void loop() {
@@ -134,13 +129,14 @@ void loop() {
         digitalWrite(LED,HIGH);
   }
   if(VOL_PWM>=(PWM_MAX-1)) 
-    LED1_tm = (125);
+    LED1_tm = 125;
     else 
-      LED1_tm = (250);
+      LED1_tm = 250;
   // save previous adc values
   power_prev = power_curr;
   adc_prev = adc_cur;
   // read adc value
+#ifdef USE_ADC_LOOP  
   adc_vol = 0;
   adc_cur = 0;
   for(i=0;i<ADC_MAX_LOOP;i++) {
@@ -149,6 +145,10 @@ void loop() {
   }
   adc_vol = adc_vol / ADC_MAX_LOOP;
   adc_cur = adc_cur / ADC_MAX_LOOP;
+#else
+  adc_cur = analogRead(ADC_CUR);
+  adc_vol = analogRead(ADC_VOL);
+#endif  
   // sub op-amp offset value
   if(adc_cur>LM358_diff)
     adc_cur -= LM358_diff;
@@ -158,9 +158,9 @@ void loop() {
   if(adc_cur>0) {
     if(lo_PWM==0)
       lo_PWM = VOL_PWM;
-    power_curr = adc_cur * adc_vol;
+    power_curr = (unsigned long) adc_cur * adc_vol;
     if(power_curr==power_prev) {
-      Inc_pwm = 0;
+      Inc_pwm = INC_PWM_MIN;
       if(adc_cur>adc_prev)
         flag_inc = false;
       else if(adc_cur<adc_prev)
@@ -168,7 +168,7 @@ void loop() {
       else
         flag_inc = !flag_inc;
       vol2 = 0;
-      LED1_tm = (500);
+      LED1_tm = 500;
       goto CONTINUE;
     } else {
       if(Inc_pwm<INC_PWM_MAX)
@@ -179,7 +179,7 @@ void loop() {
         flag_inc = !flag_inc;
         // if set last low and high PWM, make average
         if(vol2!=0) {
-          Inc_pwm = 0;
+          Inc_pwm = INC_PWM_MIN;
           wPWM = vol1;
           wPWM = (wPWM+vol2+1) / 2 + 3;
           if(highByte(wPWM)!=0 || lowByte(wPWM)>PWM_MAX)
@@ -224,11 +224,11 @@ void loop() {
     else
       VOL_PWM = hi_PWM;
   } else {
-    if(VOL_PWM-lo_PWM > INC_PWM_MAX+1-Inc_pwm)
+    if(VOL_PWM-lo_PWM>(INC_PWM_MAX+1-Inc_pwm))
       VOL_PWM -= (INC_PWM_MAX+1-Inc_pwm);
-    else
-      VOL_PWM = lo_PWM;
+      else
+        VOL_PWM = lo_PWM;
   }
 CONTINUE:
-  OCR1A = VOL_PWM; 
+  OCR1A = VOL_PWM;
 }

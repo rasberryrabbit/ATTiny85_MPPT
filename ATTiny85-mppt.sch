@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2018-10-25"
-Rev "1.1"
+Date "2018-10-30"
+Rev "1.2"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -160,12 +160,12 @@ $EndComp
 $Comp
 L Device:R R10
 U 1 1 55C376F8
-P 6000 2700
-F 0 "R10" V 6080 2700 50  0000 C CNN
-F 1 "1k" V 6000 2700 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5930 2700 30  0001 C CNN
-F 3 "" H 6000 2700 30  0000 C CNN
-	1    6000 2700
+P 6050 2700
+F 0 "R10" V 6130 2700 50  0000 C CNN
+F 1 "1k" V 6050 2700 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5980 2700 30  0001 C CNN
+F 3 "" H 6050 2700 30  0000 C CNN
+	1    6050 2700
 	0    1    1    0   
 $EndComp
 $Comp
@@ -332,7 +332,7 @@ F 3 "" H 5650 4200 30  0000 C CNN
 	1    5650 4200
 	1    0    0    -1  
 $EndComp
-Text Label 5500 3250 0    60   ~ 0
+Text Label 5500 3450 0    60   ~ 0
 3.6v
 $Comp
 L Device:CP C5
@@ -449,8 +449,6 @@ Wire Wire Line
 	6600 2350 6600 2600
 Wire Wire Line
 	5200 2350 3500 2350
-Wire Wire Line
-	6150 2700 6300 2700
 Connection ~ 6300 2800
 Connection ~ 2250 2200
 Connection ~ 2650 5600
@@ -704,7 +702,7 @@ Wire Wire Line
 Wire Wire Line
 	8400 3950 8400 5200
 Wire Wire Line
-	5650 5600 5200 5600
+	5650 5600 5400 5600
 Wire Wire Line
 	6100 3600 6250 3600
 Wire Wire Line
@@ -764,7 +762,7 @@ Wire Wire Line
 Wire Wire Line
 	5200 3400 5050 3400
 Wire Wire Line
-	5500 2350 6600 2350
+	5500 2350 5800 2350
 Wire Wire Line
 	5650 5600 6100 5600
 Wire Wire Line
@@ -795,17 +793,13 @@ Wire Wire Line
 Wire Wire Line
 	2350 3400 2250 3400
 Wire Wire Line
-	5300 2700 5850 2700
-Wire Wire Line
 	5050 3200 5300 3200
-Wire Wire Line
-	5300 3200 5300 2700
 Wire Wire Line
 	5050 3300 5400 3300
 Wire Wire Line
 	5400 3300 5400 3600
-Text Label 5550 2700 0    50   ~ 0
-PWM
+Text Label 5300 2650 0    50   ~ 0
+~PWM
 $Comp
 L Device:D_Schottky D6
 U 1 1 5BCAD4DB
@@ -1123,4 +1117,64 @@ Text Notes 6200 6450 0    50   ~ 0
 40milli Ohm, R15 = 2.2k{R1} * (1.5-1) = 1.1{best, 1k} or R1 = 10k{R15} / (1.5-1) = 20k(22k)
 Text Notes 2000 6450 0    50   ~ 0
 Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
+$Comp
+L Device:Q_NPN_EBC Q3
+U 1 1 5BD8C436
+P 5700 2950
+F 0 "Q3" H 6000 2850 50  0000 R CNN
+F 1 "2N2222A" H 6200 3000 50  0000 R CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Inline_Wide" H 5900 3050 29  0001 C CNN
+F 3 "" H 5700 2950 60  0000 C CNN
+	1    5700 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R9
+U 1 1 5BD8C4B8
+P 5800 2550
+F 0 "R9" V 5880 2550 50  0000 C CNN
+F 1 "10k" V 5800 2550 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5730 2550 30  0001 C CNN
+F 3 "" H 5800 2550 30  0000 C CNN
+	1    5800 2550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5800 3150 5800 3800
+Wire Wire Line
+	5800 3800 5400 3800
+Wire Wire Line
+	5400 3800 5400 5600
+Connection ~ 5400 5600
+Wire Wire Line
+	5400 5600 5200 5600
+Wire Wire Line
+	6300 2700 6200 2700
+Wire Wire Line
+	5900 2700 5800 2700
+Wire Wire Line
+	5800 2700 5800 2750
+Connection ~ 5800 2700
+$Comp
+L Device:R R7
+U 1 1 5BDB3FEB
+P 5300 2800
+F 0 "R7" V 5380 2800 50  0000 C CNN
+F 1 "1k" V 5300 2800 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5230 2800 30  0001 C CNN
+F 3 "" H 5300 2800 30  0000 C CNN
+	1    5300 2800
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5800 2350 5800 2400
+Connection ~ 5800 2350
+Wire Wire Line
+	5800 2350 6600 2350
+Wire Wire Line
+	5300 2950 5300 3200
+Wire Wire Line
+	5500 2950 5500 2650
+Wire Wire Line
+	5500 2650 5300 2650
 $EndSCHEMATC
