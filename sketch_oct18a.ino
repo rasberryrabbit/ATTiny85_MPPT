@@ -62,9 +62,8 @@ void setup() {
   TCCR1 = (1<<CTC1)    |  // Enable PWM
           (1<<PWM1A)   |  // Set source to pck
           (1<<CS11)    |  // PCK/2
-          (1<<COM1A0)  |  // Invert PWM
-          (1<<COM1A1);
-  GTCCR |= (1<<COM1B1) | (1<<COM1B0);  // fix bug
+          (1<<COM1A1);    // non inverting
+  GTCCR |= (1<<COM1B1);  // fix bug
   //TIMSK = (1<<OCIE1A) | (1<<TOIE1);
   OCR1A = 0;
   OCR1C = 255;

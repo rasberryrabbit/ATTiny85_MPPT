@@ -125,17 +125,6 @@ F 3 "" H 6500 2800 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:Q_PNP_EBC Q5
-U 1 1 55C35E2B
-P 6500 3300
-F 0 "Q5" H 6800 3350 50  0000 R CNN
-F 1 "2N2907A" H 7000 3200 50  0000 R CNN
-F 2 "TO_SOT_Packages_THT:TO-92_Inline_Wide" H 6700 3400 29  0001 C CNN
-F 3 "" H 6500 3300 60  0000 C CNN
-	1    6500 3300
-	1    0    0    1   
-$EndComp
-$Comp
 L Device:CP C2
 U 1 1 55C35FB2
 P 7150 2750
@@ -149,23 +138,23 @@ $EndComp
 $Comp
 L Device:D D3
 U 1 1 55C36E30
-P 5350 2350
-F 0 "D3" H 5350 2450 50  0000 C CNN
-F 1 "1N4001" H 5350 2250 50  0000 C CNN
-F 2 "Diodes_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 5350 2350 60  0001 C CNN
-F 3 "" H 5350 2350 60  0000 C CNN
-	1    5350 2350
+P 5550 2350
+F 0 "D3" H 5550 2450 50  0000 C CNN
+F 1 "1N4001" H 5550 2250 50  0000 C CNN
+F 2 "Diodes_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 5550 2350 60  0001 C CNN
+F 3 "" H 5550 2350 60  0000 C CNN
+	1    5550 2350
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:R R10
 U 1 1 55C376F8
-P 6050 2700
-F 0 "R10" V 6130 2700 50  0000 C CNN
-F 1 "1k" V 6050 2700 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5980 2700 30  0001 C CNN
-F 3 "" H 6050 2700 30  0000 C CNN
-	1    6050 2700
+P 5750 2700
+F 0 "R10" V 5830 2700 50  0000 C CNN
+F 1 "1k" V 5750 2700 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5680 2700 30  0001 C CNN
+F 3 "" H 5750 2700 30  0000 C CNN
+	1    5750 2700
 	0    1    1    0   
 $EndComp
 $Comp
@@ -245,7 +234,7 @@ F 3 "" H 3100 3700 60  0000 C CNN
 	1    3100 3700
 	1    0    0    -1  
 $EndComp
-Text Label 5100 2350 2    60   ~ 0
+Text Label 5400 2350 2    60   ~ 0
 BootStrap
 Text Label 7050 3600 2    60   ~ 0
 PV-Current
@@ -435,20 +424,11 @@ Wire Wire Line
 Wire Wire Line
 	7450 3050 7450 2500
 Connection ~ 6600 3050
-Wire Wire Line
-	6600 3500 7150 3500
-Wire Wire Line
-	7750 3500 7750 2200
 Connection ~ 7750 2200
 Wire Wire Line
 	6300 2700 6300 2800
 Wire Wire Line
-	7150 2900 7150 3500
-Connection ~ 7150 3500
-Wire Wire Line
-	6600 2350 6600 2600
-Wire Wire Line
-	5200 2350 3500 2350
+	5400 2350 3500 2350
 Connection ~ 6300 2800
 Connection ~ 2250 2200
 Connection ~ 2650 5600
@@ -483,7 +463,6 @@ Wire Wire Line
 Connection ~ 3750 3400
 Wire Wire Line
 	7150 2350 7150 2600
-Connection ~ 6600 2350
 Connection ~ 7400 5600
 Connection ~ 7400 4450
 Wire Wire Line
@@ -666,8 +645,6 @@ Wire Wire Line
 Wire Wire Line
 	7750 2200 7950 2200
 Wire Wire Line
-	7150 3500 7750 3500
-Wire Wire Line
 	6300 2800 6300 3300
 Wire Wire Line
 	2250 2200 2500 2200
@@ -684,8 +661,6 @@ Wire Wire Line
 Wire Wire Line
 	3100 3400 3500 3400
 Wire Wire Line
-	6600 2350 7150 2350
-Wire Wire Line
 	7400 5600 6900 5600
 Wire Wire Line
 	7400 4450 8150 4450
@@ -696,13 +671,11 @@ Wire Wire Line
 Wire Wire Line
 	9500 2200 10000 2200
 Wire Wire Line
-	6700 5600 6100 5600
+	6700 5600 6400 5600
 Wire Wire Line
 	6700 4750 6700 5150
 Wire Wire Line
 	8400 3950 8400 5200
-Wire Wire Line
-	5650 5600 5400 5600
 Wire Wire Line
 	6100 3600 6250 3600
 Wire Wire Line
@@ -762,8 +735,6 @@ Wire Wire Line
 Wire Wire Line
 	5200 3400 5050 3400
 Wire Wire Line
-	5500 2350 5800 2350
-Wire Wire Line
 	5650 5600 6100 5600
 Wire Wire Line
 	5500 3100 5500 4500
@@ -798,8 +769,6 @@ Wire Wire Line
 	5050 3300 5400 3300
 Wire Wire Line
 	5400 3300 5400 3600
-Text Label 5300 2650 0    50   ~ 0
-~PWM
 $Comp
 L Device:D_Schottky D6
 U 1 1 5BCAD4DB
@@ -1117,64 +1086,64 @@ Text Notes 6200 6450 0    50   ~ 0
 40milli Ohm, R15 = 2.2k{R1} * (1.5-1) = 1.1{best, 1k} or R1 = 10k{R15} / (1.5-1) = 20k(22k)
 Text Notes 2000 6450 0    50   ~ 0
 Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
-$Comp
-L Device:Q_NPN_EBC Q3
-U 1 1 5BD8C436
-P 5700 2950
-F 0 "Q3" H 6000 2850 50  0000 R CNN
-F 1 "2N2222A" H 6200 3000 50  0000 R CNN
-F 2 "TO_SOT_Packages_THT:TO-92_Inline_Wide" H 5900 3050 29  0001 C CNN
-F 3 "" H 5700 2950 60  0000 C CNN
-	1    5700 2950
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R9
-U 1 1 5BD8C4B8
-P 5800 2550
-F 0 "R9" V 5880 2550 50  0000 C CNN
-F 1 "10k" V 5800 2550 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5730 2550 30  0001 C CNN
-F 3 "" H 5800 2550 30  0000 C CNN
-	1    5800 2550
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
-	5800 3150 5800 3800
+	6300 2700 5900 2700
 Wire Wire Line
-	5800 3800 5400 3800
+	5300 2700 5600 2700
 Wire Wire Line
-	5400 3800 5400 5600
-Connection ~ 5400 5600
-Wire Wire Line
-	5400 5600 5200 5600
-Wire Wire Line
-	6300 2700 6200 2700
-Wire Wire Line
-	5900 2700 5800 2700
-Wire Wire Line
-	5800 2700 5800 2750
-Connection ~ 5800 2700
+	5300 2700 5300 3200
 $Comp
 L Device:R R7
-U 1 1 5BDB3FEB
-P 5300 2800
-F 0 "R7" V 5380 2800 50  0000 C CNN
-F 1 "1k" V 5300 2800 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5230 2800 30  0001 C CNN
-F 3 "" H 5300 2800 30  0000 C CNN
-	1    5300 2800
-	-1   0    0    1   
+U 1 1 5BDAFBE4
+P 6250 2500
+F 0 "R7" V 6330 2500 50  0000 C CNN
+F 1 "1k" V 6250 2500 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6180 2500 30  0001 C CNN
+F 3 "" H 6250 2500 30  0000 C CNN
+	1    6250 2500
+	0    1    1    0   
 $EndComp
 Wire Wire Line
-	5800 2350 5800 2400
-Connection ~ 5800 2350
+	5700 2350 5850 2350
 Wire Wire Line
-	5800 2350 6600 2350
+	6400 2500 6600 2500
 Wire Wire Line
-	5300 2950 5300 3200
+	6600 2500 6600 2600
 Wire Wire Line
-	5500 2950 5500 2650
+	6100 2500 5850 2500
 Wire Wire Line
-	5500 2650 5300 2650
+	5850 2500 5850 2350
+Wire Wire Line
+	5850 2350 7150 2350
+Connection ~ 5850 2350
+Text Label 5350 2700 0    50   ~ 0
+PWM
+Wire Wire Line
+	7750 2200 7750 2950
+Wire Wire Line
+	7750 2950 7150 2950
+Wire Wire Line
+	7150 2950 7150 2900
+Wire Wire Line
+	5200 5600 5650 5600
+$Comp
+L Device:Q_PNP_EBC Q5
+U 1 1 55C35E2B
+P 6500 3300
+F 0 "Q5" H 6800 3350 50  0000 R CNN
+F 1 "2N2907A" H 7000 3200 50  0000 R CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Inline_Wide" H 6700 3400 29  0001 C CNN
+F 3 "" H 6500 3300 60  0000 C CNN
+	1    6500 3300
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	6400 4200 6400 5600
+Connection ~ 6400 5600
+Wire Wire Line
+	6400 5600 6100 5600
+Wire Wire Line
+	6600 3500 6600 4200
+Wire Wire Line
+	6600 4200 6400 4200
 $EndSCHEMATC
