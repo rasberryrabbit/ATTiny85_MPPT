@@ -14,11 +14,11 @@
 
 // constants
 #define PWM_LOW 1
-#define PWM_MAX 255
+#define PWM_MAX 247     // Not 255 due to FET Bootstrap capacitor charge
 #define PWMHI_DIV 6
 #define PWMLO_DIV 15
 #define CLM358_DIFF 0
-#define INC_PWM_MAX 1
+#define INC_PWM_MAX 2
 #define ADC_MAX_LOOP 1
 #define INC_PWM_MIN 0
 
@@ -52,7 +52,7 @@ void setup() {
   analogRead(ADC_CUR);  // prevent short
 
   pinMode(PWM, OUTPUT);
-  // Timer1 PWM, 128KHz
+  // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
   PLLCSR |= (1<<PLLE);
   while ((PLLCSR & (1<<PLOCK)) == 0x00)
     {
@@ -61,9 +61,11 @@ void setup() {
   PLLCSR |= (1<<PCKE);
   TCCR1 = (1<<CTC1)    |  // Enable PWM
           (1<<PWM1A)   |  // Set source to pck
-          (1<<CS11)    |  // PCK/2
-          (1<<COM1A1);    // non inverting
-  GTCCR |= (1<<COM1B1);  // fix bug
+          (1<<CS12)    |  // PCK/32
+          (1<<CS11)    |
+          (1<<COM1A0)  |
+          (1<<COM1A1);    // inverting mode
+  GTCCR |= (1<<COM1B1) | (1<<COM1B0);  // fix bug
   //TIMSK = (1<<OCIE1A) | (1<<TOIE1);
   OCR1A = 0;
   OCR1C = 255;
@@ -152,7 +154,7 @@ void loop() {
       lo_PWM = VOL_PWM;
     power_curr = (unsigned long) adc_cur * adc_vol;
     if(power_curr==power_prev) {
-      Inc_pwm = INC_PWM_MIN+1;
+      Inc_pwm = INC_PWM_MIN;
       if(adc_cur>adc_prev)
         flag_inc = false;
       else if(adc_cur<adc_prev)
@@ -161,7 +163,7 @@ void loop() {
         flag_inc = !flag_inc;
       vol2 = 0;
       LED1_tm = 500;
-      goto CONT_PWM;
+      goto CONTINUE;
     } else {
       if(Inc_pwm<INC_PWM_MAX)
         ++Inc_pwm;
