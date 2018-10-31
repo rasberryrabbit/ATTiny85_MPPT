@@ -49,14 +49,14 @@ unsigned long prevtime, currtime, udtime;
 #endif
 
 #ifdef USE_OWN_ADC 
-// 01 = PB2, 10 = PB4, 11 = PB3
+  // 00 = PB5, 01 = PB2, 10 = PB4, 11 = PB3
 int _AnalogRead(int port)
 {
   port &= 3;
   ADMUX &= (~3);
   ADMUX |= port;
   ADCSRA |= (1<<ADEN) | (1<<ADSC);
-  while(!(ADCSRA & (1<<ADSC))) ;
+  while(ADCSRA & (1<<ADSC)) ;
 int ret=ADCL | (ADCH << 8);
   ADCSRA &= ~(1<<ADEN);  
   return ret;
@@ -71,7 +71,7 @@ void setup() {
   // AREF
   pinMode(AREF, INPUT);
 #ifdef USE_OWN_ADC
-  ADMUX = B01000001;  // 01 = PB2, 10 = PB4, 11 = PB3
+  ADMUX = (1<<REFS0) | (1<<MUX0) ;
   _AnalogRead(ADC_CUR);
 #else
   analogReference(EXTERNAL);
@@ -153,16 +153,7 @@ void loop() {
       else
         digitalWrite(LED,HIGH);
   }
-  /*
-  if(OCR1A>=(PWM_MAX-1)) 
-    LED1_tm = 125;
-    else 
-      LED1_tm = 250;
-  */
-  currtime = millis();
-  if(currtime - udtime < UPDATE_INT)
-    goto CONTINUE;
-  udtime = currtime;
+  LED1_tm = 250;
   // save previous adc values
   power_prev = power_curr;
   adc_prev = adc_cur;
@@ -195,8 +186,6 @@ void loop() {
     adc_cur -= LM358_diff;
     else
       adc_cur = 0;
-  if(adc_cur==0)
-    LED1_tm = 100;
   //
   if(adc_cur>0) {
     if(lo_PWM==PWM_LOW)
@@ -250,20 +239,17 @@ void loop() {
       } else {
         // last High PWM
         vol2 = OCR1A;
-        LED1_tm = 250;
       }
     }
   } else {
     // no load or low current
-    /*
     power_curr = 0;
     Inc_pwm = INC_PWM_MAX;
     flag_inc = true;
     vol2 = 0;
     lo_PWM = PWM_LOW;
     hi_PWM = PWM_MAX;
-    LED1_tm = 80;
-    */
+    LED1_tm = 127;
   }
 CONT_PWM:
   // PWM
