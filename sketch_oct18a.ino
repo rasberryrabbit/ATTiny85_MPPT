@@ -27,17 +27,18 @@
 #define USE_ADC_LOOP
 //#define USE_OWN_ADC
 //#define DEBUG_ADC
+//#define USE_PWM_LIMIT
 
 // constants
 #define PWM_LOW 1
-#define PWM_MAX 247     // Not 255 due to FET Bootstrap capacitor charge
+#define PWM_MAX 247       // Not 255 due to FET Bootstrap capacitor charge
 #define PWMHI_DIV 6
 #define PWMLO_DIV 15
 #define CLM358_DIFF 0
-#define INC_PWM_MAX 2
-#define ADC_MAX_LOOP 1
+#define INC_PWM_MAX 1
+#define ADC_MAX_LOOP 2
 #define INC_PWM_MIN 0
-#define UPDATE_INT 1
+#define UPDATE_INT 50
 
 byte TICK_1000, VOL_PWM, LED1_tm;
 unsigned int adc_vol, adc_cur, offset_cur, adc_prev, adc_diff;
@@ -83,7 +84,6 @@ void setup() {
   pinMode(ADC_CUR_PIN, INPUT);
   // ADC Voltage
   pinMode(ADC_VOL_PIN, INPUT);
-  // AREF
   pinMode(AREF, INPUT);
 #ifdef USE_OWN_ADC
   ADMUX = (1<<REFS0) | (1<<MUX0) ;
@@ -101,14 +101,14 @@ void setup() {
         // Do nothing
     }
   PLLCSR |= (1<<PCKE);
+  GTCCR |= (1<<COM1B1) | (1<<COM1B0);  // fix bug
   TCCR1 = (1<<CTC1)    |  // Enable PWM
-          (1<<PWM1A)   |  // Set source to pck
           (1<<CS12)    |  // PCK/64
           (1<<CS11)    |
           (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
-  GTCCR |= (1<<COM1B1) | (1<<COM1B0);  // fix bug
+  TCCR1 |= (1<<PWM1A);
   //TIMSK = (1<<OCIE1A) | (1<<TOIE1);
   OCR1A = 0;
   OCR1C = 255;
@@ -156,7 +156,7 @@ void setup() {
   flag_inc = true;
   adc_prev = 0; 
   prevtime = millis();
-  udtime = prevtime;
+  udtime = micros();
 }
 
 void loop() {
@@ -170,6 +170,10 @@ void loop() {
       else
         digitalWrite(LED,HIGH);
   }
+  currtime = micros();
+  if(currtime - udtime < UPDATE_INT)
+    goto CONTINUE;
+  udtime = currtime;
   if(OCR1A>=PWM_MAX)
     LED1_tm = 127;
     else
@@ -212,9 +216,7 @@ void loop() {
     udtime = currtime;
   }
 #endif
-  if(adc_cur>LM358_diff) {
-    if(lo_PWM==PWM_LOW)
-      lo_PWM = OCR1A;
+  if(adc_cur>=LM358_diff) {
     power_curr = adc_cur * adc_vol;
     if(power_curr==power_prev) {
       Inc_pwm = INC_PWM_MIN;
@@ -232,21 +234,26 @@ void loop() {
         ++Inc_pwm;
       if(power_curr<power_prev) {
         // vol1 = last low PWM
-        vol1 = OCR1A;
         flag_inc = !flag_inc;
+/*
         // if set last low and high PWM, make average
-        if(vol2!=0) {
+        if(vol2!=0 || vol1!=0) {
+          if(vol1==0)
+            vol1=OCR1A;
+          if(vol2==0)
+            vol2=OCR1A;
           Inc_pwm = INC_PWM_MIN;
           wPWM = vol1;
-          wPWM = (wPWM+vol2+1) / 2 + 3;
+          wPWM = (wPWM+vol2+1) / 2;
           if(highByte(wPWM)!=0 || lowByte(wPWM)>PWM_MAX)
             wPWM = (unsigned int)PWM_MAX;
           else if(lowByte(wPWM)<PWM_LOW)
             wPWM = (unsigned int)PWM_LOW;
           OCR1A = lowByte(wPWM);
-          
           vol2 = 0;
+          vol1 = 0;
           //
+#ifdef USE_PWM_LIMIT          
           wPWM = (unsigned int)(PWM_MAX-OCR1A)+((PWMHI_DIV+1) / 2) / PWMHI_DIV;
           wPWM += (unsigned int)OCR1A;
           if(highByte(wPWM)!=0 || lowByte(wPWM)>PWM_MAX)
@@ -258,9 +265,11 @@ void loop() {
           if(highByte(wPWM)!=0 || lowByte(wPWM)<PWM_LOW)
             wPWM = PWM_LOW;
           lo_PWM = lowByte(wPWM);
+#endif
           LED1_tm = 500;
           goto CONTINUE;
         }
+*/
       } else {
         // last High PWM
         vol2 = OCR1A;
@@ -272,6 +281,7 @@ void loop() {
     Inc_pwm = INC_PWM_MAX;
     flag_inc = true;
     vol2 = 0;
+    vol1 = 0;
     lo_PWM = PWM_LOW;
     hi_PWM = PWM_MAX;
     LED1_tm = 80;
@@ -279,15 +289,19 @@ void loop() {
 CONT_PWM:
   // PWM
   if(flag_inc) {
-    if(OCR1A<(hi_PWM-Inc_pwm))
+    if(OCR1A<=(hi_PWM-Inc_pwm))
       OCR1A += Inc_pwm;
-    else
-      OCR1A = hi_PWM;
+        else {
+          vol2 = OCR1A;
+          OCR1A = lo_PWM;
+        }
   } else {
-    if(OCR1A-lo_PWM>(INC_PWM_MAX+1-Inc_pwm))
+    if(OCR1A-lo_PWM>=(INC_PWM_MAX+1-Inc_pwm))
       OCR1A -= (INC_PWM_MAX+1-Inc_pwm);
-      else 
-        OCR1A = lo_PWM;
+      else {
+        vol1 = OCR1A;
+        OCR1A = hi_PWM;
+      }
   }
 CONTINUE:
   ;
