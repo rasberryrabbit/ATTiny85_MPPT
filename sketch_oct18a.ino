@@ -31,7 +31,7 @@
 
 // constants
 #define PWM_LOW 1
-#define PWM_MAX 247       // Not 255 due to FET Bootstrap capacitor charge
+#define PWM_MAX 235     // Not 255 due to FET Bootstrap capacitor charge
 #define PWMHI_DIV 6
 #define PWMLO_DIV 15
 #define CLM358_DIFF 0
