@@ -28,10 +28,11 @@
 //#define USE_OWN_ADC
 //#define DEBUG_ADC
 //#define USE_PWM_LIMIT
+//#define USE_PWM_AVG
 
 // constants
 #define PWM_LOW 1
-#define PWM_MAX 235     // Not 255 due to FET Bootstrap capacitor charge
+#define PWM_MAX 232     // Not 255 due to FET Bootstrap capacitor charge
 #define PWMHI_DIV 6
 #define PWMLO_DIV 15
 #define CLM358_DIFF 0
@@ -101,17 +102,15 @@ void setup() {
         // Do nothing
     }
   PLLCSR |= (1<<PCKE);
-  GTCCR |= (1<<COM1B1) | (1<<COM1B0);  // fix bug
+  OCR1C = 255;
+  OCR1A = 0;
   TCCR1 = (1<<CTC1)    |  // Enable PWM
+          (1<<PWM1A)   |
           (1<<CS12)    |  // PCK/64
           (1<<CS11)    |
           (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
-  TCCR1 |= (1<<PWM1A);
-  //TIMSK = (1<<OCIE1A) | (1<<TOIE1);
-  OCR1A = 0;
-  OCR1C = 255;
   
   // LED
   pinMode(LED, OUTPUT);
@@ -235,7 +234,7 @@ void loop() {
       if(power_curr<power_prev) {
         // vol1 = last low PWM
         flag_inc = !flag_inc;
-/*
+#ifdef USE_PWM_AVG
         // if set last low and high PWM, make average
         if(vol2!=0 || vol1!=0) {
           if(vol1==0)
@@ -269,7 +268,7 @@ void loop() {
           LED1_tm = 500;
           goto CONTINUE;
         }
-*/
+#endif
       } else {
         // last High PWM
         vol2 = OCR1A;
