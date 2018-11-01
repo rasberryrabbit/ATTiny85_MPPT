@@ -1,12 +1,14 @@
 # ATTiny85
-Solar MPPT circuit. (Not tested yet)
+Solar MPPT circuit. (WIP)
 
 Coding by Arduino 1.8.7 / ATTinycore.
 Algorithm convert from old MPPT code of mine.
+It has less PWM noise at high load.(hopely)
+Sadly, N-ch FET bootstrap don't work with 8KHz or higher.
 
 This is simple MPPT for solar panel.
 
-11 mili-ohm N-ch logic level FET(BUK9511) used for current sensor. 
+11 milli-ohm N-ch logic level FET(BUK9511) used for current sensor. 
 It can replace by 11 mili-ohm or higher Rds-on resistance logic level FET.
 
 Transistor 2N2222A -> BC547 or compatible
