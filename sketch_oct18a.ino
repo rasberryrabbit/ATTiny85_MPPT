@@ -7,11 +7,26 @@
  */
 
 #include <ATTinyCore.h>
-#include <EEPROM.h> 
+#include <EEPROM.h>
+
+/* re-define Reference for ATTiny x5, bug fix */
+// X 0 0 VCC used as Voltage Reference, disconnected from PB0 (AREF).
+#define DEFAULT (B0000)
+// X 0 1 External Voltage Reference at PB0 (AREF) pin, Internal Voltage Reference turned off.
+#define EXTERNAL (B0100)
+// 0 1 0 Internal 1.1V Voltage Reference.
+#define INTERNAL (B1000)
+#define INTERNAL1V1 INTERNAL
+// 1 1 1 Internal 2.56V Voltage Reference with external bypass capacitor at PB0 (AREF) pin(1).
+#define INTERNAL2V56 (B1101)
+// 1 1 0 Internal 2.56V Voltage Reference without external bypass capacitor, disconnected from PB0 (AREF)(1).
+#define INTERNAL2V56_NO_CAP (B1001)
+#define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 //#define DISABLE_CAL_RESET
 #define USE_ADC_LOOP
-#define USE_OWN_ADC
+//#define USE_OWN_ADC
+//#define DEBUG_ADC
 
 // constants
 #define PWM_LOW 1
@@ -108,7 +123,7 @@ void setup() {
 
   LM358_diff = CLM358_DIFF;
 
-#ifndef DISABLE_CAL_RESET  
+#ifndef DISABLE_CAL_RESET
   if(MCUSR & (1<<EXTRF)) {
     delay(500);    
 #ifdef USE_OWN_ADC
@@ -125,6 +140,8 @@ void setup() {
   }  
   delay(100);
   LM358_diff = EEPROM.read(0);
+  if(LM358_diff>0x3f)
+    LM358_diff=0;
 #endif
 
   adc_vol = 0;
@@ -153,7 +170,10 @@ void loop() {
       else
         digitalWrite(LED,HIGH);
   }
-  LED1_tm = 250;
+  if(OCR1A>=PWM_MAX)
+    LED1_tm = 127;
+    else
+      LED1_tm = 250;
   // save previous adc values
   power_prev = power_curr;
   adc_prev = adc_cur;
@@ -180,14 +200,19 @@ void loop() {
     adc_cur = (unsigned int) analogRead(ADC_CUR);
     adc_vol = (unsigned int) analogRead(ADC_VOL);
   #endif  
-#endif  
-  // sub op-amp offset value
-  if(adc_cur>LM358_diff)
-    adc_cur -= LM358_diff;
-    else
-      adc_cur = 0;
-  //
-  if(adc_cur>0) {
+#endif
+
+#ifdef DEBUG_ADC
+  currtime = millis();
+  if(currtime - udtime > 5000) {
+    EEPROM.write(4,highByte(adc_cur));
+    EEPROM.write(5,lowByte(adc_cur));
+    EEPROM.write(6,highByte(adc_vol));
+    EEPROM.write(7,lowByte(adc_vol));
+    udtime = currtime;
+  }
+#endif
+  if(adc_cur>LM358_diff) {
     if(lo_PWM==PWM_LOW)
       lo_PWM = OCR1A;
     power_curr = adc_cur * adc_vol;
@@ -249,7 +274,7 @@ void loop() {
     vol2 = 0;
     lo_PWM = PWM_LOW;
     hi_PWM = PWM_MAX;
-    LED1_tm = 127;
+    LED1_tm = 80;
   }
 CONT_PWM:
   // PWM
