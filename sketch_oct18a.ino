@@ -217,6 +217,7 @@ CONTINUE:
 #ifdef USE_STALLCHECK
   currtime = millis();
   if(currtime - stallcheck > 3000) {
+    stallcheck = currtime;
     if((!p_equal) && (PWM_old == OCR1A)) {
       OCR1A = PWM_MIN;
       flag_inc = true;
