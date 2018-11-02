@@ -25,6 +25,7 @@
 
 //#define DISABLE_CAL_RESET
 #define USE_ADC_LOOP
+//#define USE_STALLCHECK
 
 // constants
 #define PWM_MIN 1
@@ -40,8 +41,8 @@ unsigned int adc_vol, adc_cur, vol_prev, cur_prev, adc_tmp1, adc_tmp2;
 unsigned long power_prev, power_curr;
 byte i, LM358_diff;
 boolean flag_inc, p_equal;
-byte Inc_pwm;
-unsigned long prevtime, currtime, udtime;
+byte PWM_old, Inc_pwm;
+unsigned long prevtime, currtime, udtime, stallcheck;
 
 // pin 
 #define AREF PIN_B0
@@ -114,7 +115,9 @@ void setup() {
   p_equal = false;
   vol_prev = 0; 
   cur_prev = 0;
+  PWM_old = 0;
   prevtime = millis();
+  stallcheck = prevtime;
   udtime = micros();
 }
 
@@ -186,12 +189,13 @@ void loop() {
       p_equal = false;
     }
   } else {
+    /* reset parameters */
     LED1_tm = 127;
     flag_inc = true;
     p_equal = false;
     power_curr = 0;
-    vol_prev = 0;
-    cur_prev = 0;
+    adc_cur = 0;
+    adc_vol = 0;
   }
 CONT_PWM:
   if(flag_inc) {
@@ -210,5 +214,19 @@ CONT_PWM:
       }
   }
 CONTINUE:
+#ifdef USE_STALLCHECK
+  currtime = millis();
+  if(currtime - stallcheck > 3000) {
+    if((!p_equal) && (PWM_old == OCR1A)) {
+      OCR1A = PWM_MIN;
+      flag_inc = true;
+      power_curr = 0;
+      adc_cur = 0;
+      adc_vol = 0;
+    }
+    PWM_old = OCR1A;
+  }
+#else
   ;
+#endif
 }
