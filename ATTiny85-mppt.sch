@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2018-10-31"
-Rev "1.3"
+Date "2018-11-02"
+Rev "1.4"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -57,17 +57,6 @@ F 2 "Housings_DIP:DIP-8_W7.62mm" H 7500 4850 60  0001 C CNN
 F 3 "" H 7500 4850 60  0000 C CNN
 	2    7500 4850
 	1    0    0    -1  
-$EndComp
-$Comp
-L Device:Q_NMOS_GDS Q2
-U 1 1 55C35281
-P 7450 2300
-F 0 "Q2" V 7650 2550 50  0000 R CNN
-F 1 "BUK9511-55A127" V 7750 2600 50  0000 R CNN
-F 2 "TO_SOT_Packages_THT-2:TO-220_Neutral123_Vertical" H 7650 2400 29  0001 C CNN
-F 3 "" H 7450 2300 60  0000 C CNN
-	1    7450 2300
-	0    -1   -1   0   
 $EndComp
 $Comp
 L 12f675-mppt-rescue:INDUCTOR L1
@@ -127,12 +116,12 @@ $EndComp
 $Comp
 L Device:CP C2
 U 1 1 55C35FB2
-P 7150 2750
-F 0 "C2" H 7175 2850 50  0000 L CNN
-F 1 ">10uF" H 7175 2650 50  0000 L CNN
-F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 7188 2600 30  0001 C CNN
-F 3 "" H 7150 2750 60  0000 C CNN
-	1    7150 2750
+P 7050 2750
+F 0 "C2" H 7075 2850 50  0000 L CNN
+F 1 ">10uF" H 7075 2650 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 7088 2600 30  0001 C CNN
+F 3 "" H 7050 2750 60  0000 C CNN
+	1    7050 2750
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -149,13 +138,13 @@ $EndComp
 $Comp
 L Device:R R10
 U 1 1 55C376F8
-P 5450 2700
-F 0 "R10" V 5530 2700 50  0000 C CNN
-F 1 "1k" V 5450 2700 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5380 2700 30  0001 C CNN
-F 3 "" H 5450 2700 30  0000 C CNN
-	1    5450 2700
-	0    -1   -1   0   
+P 5450 2850
+F 0 "R10" V 5530 2850 50  0000 C CNN
+F 1 "1k" V 5450 2850 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5380 2850 30  0001 C CNN
+F 3 "" H 5450 2850 30  0000 C CNN
+	1    5450 2850
+	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R5
@@ -416,7 +405,7 @@ Wire Wire Line
 Wire Wire Line
 	9500 2200 9500 2350
 Wire Wire Line
-	7650 2200 7750 2200
+	7450 2200 7600 2200
 Connection ~ 7750 2200
 Wire Wire Line
 	5400 2350 3500 2350
@@ -452,7 +441,7 @@ Wire Wire Line
 	3750 3550 3750 3400
 Connection ~ 3750 3400
 Wire Wire Line
-	7150 2350 7150 2600
+	7050 2350 7050 2600
 Connection ~ 7400 5600
 Connection ~ 7400 4450
 Wire Wire Line
@@ -563,7 +552,7 @@ Wire Wire Line
 Wire Wire Line
 	8950 5100 8950 4850
 Wire Wire Line
-	7250 2200 3300 2200
+	7050 2200 6800 2200
 $Comp
 L Device:CP C7
 U 1 1 56E7CE1F
@@ -1086,28 +1075,13 @@ Text Label 5000 2650 0    50   ~ 0
 Wire Wire Line
 	7750 2200 7750 2950
 Wire Wire Line
-	7750 2950 7150 2950
+	7750 2950 7050 2950
 Wire Wire Line
-	7150 2950 7150 2900
+	7050 2950 7050 2900
 Wire Wire Line
 	5200 5600 5400 5600
-$Comp
-L Device:Q_NPN_EBC Q3
-U 1 1 5BD9A966
-P 5800 3000
-F 0 "Q3" H 6100 2900 50  0000 R CNN
-F 1 "2N2222A" H 6300 3050 50  0000 R CNN
-F 2 "TO_SOT_Packages_THT:TO-92_Inline_Wide" H 6000 3100 29  0001 C CNN
-F 3 "" H 5800 3000 60  0000 C CNN
-	1    5800 3000
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6100 5600 6700 5600
-Wire Wire Line
-	5300 2700 5300 3200
-Wire Wire Line
-	5600 2700 5600 3000
 Wire Wire Line
 	5900 3200 5900 3450
 Wire Wire Line
@@ -1166,13 +1140,96 @@ Wire Wire Line
 	7750 3500 7750 2950
 Connection ~ 7750 2950
 Wire Wire Line
-	7450 2500 7450 3100
+	7250 2500 7250 3100
 Wire Wire Line
-	7450 3100 6600 3100
+	7250 3100 6600 3100
 Connection ~ 6600 3100
 Wire Wire Line
 	6600 2350 6600 2700
 Connection ~ 6600 2350
 Wire Wire Line
-	6600 2350 7150 2350
+	6600 2350 7050 2350
+$Comp
+L Device:Q_NMOS_GDS Q2
+U 1 1 5BDC3BBC
+P 7250 2300
+F 0 "Q2" V 7593 2300 50  0000 C CNN
+F 1 "BUK9511-55A127" V 7502 2300 50  0000 C CNN
+F 2 "TO_SOT_Packages_THT-2:TO-220_Neutral123_Vertical" H 7450 2400 50  0001 C CNN
+F 3 "~" H 7250 2300 50  0001 C CNN
+	1    7250 2300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:Q_PMOS_GDS Q6
+U 1 1 5BDC4946
+P 7250 1700
+F 0 "Q6" V 7593 1700 50  0000 C CNN
+F 1 "BUK9508-55A" V 7502 1700 50  0000 C CNN
+F 2 "TO_SOT_Packages_THT-2:TO-220_Neutral123_Vertical" H 7450 1800 50  0001 C CNN
+F 3 "~" H 7250 1700 50  0001 C CNN
+	1    7250 1700
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	7050 1600 6800 1600
+Wire Wire Line
+	6800 1600 6800 2200
+Connection ~ 6800 2200
+Wire Wire Line
+	6800 2200 3300 2200
+Wire Wire Line
+	7450 1600 7600 1600
+Wire Wire Line
+	7600 1600 7600 2200
+Connection ~ 7600 2200
+Wire Wire Line
+	7600 2200 7750 2200
+$Comp
+L Device:Q_NPN_EBC Q3
+U 1 1 5BD9A966
+P 5800 3000
+F 0 "Q3" H 6100 2900 50  0000 R CNN
+F 1 "2N2222A" H 6300 3050 50  0000 R CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Inline_Wide" H 6000 3100 29  0001 C CNN
+F 3 "" H 5800 3000 60  0000 C CNN
+	1    5800 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 3200 5300 2700
+Wire Wire Line
+	5300 2700 5450 2700
+Wire Wire Line
+	5450 3000 5600 3000
+Wire Wire Line
+	5600 3000 5600 2550
+Wire Wire Line
+	5600 2550 5750 2550
+Wire Wire Line
+	5750 2550 5750 1900
+Wire Wire Line
+	5750 1900 6100 1900
+Connection ~ 5600 3000
+$Comp
+L Device:R R17
+U 1 1 5BE61D3E
+P 6550 1600
+F 0 "R17" V 6630 1600 50  0000 C CNN
+F 1 "1M" V 6550 1600 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6480 1600 30  0001 C CNN
+F 3 "" H 6550 1600 30  0000 C CNN
+	1    6550 1600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6700 1600 6800 1600
+Connection ~ 6800 1600
+Wire Wire Line
+	6400 1600 6100 1600
+Wire Wire Line
+	6100 1600 6100 1900
+Connection ~ 6100 1900
+Wire Wire Line
+	6100 1900 7250 1900
 $EndSCHEMATC
