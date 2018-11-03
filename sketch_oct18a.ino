@@ -156,8 +156,8 @@ void loop() {
   adc_cur /= ADC_MAX_LOOP;
   adc_vol /= ADC_MAX_LOOP;
 #else
-  adc_cur = (unsigned int) analogRead(ADC_CUR);
-  adc_vol = (unsigned int) analogRead(ADC_VOL);
+  adc_cur = analogRead(ADC_CUR);
+  adc_vol = analogRead(ADC_VOL);
 #endif
   adc_vol *= VOLMUL;
 
@@ -171,19 +171,27 @@ void loop() {
       if(!p_equal || adc_cur == cur_prev) {
         if(adc_vol < vol_prev)
           flag_inc = true;
-          if(adc_vol > vol_prev)
+          else if(adc_vol > vol_prev)
             flag_inc = false;
-            else if(adc_cur == cur_prev)
+            else if(adc_cur == cur_prev) {
+              p_equal = true;
               goto CONTINUE;
+            }
+        if(adc_cur == cur_prev)
+          flag_inc = !flag_inc;
       }
       // Get High Current
       if(p_equal || adc_vol == vol_prev) {
         if(adc_cur < cur_prev)
-          flag_inc = true;
+          flag_inc = false;
           else if(adc_cur > cur_prev)
-            flag_inc = false;
-            else if(adc_vol == vol_prev)
-            goto CONTINUE;
+            flag_inc = true;
+            else if(adc_vol == vol_prev) {
+              p_equal = true;
+              goto CONTINUE;
+            }
+        if(adc_vol == vol_prev)
+          flag_inc = !flag_inc;
       }
       p_equal = true;
     } else {
