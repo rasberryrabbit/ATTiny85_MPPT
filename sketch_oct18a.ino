@@ -177,7 +177,7 @@ void loop() {
               p_equal = true;
               goto CONTINUE;
             }
-        if(adc_cur == cur_prev)
+        if(p_equal && adc_cur == cur_prev)
           flag_inc = !flag_inc;
       }
       // Get High Current
@@ -190,7 +190,7 @@ void loop() {
               p_equal = true;
               goto CONTINUE;
             }
-        if(adc_vol == vol_prev)
+        if((!p_equal) && adc_vol == vol_prev)
           flag_inc = !flag_inc;
       }
       p_equal = true;
