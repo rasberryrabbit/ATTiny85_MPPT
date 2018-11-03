@@ -35,6 +35,7 @@
 #define ADC_MAX_LOOP 2
 #define INC_PWM_MIN 0
 #define UPDATE_INT 80
+#define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
 byte LED1_tm;
 unsigned int adc_vol, adc_cur, vol_prev, cur_prev, adc_tmp1, adc_tmp2;
@@ -158,6 +159,7 @@ void loop() {
   adc_cur = (unsigned int) analogRead(ADC_CUR);
   adc_vol = (unsigned int) analogRead(ADC_VOL);
 #endif
+  adc_vol *= VOLMUL;
 
   // check OP_AMP offset
   if(adc_cur > LM358_diff) {
