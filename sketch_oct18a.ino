@@ -165,6 +165,7 @@ void loop() {
     power_curr = (unsigned long) adc_vol * adc_cur;
     if(power_curr == power_prev) {
       LED1_tm = 500;
+      // Get High Voltage
       if(!p_equal || adc_cur == cur_prev) {
         if(adc_vol < vol_prev)
           flag_inc = true;
@@ -173,6 +174,7 @@ void loop() {
             else if(adc_cur == cur_prev)
               goto CONTINUE;
       }
+      // Get High Current
       if(p_equal || adc_vol == vol_prev) {
         if(adc_cur < cur_prev)
           flag_inc = true;
@@ -184,9 +186,9 @@ void loop() {
       p_equal = true;
     } else {
       LED1_tm = 250;
+      p_equal = false;
       if(power_curr < power_prev)
         flag_inc = !flag_inc;
-      p_equal = false;
     }
   } else {
     /* reset parameters */
