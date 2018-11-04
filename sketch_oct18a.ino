@@ -34,7 +34,7 @@
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 2
 #define INC_PWM_MIN 0
-#define UPDATE_INT 80
+#define UPDATE_INT 10000
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
 byte LED1_tm;
@@ -42,7 +42,7 @@ unsigned int adc_vol, adc_cur, vol_prev, cur_prev, adc_tmp1, adc_tmp2;
 unsigned long power_prev, power_curr;
 byte i, LM358_diff;
 boolean flag_inc, p_equal;
-byte PWM_old, Inc_pwm;
+byte PWM_old, inc_pwm, pwm_power, pequal_cnt;
 unsigned long prevtime, currtime, udtime, stallcheck;
 
 // pin 
@@ -107,9 +107,16 @@ void setup() {
 #endif
   ++LM358_diff;
 
+  delay(500);
+
   adc_vol = 0;
   adc_cur = 0;
   power_curr = 0;
+  power_prev = 0;
+  pequal_cnt = 0;
+  pwm_power = PWM_MAX;
+  inc_pwm = 1;
+  
   OCR1A = PWM_MIN;
 
   flag_inc = true;
@@ -165,18 +172,15 @@ void loop() {
   if(adc_cur > LM358_diff) {
     // get power
     power_curr = (unsigned long) adc_vol * adc_cur;
+    // check power
     if(power_curr == power_prev) {
-      LED1_tm = 500;
+      LED1_tm = 600;
       // Get High Voltage
       if(!p_equal || adc_cur == cur_prev) {
         if(adc_vol < vol_prev)
           flag_inc = true;
           else if(adc_vol > vol_prev)
             flag_inc = false;
-            else if(adc_cur == cur_prev) {
-              p_equal = true;
-              goto CONTINUE;
-            }
         if(p_equal && adc_cur == cur_prev)
           flag_inc = !flag_inc;
       }
@@ -186,43 +190,68 @@ void loop() {
           flag_inc = false;
           else if(adc_cur > cur_prev)
             flag_inc = true;
-            else if(adc_vol == vol_prev) {
-              p_equal = true;
-              goto CONTINUE;
-            }
         if((!p_equal) && adc_vol == vol_prev)
           flag_inc = !flag_inc;
       }
       p_equal = true;
     } else {
-      LED1_tm = 250;
-      p_equal = false;
+      LED1_tm = 400;
       if(power_curr < power_prev)
         flag_inc = !flag_inc;
+        else {
+          // save last low pwm
+          if(pequal_cnt < 255)
+            ++pequal_cnt;
+          if(OCR1A < pwm_power)
+            pwm_power = OCR1A;
+        }
+      p_equal = false;
     }
   } else {
-    /* reset parameters */
+    // reset parameter at zero current
     LED1_tm = 127;
     flag_inc = true;
     p_equal = false;
     power_curr = 0;
+    power_prev = 0;
+    inc_pwm = 1;
     adc_cur = 0;
     adc_vol = 0;
+    // avoid zerp current
+    if(pequal_cnt > 0)
+      OCR1A = pwm_power;
+    pwm_power = PWM_MAX;
+    pequal_cnt = 0;
   }
 CONT_PWM:
   if(flag_inc) {
-    if(OCR1A < PWM_MAX)
-      ++OCR1A;
+    if(OCR1A < PWM_MAX-inc_pwm)
+      OCR1A += inc_pwm;
       else {
-        OCR1A = PWM_MAX;
-        flag_inc = false;
+        inc_pwm = 1;
+        // set high voltage pwm
+        if(pequal_cnt > 0) {
+          OCR1A = pwm_power;
+          pwm_power = PWM_MAX;
+        } else {
+          OCR1A = PWM_MAX;
+          flag_inc = false;
+        }
+        pequal_cnt = 0;
       }
   } else {
-    if(OCR1A > PWM_MIN)
-      --OCR1A;
+    if(OCR1A > PWM_MIN+inc_pwm)
+      OCR1A -= inc_pwm;
       else {
-        OCR1A = PWM_MIN;
+        inc_pwm = 1;
+        // set high voltage pwm
+        if(pequal_cnt > 0) {
+          OCR1A = pwm_power;
+          pwm_power = PWM_MAX;
+        } else
+            OCR1A = PWM_MIN;
         flag_inc = true;
+        pequal_cnt = 0;
       }
   }
 CONTINUE:
