@@ -30,11 +30,12 @@
 // constants
 #define PWM_MIN 1
 #define PWM_MAX 250     // Not 255 due to FET Bootstrap capacitor charge
+#define PWM_DEF 110
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 2
 #define INC_PWM_MIN 0
-#define UPDATE_INT 10000
+#define _UPDATE_INT 160000
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
 byte LED1_tm;
@@ -42,8 +43,8 @@ unsigned int adc_vol, adc_cur, vol_prev, cur_prev, adc_tmp1, adc_tmp2;
 unsigned long power_prev, power_curr;
 byte i, LM358_diff;
 boolean flag_inc, p_equal;
-byte PWM_old, inc_pwm, pwm_power, pequal_cnt;
-unsigned long prevtime, currtime, udtime, stallcheck;
+byte PWM_old, inc_pwm, pwm_power, pequal_cnt, pwm_low;
+unsigned long prevtime, currtime, udtime, stallcheck, update_int;
 
 // pin 
 #define AREF PIN_B0
@@ -116,6 +117,7 @@ void setup() {
   pequal_cnt = 0;
   pwm_power = PWM_MAX;
   inc_pwm = 1;
+  update_int = _UPDATE_INT;
   
   OCR1A = PWM_MIN;
 
@@ -141,13 +143,11 @@ void loop() {
         digitalWrite(LED,HIGH);
   }
   currtime = micros();
-  if(currtime - udtime < UPDATE_INT)
+  if(currtime - udtime < update_int)
     goto CONTINUE;
   udtime = currtime;
   if(OCR1A>=PWM_MAX)
     LED1_tm = 127;
-    else
-      LED1_tm = 250;
   // save previous adc values
   power_prev = power_curr;
   vol_prev = adc_vol;
@@ -170,46 +170,32 @@ void loop() {
 
   // check OP_AMP offset
   if(adc_cur > LM358_diff) {
+    if(pwm_low==PWM_MIN || pwm_low > OCR1A)
+      pwm_low = OCR1A;
     // get power
     power_curr = (unsigned long) adc_vol * adc_cur;
     // check power
     if(power_curr == power_prev) {
       LED1_tm = 600;
-      // Get High Voltage
-      if(!p_equal || adc_cur == cur_prev) {
-        if(adc_vol < vol_prev)
-          flag_inc = true;
-          else if(adc_vol > vol_prev)
-            flag_inc = false;
-        if(p_equal && adc_cur == cur_prev)
-          flag_inc = !flag_inc;
-      }
-      // Get High Current
-      if(p_equal || adc_vol == vol_prev) {
-        if(adc_cur < cur_prev)
-          flag_inc = false;
-          else if(adc_cur > cur_prev)
-            flag_inc = true;
-        if((!p_equal) && adc_vol == vol_prev)
-          flag_inc = !flag_inc;
-      }
+      if(adc_vol > vol_prev)
+        flag_inc = p_equal;
+        else if(adc_vol < vol_prev)
+          flag_inc = !p_equal;
       p_equal = true;
     } else {
       LED1_tm = 400;
       if(power_curr < power_prev)
         flag_inc = !flag_inc;
         else {
-          // save last low pwm
-          if(pequal_cnt < 255)
-            ++pequal_cnt;
-          if(OCR1A < pwm_power)
-            pwm_power = OCR1A;
+          if(!flag_inc && pwm_low>PWM_MIN)
+            --pwm_low;
         }
       p_equal = false;
     }
   } else {
-    // reset parameter at zero current
+    // no current condition
     LED1_tm = 127;
+    pwm_low = PWM_MIN;
     flag_inc = true;
     p_equal = false;
     power_curr = 0;
@@ -217,44 +203,28 @@ void loop() {
     inc_pwm = 1;
     adc_cur = 0;
     adc_vol = 0;
-    // avoid zerp current
-    if(pequal_cnt > 0)
-      OCR1A = pwm_power;
-    pwm_power = PWM_MAX;
-    pequal_cnt = 0;
   }
+
 CONT_PWM:
   if(flag_inc) {
     if(OCR1A < PWM_MAX-inc_pwm)
       OCR1A += inc_pwm;
       else {
         inc_pwm = 1;
-        // set high voltage pwm
-        if(pequal_cnt > 0) {
-          OCR1A = pwm_power;
-          pwm_power = PWM_MAX;
-        } else {
-          OCR1A = PWM_MAX;
-          flag_inc = false;
-        }
-        pequal_cnt = 0;
+        OCR1A = PWM_MAX;
+        flag_inc = false;
       }
   } else {
-    if(OCR1A > PWM_MIN+inc_pwm)
+    if(OCR1A > pwm_low+inc_pwm)
       OCR1A -= inc_pwm;
       else {
         inc_pwm = 1;
-        // set high voltage pwm
-        if(pequal_cnt > 0) {
-          OCR1A = pwm_power;
-          pwm_power = PWM_MAX;
-        } else
-            OCR1A = PWM_MIN;
+        OCR1A = pwm_low;
         flag_inc = true;
-        pequal_cnt = 0;
       }
   }
 CONTINUE:
+
 #ifdef USE_STALLCHECK
   currtime = millis();
   if(currtime - stallcheck > 3000) {
