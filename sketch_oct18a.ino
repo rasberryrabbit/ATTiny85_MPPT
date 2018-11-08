@@ -23,28 +23,28 @@
 #define INTERNAL2V56_NO_CAP (B1001)
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
-//#define DISABLE_CAL_RESET
-#define USE_ADC_LOOP
-//#define USE_STALLCHECK
-
 // constants
 #define PWM_MIN 1
-#define PWM_MAX 250     // Not 255 due to FET Bootstrap capacitor charge
-#define PWM_DEF 110
+#define PWM_MAX 250    // Not 255 due to FET Bootstrap capacitor charge
+#define PWM_MID ((PWM_MAX-PWM_MIN)>>1)
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 2
 #define INC_PWM_MIN 0
-#define _UPDATE_INT 160000
+#define LOW_CURRENT (24/6)  // 12mA (base 6 mA)
+#define _UPDATE_INT 250
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
+#define CURTOL 8           // 6 / 1024 * 8 = 49mA
+#define VOLTOL 70*VOLMUL    // 25 / 1024 * 70 = 1.7v
 
 byte LED1_tm;
-unsigned int adc_vol, adc_cur, vol_prev, cur_prev, adc_tmp1, adc_tmp2;
-unsigned long power_prev, power_curr;
+int adc_vol, adc_cur, vol_prev, cur_prev1, cur_prev2, power_vol;
+long power_prev, power_curr, power_temp;
 byte i, LM358_diff;
-boolean flag_inc, p_equal;
+boolean flag_inc, p_equal, up1, up2;
 byte PWM_old, inc_pwm, pwm_power, pequal_cnt, pwm_low;
-unsigned long prevtime, currtime, udtime, stallcheck, update_int;
+long prevtime, currtime, udtime, powertime, update_int;
+int power_flag;
 
 // pin 
 #define AREF PIN_B0
@@ -72,8 +72,8 @@ void setup() {
         // Do nothing
     }
   PLLCSR |= (1<<PCKE);
-  OCR1C = 255;
   OCR1A = 0;
+  OCR1C = 255;
   TCCR1 = (1<<CTC1)    |  // Enable PWM
           (1<<PWM1A)   |
           (1<<CS12)    |  // PCK/64
@@ -90,7 +90,7 @@ void setup() {
 
   LM358_diff = CLM358_DIFF;
 
-#ifndef DISABLE_CAL_RESET
+// calibration @ reset
   if(MCUSR & (1<<EXTRF)) {
     delay(500);    
     adc_cur = analogRead(ADC_CUR);
@@ -105,30 +105,31 @@ void setup() {
   LM358_diff = EEPROM.read(0);
   if(LM358_diff>0x3f)
     LM358_diff=0;
-#endif
-  ++LM358_diff;
 
   delay(500);
 
   adc_vol = 0;
   adc_cur = 0;
   power_curr = 0;
-  power_prev = 0;
-  pequal_cnt = 0;
-  pwm_power = PWM_MAX;
+  power_temp = 0;
+  power_flag = 0;
+  power_vol = 0;
   inc_pwm = 1;
   update_int = _UPDATE_INT;
   
-  OCR1A = PWM_MIN;
-
-  flag_inc = true;
-  p_equal = false;
-  vol_prev = 0; 
-  cur_prev = 0;
-  PWM_old = 0;
   prevtime = millis();
-  stallcheck = prevtime;
-  udtime = micros();
+  powertime = prevtime;
+  udtime = millis();
+
+  flag_inc = false;
+  OCR1A = PWM_MAX;
+  delay(300);
+}
+
+void debug_led() {
+  digitalWrite(LED,1);
+  delay(100);
+  digitalWrite(LED,0);
 }
 
 void loop() {
@@ -143,102 +144,89 @@ void loop() {
         digitalWrite(LED,HIGH);
   }
   currtime = micros();
+  // long delay at low PWM
   if(currtime - udtime < update_int)
     goto CONTINUE;
   udtime = currtime;
   if(OCR1A>=PWM_MAX)
-    LED1_tm = 127;
+    LED1_tm = 200;
   // save previous adc values
   power_prev = power_curr;
   vol_prev = adc_vol;
-  cur_prev = adc_cur;
-  // read adc value
-#ifdef USE_ADC_LOOP  
-  adc_vol = 0;
+  cur_prev2 = cur_prev1;
+  cur_prev1 = adc_cur;
+  // get voltage, current
   adc_cur = 0;
+  adc_vol = 0;
   for(i=0;i<ADC_MAX_LOOP;i++) {
+    // read adc value
     adc_cur += analogRead(ADC_CUR);
     adc_vol += analogRead(ADC_VOL);
   }
   adc_cur /= ADC_MAX_LOOP;
   adc_vol /= ADC_MAX_LOOP;
-#else
-  adc_cur = analogRead(ADC_CUR);
-  adc_vol = analogRead(ADC_VOL);
-#endif
   adc_vol *= VOLMUL;
+  // get power
+  power_curr = adc_cur * adc_vol;
 
-  // check OP_AMP offset
+  // active condition
   if(adc_cur > LM358_diff) {
-    if(pwm_low==PWM_MIN || pwm_low > OCR1A)
-      pwm_low = OCR1A;
-    // get power
-    power_curr = (unsigned long) adc_vol * adc_cur;
+    // avoid i(short circuit) condition for high voltage
+int ctemp1 = abs(adc_cur-cur_prev1);
+    if(ctemp1<CURTOL) {
+      flag_inc = false;
+      goto CONT_PWM;
+    }
+int ctemp2 = abs(power_vol-adc_vol);
     // check power
-    if(power_curr == power_prev) {
-      LED1_tm = 600;
-      if(adc_vol > vol_prev)
-        flag_inc = p_equal;
-        else if(adc_vol < vol_prev)
-          flag_inc = !p_equal;
-      p_equal = true;
-    } else {
+    if(power_curr > power_prev) {
+      LED1_tm = 500;
+      if(power_temp < power_curr) {
+        power_temp = power_curr;
+        power_vol = adc_vol;
+        pwm_power = OCR1A;
+      }
+      power_flag = 0;
+    } else if(power_curr < power_prev) {
       LED1_tm = 400;
-      if(power_curr < power_prev)
+      if(ctemp1>CURTOL)
         flag_inc = !flag_inc;
-        else {
-          if(!flag_inc && pwm_low>PWM_MIN)
-            --pwm_low;
-        }
-      p_equal = false;
+      power_flag = -1;
+    } else {
+      // reset maxium power
+      if(ctemp2>VOLTOL)
+        power_temp = 0;
     }
   } else {
-    // no current condition
-    LED1_tm = 127;
-    pwm_low = PWM_MIN;
-    flag_inc = true;
-    p_equal = false;
+    LED1_tm = 300;
+    // low current
+    OCR1A = PWM_MAX;
+    flag_inc = false;
     power_curr = 0;
-    power_prev = 0;
-    inc_pwm = 1;
+    power_flag = 0;
     adc_cur = 0;
-    adc_vol = 0;
+    cur_prev1 = 0;
+
+    goto CONTINUE;
   }
 
 CONT_PWM:
   if(flag_inc) {
-    if(OCR1A < PWM_MAX-inc_pwm)
-      OCR1A += inc_pwm;
+    if(OCR1A < PWM_MAX)
+      ++OCR1A;
       else {
-        inc_pwm = 1;
         OCR1A = PWM_MAX;
         flag_inc = false;
       }
   } else {
-    if(OCR1A > pwm_low+inc_pwm)
-      OCR1A -= inc_pwm;
+    if(OCR1A > PWM_MIN)
+      --OCR1A;
       else {
-        inc_pwm = 1;
-        OCR1A = pwm_low;
+        OCR1A = PWM_MIN;
         flag_inc = true;
       }
   }
-CONTINUE:
 
-#ifdef USE_STALLCHECK
-  currtime = millis();
-  if(currtime - stallcheck > 3000) {
-    stallcheck = currtime;
-    if((!p_equal) && (PWM_old == OCR1A)) {
-      OCR1A = PWM_MIN;
-      flag_inc = true;
-      power_curr = 0;
-      adc_cur = 0;
-      adc_vol = 0;
-    }
-    PWM_old = OCR1A;
-  }
-#else
+CONTINUE:
   ;
-#endif
 }
