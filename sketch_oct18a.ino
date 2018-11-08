@@ -34,7 +34,7 @@
 #define LOW_CURRENT (24/6)  // 12mA (base 6 mA)
 #define _UPDATE_INT 250
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
-#define CURTOL 8           // 6 / 1024 * 8 = 49mA
+#define CURTOL 15          // 6 / 1024 * 15 = 87mA
 #define VOLTOL 70*VOLMUL    // 25 / 1024 * 70 = 1.7v
 
 byte LED1_tm;
@@ -180,6 +180,8 @@ int ctemp1 = abs(adc_cur-cur_prev1);
 int ctemp2 = abs(power_vol-adc_vol);
     // check power
     if(power_curr > power_prev) {
+      if(ctemp2>VOLTOL)
+        power_temp = 0;
       LED1_tm = 500;
       if(power_temp < power_curr) {
         power_temp = power_curr;
@@ -191,6 +193,8 @@ int ctemp2 = abs(power_vol-adc_vol);
       LED1_tm = 400;
       if(ctemp1>CURTOL)
         flag_inc = !flag_inc;
+      if((power_vol > VOLTOL) && (adc_vol<power_vol-VOLTOL))
+        power_temp = 0;
       power_flag = -1;
     } else {
       // reset maxium power
