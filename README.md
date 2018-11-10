@@ -4,7 +4,7 @@ Solar MPPT circuit. (WIP)
 Coding by Arduino 1.8.7 / ATTinycore.
 Algorithm convert from old MPPT code of mine.
 It has less PWM noise at high load.(hopely)
-Sadly, N-ch FET bootstrap don't work with 8KHz or higher.
+~~ Sadly, N-ch FET bootstrap don't work with 8KHz or higher. ~~
 
 This is simple MPPT for solar panel.
 
