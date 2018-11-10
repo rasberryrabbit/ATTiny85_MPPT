@@ -234,12 +234,12 @@ Heat Sink
 $Comp
 L Device:R R11
 U 1 1 55C4C21C
-P 6400 3600
-F 0 "R11" V 6480 3600 50  0000 C CNN
-F 1 "100k" V 6400 3600 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6330 3600 30  0001 C CNN
-F 3 "" H 6400 3600 30  0000 C CNN
-	1    6400 3600
+P 7300 3600
+F 0 "R11" V 7380 3600 50  0000 C CNN
+F 1 "100k" V 7300 3600 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 7230 3600 30  0001 C CNN
+F 3 "" H 7300 3600 30  0000 C CNN
+	1    7300 3600
 	0    1    1    0   
 $EndComp
 $Comp
@@ -315,12 +315,12 @@ Text Label 5500 3450 0    60   ~ 0
 $Comp
 L Device:CP C5
 U 1 1 55CDDBD9
-P 6100 4900
-F 0 "C5" H 6125 5000 50  0000 L CNN
-F 1 "10u" H 6125 4800 50  0000 L CNN
-F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 6138 4750 30  0001 C CNN
-F 3 "" H 6100 4900 60  0000 C CNN
-	1    6100 4900
+P 6200 4900
+F 0 "C5" H 6225 5000 50  0000 L CNN
+F 1 "10u" H 6225 4800 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 6238 4750 30  0001 C CNN
+F 3 "" H 6200 4900 60  0000 C CNN
+	1    6200 4900
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -450,7 +450,7 @@ Connection ~ 8400 3050
 Connection ~ 9500 3050
 Connection ~ 9500 2200
 Wire Notes Line
-	5900 5850 9800 5850
+	6050 5850 9800 5850
 Wire Wire Line
 	1850 4200 1850 5600
 Wire Wire Line
@@ -474,15 +474,15 @@ Connection ~ 5650 5600
 Wire Wire Line
 	5650 4050 6000 4050
 Wire Wire Line
-	6100 5050 6100 5600
-Connection ~ 6100 5600
+	6200 5050 6200 5600
+Connection ~ 6200 5600
 Wire Wire Line
-	6100 4750 6100 3600
-Connection ~ 6100 3600
+	6200 4750 6200 3600
+Connection ~ 6200 3600
 Wire Notes Line
-	5900 3500 5900 5850
+	6050 3500 6050 5850
 Wire Notes Line
-	5900 3500 6500 3500
+	6050 3500 6500 3500
 Wire Notes Line
 	6500 3500 6700 3750
 Wire Notes Line
@@ -528,7 +528,7 @@ Wire Wire Line
 Wire Wire Line
 	8850 3850 8850 3600
 Wire Wire Line
-	6550 3600 8850 3600
+	7450 3600 8850 3600
 Wire Wire Line
 	9450 4450 9450 4850
 Connection ~ 8400 5600
@@ -650,7 +650,7 @@ Wire Wire Line
 Wire Wire Line
 	8400 3950 8400 5200
 Wire Wire Line
-	6100 3600 6250 3600
+	6200 3600 7150 3600
 Wire Wire Line
 	5200 5600 4900 5600
 Wire Wire Line
@@ -695,7 +695,7 @@ Wire Wire Line
 Wire Wire Line
 	4450 2650 4450 2800
 Wire Wire Line
-	5400 3600 6100 3600
+	5400 3600 6200 3600
 Wire Wire Line
 	5300 3500 5050 3500
 Wire Wire Line
@@ -708,7 +708,7 @@ Wire Wire Line
 Wire Wire Line
 	5200 3400 5050 3400
 Wire Wire Line
-	5650 5600 6100 5600
+	5650 5600 5900 5600
 Wire Wire Line
 	5500 3100 5500 4500
 Wire Wire Line
@@ -1081,7 +1081,7 @@ Wire Wire Line
 Wire Wire Line
 	5200 5600 5400 5600
 Wire Wire Line
-	6100 5600 6700 5600
+	6200 5600 6700 5600
 Wire Wire Line
 	5900 3200 5900 3450
 Wire Wire Line
@@ -1232,4 +1232,24 @@ Wire Wire Line
 Connection ~ 6100 1900
 Wire Wire Line
 	6100 1900 7250 1900
+$Comp
+L Device:CP C8
+U 1 1 5BE62CB0
+P 5900 4900
+F 0 "C8" H 5925 5000 50  0000 L CNN
+F 1 "10u" H 5925 4800 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 5938 4750 30  0001 C CNN
+F 3 "" H 5900 4900 60  0000 C CNN
+	1    5900 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 4750 5900 4500
+Wire Wire Line
+	5900 4500 5650 4500
+Wire Wire Line
+	5900 5050 5900 5600
+Connection ~ 5900 5600
+Wire Wire Line
+	5900 5600 6200 5600
 $EndSCHEMATC
