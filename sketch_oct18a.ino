@@ -26,23 +26,22 @@
 // constants
 #define PWM_MIN 1
 #define PWM_MAX 250    // Not 255 due to FET Bootstrap capacitor charge
-#define PWM_MID ((PWM_MAX-PWM_MIN)>>1)
+#define PWM_MID (PWM_MAX+PWM_MIN)/2
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 2
 #define INC_PWM_MIN 0
-#define LOW_CURRENT (24/6)  // 12mA (base 6 mA)
-#define _UPDATE_INT 250
+#define _UPDATE_INT 80
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
-#define CURTOL 15          // 6 / 1024 * 15 = 87mA
-#define VOLTOL 70*VOLMUL    // 25 / 1024 * 70 = 1.7v
+#define CURTOL 2
+#define PWM_FIX 2
 
 byte LED1_tm;
-int adc_vol, adc_cur, vol_prev, cur_prev1, cur_prev2, power_vol;
-long power_prev, power_curr, power_temp;
+int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power;
+long power_prev, power_curr;
 byte i, LM358_diff;
-boolean flag_inc, p_equal, up1, up2;
-byte PWM_old, inc_pwm, pwm_power, pequal_cnt, pwm_low;
+boolean flag_inc, p_equal;
+byte inc_pwm, pwm_power, inc_cnt;
 long prevtime, currtime, udtime, powertime, update_int;
 int power_flag;
 
@@ -65,7 +64,7 @@ void setup() {
   analogRead(ADC_CUR);  // prevent short
 
   pinMode(PWM, OUTPUT);
-  // Timer1 PWM, 4KHz - FET Bootstrap don't work with higher clock.
+  // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
   PLLCSR |= (1<<PLLE);
   while ((PLLCSR & (1<<PLOCK)) == 0x00)
     {
@@ -78,7 +77,6 @@ void setup() {
           (1<<PWM1A)   |
           (1<<CS12)    |  // PCK/64
           (1<<CS11)    |
-          (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
   
@@ -109,20 +107,22 @@ void setup() {
   delay(500);
 
   adc_vol = 0;
+  vol_prev1 = 0;
   adc_cur = 0;
   power_curr = 0;
-  power_temp = 0;
-  power_flag = 0;
-  power_vol = 0;
+  cur_power = 0;
   inc_pwm = 1;
   update_int = _UPDATE_INT;
+  power_flag = 0;
+  inc_cnt = 0;
   
   prevtime = millis();
   powertime = prevtime;
-  udtime = millis();
+  udtime = prevtime;
+  
 
   flag_inc = false;
-  OCR1A = PWM_MAX;
+  OCR1A = PWM_MID;
   delay(300);
 }
 
@@ -143,7 +143,7 @@ void loop() {
       else
         digitalWrite(LED,HIGH);
   }
-  currtime = micros();
+  currtime = millis();
   // long delay at low PWM
   if(currtime - udtime < update_int)
     goto CONTINUE;
@@ -152,9 +152,9 @@ void loop() {
     LED1_tm = 200;
   // save previous adc values
   power_prev = power_curr;
-  vol_prev = adc_vol;
-  cur_prev2 = cur_prev1;
-  cur_prev1 = adc_cur;
+  vol_prev2 = vol_prev1;
+  vol_prev1 = adc_vol;
+  cur_prev = adc_cur;
   // get voltage, current
   adc_cur = 0;
   adc_vol = 0;
@@ -165,51 +165,52 @@ void loop() {
   }
   adc_cur /= ADC_MAX_LOOP;
   adc_vol /= ADC_MAX_LOOP;
-  adc_vol *= VOLMUL;
+  //adc_vol *= VOLMUL;
+
   // get power
   power_curr = adc_cur * adc_vol;
 
   // active condition
   if(adc_cur > LM358_diff) {
-    // avoid i(short circuit) condition for high voltage
-int ctemp1 = abs(adc_cur-cur_prev1);
-    if(ctemp1<CURTOL) {
-      flag_inc = false;
-      goto CONT_PWM;
-    }
-int ctemp2 = abs(power_vol-adc_vol);
-    // check power
-    if(power_curr > power_prev) {
-      if(ctemp2>VOLTOL)
-        power_temp = 0;
-      LED1_tm = 500;
-      if(power_temp < power_curr) {
-        power_temp = power_curr;
-        power_vol = adc_vol;
-        pwm_power = OCR1A;
-      }
-      power_flag = 0;
-    } else if(power_curr < power_prev) {
+    // power check
+    if(power_curr < power_prev) {
       LED1_tm = 400;
-      if(ctemp1>CURTOL)
-        flag_inc = !flag_inc;
-      if((power_vol > VOLTOL) && (adc_vol<power_vol-VOLTOL))
-        power_temp = 0;
-      power_flag = -1;
+      flag_inc = !flag_inc;
+      if(power_flag!=0 && flag_inc && OCR1A < (PWM_MID>>1)) {
+        // fix down to low pwm
+        if(inc_cnt < PWM_FIX) {
+          ++inc_cnt;
+          if(inc_cnt==PWM_FIX) {
+            inc_cnt=0;
+            if(OCR1A<PWM_MAX)
+              ++OCR1A;
+          }
+        }
+      }
+     power_flag = 0;
+    } else if(power_curr > power_prev) {
+      LED1_tm = 500;
+      cur_power = adc_cur;
+      pwm_power = OCR1A;
+      power_flag = 2;
+      inc_cnt = 0;
     } else {
-      // reset maxium power
-      if(ctemp2>VOLTOL)
-        power_temp = 0;
+      LED1_tm = 500;
+      power_flag = 1;
+      if(abs(cur_power-adc_cur)<CURTOL)
+        goto CONTINUE;
     }
   } else {
     LED1_tm = 300;
     // low current
-    OCR1A = PWM_MAX;
+    OCR1A = PWM_MID;
     flag_inc = false;
     power_curr = 0;
-    power_flag = 0;
     adc_cur = 0;
-    cur_prev1 = 0;
+    vol_prev1 = 0;
+    cur_power = 0;
+    power_flag = 0;
+    inc_cnt = 0;
 
     goto CONTINUE;
   }
