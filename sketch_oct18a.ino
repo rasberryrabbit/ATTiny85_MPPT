@@ -29,19 +29,18 @@
 #define PWM_MID (PWM_MAX+PWM_MIN)/2
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
-#define ADC_MAX_LOOP 2
+#define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 80
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
-#define CURTOL 2
-#define PWM_FIX 2
+#define VOLTOL 5
 
 byte LED1_tm;
-int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power;
+int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
 long power_prev, power_curr;
 byte i, LM358_diff;
 boolean flag_inc, p_equal;
-byte inc_pwm, pwm_power, inc_cnt;
+byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
 int power_flag;
 
@@ -76,7 +75,8 @@ void setup() {
   TCCR1 = (1<<CTC1)    |  // Enable PWM
           (1<<PWM1A)   |
           (1<<CS12)    |  // PCK/64
-          (1<<CS11)    |
+          //(1<<CS11)    |
+          (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
   
@@ -107,14 +107,13 @@ void setup() {
   delay(500);
 
   adc_vol = 0;
-  vol_prev1 = 0;
   adc_cur = 0;
   power_curr = 0;
   cur_power = 0;
   inc_pwm = 1;
   update_int = _UPDATE_INT;
   power_flag = 0;
-  inc_cnt = 0;
+  vol_power = 0;
   
   prevtime = millis();
   powertime = prevtime;
@@ -132,6 +131,10 @@ void debug_led() {
   digitalWrite(LED,0);
 }
 
+bool check_vdiff(int a,int b, int c) {
+  return (c+a+1)/2<b;
+}
+
 void loop() {
   // LED
   currtime = millis();
@@ -143,63 +146,49 @@ void loop() {
       else
         digitalWrite(LED,HIGH);
   }
-  currtime = millis();
-  // long delay at low PWM
-  if(currtime - udtime < update_int)
-    goto CONTINUE;
-  udtime = currtime;
-  if(OCR1A>=PWM_MAX)
-    LED1_tm = 200;
-  // save previous adc values
-  power_prev = power_curr;
+  // get voltage, current
   vol_prev2 = vol_prev1;
   vol_prev1 = adc_vol;
   cur_prev = adc_cur;
   // get voltage, current
   adc_cur = 0;
   adc_vol = 0;
+int temp1, temp2;
   for(i=0;i<ADC_MAX_LOOP;i++) {
     // read adc value
-    adc_cur += analogRead(ADC_CUR);
-    adc_vol += analogRead(ADC_VOL);
+    temp1 = analogRead(ADC_VOL);
+    temp2 = analogRead(ADC_CUR);
+    adc_vol += temp1;
+    adc_cur += temp2;
   }
   adc_cur /= ADC_MAX_LOOP;
   adc_vol /= ADC_MAX_LOOP;
-  //adc_vol *= VOLMUL;
+  adc_vol *= VOLMUL;
+
+  // long delay at low PWM
+  currtime = millis();
+  if(currtime - udtime < update_int)
+    goto CONTINUE;
+  udtime = currtime;
+  // save previous adc values
+  power_prev = power_curr;
 
   // get power
   power_curr = adc_cur * adc_vol;
 
   // active condition
   if(adc_cur > LM358_diff) {
-    // power check
-    if(power_curr < power_prev) {
-      LED1_tm = 400;
-      flag_inc = !flag_inc;
-      if(power_flag!=0 && flag_inc && OCR1A < (PWM_MID>>1)) {
-        // fix down to low pwm
-        if(inc_cnt < PWM_FIX) {
-          ++inc_cnt;
-          if(inc_cnt==PWM_FIX) {
-            inc_cnt=0;
-            if(OCR1A<PWM_MAX)
-              ++OCR1A;
-          }
-        }
-      }
-     power_flag = 0;
+    if(power_curr == power_prev) {
+      LED1_tm = 500;
+      goto CONTINUE;
     } else if(power_curr > power_prev) {
-      LED1_tm = 500;
-      cur_power = adc_cur;
-      pwm_power = OCR1A;
-      power_flag = 2;
-      inc_cnt = 0;
+      LED1_tm = 400;
     } else {
-      LED1_tm = 500;
-      power_flag = 1;
-      if(abs(cur_power-adc_cur)<CURTOL)
-        goto CONTINUE;
+      LED1_tm = 300;
+      flag_inc = !flag_inc;
     }
+    if(check_vdiff(adc_vol,vol_prev1,vol_prev2))
+      flag_inc = true;
   } else {
     LED1_tm = 300;
     // low current
@@ -207,15 +196,15 @@ void loop() {
     flag_inc = false;
     power_curr = 0;
     adc_cur = 0;
-    vol_prev1 = 0;
     cur_power = 0;
     power_flag = 0;
-    inc_cnt = 0;
+    vol_power = 0;
 
     goto CONTINUE;
   }
 
 CONT_PWM:
+
   if(flag_inc) {
     if(OCR1A < PWM_MAX)
       ++OCR1A;
