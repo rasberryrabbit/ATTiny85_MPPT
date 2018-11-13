@@ -1,10 +1,12 @@
 # ATTiny85
-Solar MPPT circuit. (WIP)
+Solar MPPT circuit.
+Fianally working first firmware, but it need more testing.
 
 Coding by Arduino 1.8.7 / ATTinycore.
 Algorithm convert from old MPPT code of mine.
 It has less PWM noise at high load.(hopely)
-~~Sadly, N-ch FET bootstrap don't work with 8KHz or higher.~~
+
+It has 16KHz switching frequency. But with 16kHz, Vgs exceed 10V, it is about 20V.
 
 This is simple MPPT for solar panel.
 
