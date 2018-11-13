@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2018-11-02"
-Rev "1.4"
+Date "2018-11-13"
+Rev "1.5"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -404,8 +404,6 @@ Wire Wire Line
 	9350 2200 9500 2200
 Wire Wire Line
 	9500 2200 9500 2350
-Wire Wire Line
-	7450 2200 7600 2200
 Connection ~ 7750 2200
 Wire Wire Line
 	5400 2350 3500 2350
@@ -551,8 +549,6 @@ Wire Wire Line
 	9650 5100 8950 5100
 Wire Wire Line
 	8950 5100 8950 4850
-Wire Wire Line
-	7050 2200 6800 2200
 $Comp
 L Device:CP C7
 U 1 1 56E7CE1F
@@ -1070,10 +1066,10 @@ F 3 "" H 6150 2750 30  0000 C CNN
 	1    6150 2750
 	0    1    1    0   
 $EndComp
-Text Label 5000 2650 0    50   ~ 0
+Text Label 5300 2700 0    50   ~ 0
 ~PWM
 Wire Wire Line
-	7750 2200 7750 2950
+	7750 2200 7750 2650
 Wire Wire Line
 	7750 2950 7050 2950
 Wire Wire Line
@@ -1140,7 +1136,7 @@ Wire Wire Line
 	7750 3500 7750 2950
 Connection ~ 7750 2950
 Wire Wire Line
-	7250 2500 7250 3100
+	7250 2500 7250 2650
 Wire Wire Line
 	7250 3100 6600 3100
 Connection ~ 6600 3100
@@ -1161,31 +1157,6 @@ F 3 "~" H 7250 2300 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:Q_PMOS_GDS Q6
-U 1 1 5BDC4946
-P 7250 1700
-F 0 "Q6" V 7593 1700 50  0000 C CNN
-F 1 "BUK9508-55A" V 7502 1700 50  0000 C CNN
-F 2 "TO_SOT_Packages_THT-2:TO-220_Neutral123_Vertical" H 7450 1800 50  0001 C CNN
-F 3 "~" H 7250 1700 50  0001 C CNN
-	1    7250 1700
-	0    1    -1   0   
-$EndComp
-Wire Wire Line
-	7050 1600 6800 1600
-Wire Wire Line
-	6800 1600 6800 2200
-Connection ~ 6800 2200
-Wire Wire Line
-	6800 2200 3300 2200
-Wire Wire Line
-	7450 1600 7600 1600
-Wire Wire Line
-	7600 1600 7600 2200
-Connection ~ 7600 2200
-Wire Wire Line
-	7600 2200 7750 2200
-$Comp
 L Device:Q_NPN_EBC Q3
 U 1 1 5BD9A966
 P 5800 3000
@@ -1202,36 +1173,6 @@ Wire Wire Line
 	5300 2700 5450 2700
 Wire Wire Line
 	5450 3000 5600 3000
-Wire Wire Line
-	5600 3000 5600 2550
-Wire Wire Line
-	5600 2550 5750 2550
-Wire Wire Line
-	5750 2550 5750 1900
-Wire Wire Line
-	5750 1900 6100 1900
-Connection ~ 5600 3000
-$Comp
-L Device:R R17
-U 1 1 5BE61D3E
-P 6550 1600
-F 0 "R17" V 6630 1600 50  0000 C CNN
-F 1 "1M" V 6550 1600 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6480 1600 30  0001 C CNN
-F 3 "" H 6550 1600 30  0000 C CNN
-	1    6550 1600
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	6700 1600 6800 1600
-Connection ~ 6800 1600
-Wire Wire Line
-	6400 1600 6100 1600
-Wire Wire Line
-	6100 1600 6100 1900
-Connection ~ 6100 1900
-Wire Wire Line
-	6100 1900 7250 1900
 $Comp
 L Device:CP C8
 U 1 1 5BE62CB0
@@ -1252,4 +1193,29 @@ Wire Wire Line
 Connection ~ 5900 5600
 Wire Wire Line
 	5900 5600 6200 5600
+$Comp
+L Device:D_Zener D12
+U 1 1 5BEB0C16
+P 7500 2650
+F 0 "D12" H 7500 2866 50  0000 C CNN
+F 1 "BZX 55c12(12V)" H 7500 2775 50  0000 C CNN
+F 2 "Diodes_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 7500 2650 50  0001 C CNN
+F 3 "~" H 7500 2650 50  0001 C CNN
+	1    7500 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 2650 7750 2650
+Connection ~ 7750 2650
+Wire Wire Line
+	7750 2650 7750 2950
+Wire Wire Line
+	7350 2650 7250 2650
+Connection ~ 7250 2650
+Wire Wire Line
+	7250 2650 7250 3100
+Wire Wire Line
+	3300 2200 7050 2200
+Wire Wire Line
+	7450 2200 7750 2200
 $EndSCHEMATC
