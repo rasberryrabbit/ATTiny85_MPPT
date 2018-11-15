@@ -3,15 +3,15 @@ Solar MPPT circuit.
 Fianally working first firmware, but it need more testing.
 
 Coding by Arduino 1.8.7 / ATTinycore.
-Algorithm convert from old MPPT code of mine.
+~Algorithm convert from old MPPT code of mine.~
+It implement new simple algorithm that work well with high solar output.
+But it have low power output under low solar output condition(stuck in high voltage).
 It has less PWM noise at high load.(hopely)
-
 It has 16KHz switching frequency. But with 16kHz, Vgs exceed 10V, it is about 20V.
 
-This is simple MPPT for solar panel.
 
 11 milli-ohm N-ch logic level FET(BUK9511) used for current sensor. 
-It can replace by 11 mili-ohm or higher Rds-on resistance logic level FET.
+It can replace by 11 mili-ohm or higher Rds-on(<40 milli) resistance logic level FET.
 
 Transistor 2N2222A -> BC547 or compatible
 Transistor 2N2907A -> BC557 or compatible
