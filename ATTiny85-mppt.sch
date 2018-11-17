@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2018-11-13"
-Rev "1.5"
+Date "2018-11-17"
+Rev "1.6"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -118,7 +118,7 @@ L Device:CP C2
 U 1 1 55C35FB2
 P 7050 2750
 F 0 "C2" H 7075 2850 50  0000 L CNN
-F 1 "47uF 50v" H 7075 2650 50  0000 L CNN
+F 1 "22uF 50v" H 7075 2650 50  0000 L CNN
 F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 7088 2600 30  0001 C CNN
 F 3 "" H 7050 2750 60  0000 C CNN
 	1    7050 2750
@@ -1138,9 +1138,6 @@ Connection ~ 7750 2950
 Wire Wire Line
 	7250 2500 7250 2650
 Wire Wire Line
-	7250 3100 6600 3100
-Connection ~ 6600 3100
-Wire Wire Line
 	6600 2350 6600 2700
 Connection ~ 6600 2350
 Wire Wire Line
@@ -1218,4 +1215,20 @@ Wire Wire Line
 	3300 2200 7050 2200
 Wire Wire Line
 	7450 2200 7750 2200
+$Comp
+L Device:R R17
+U 1 1 5BF0956D
+P 6950 3100
+F 0 "R17" V 7030 3100 50  0000 C CNN
+F 1 "1k" V 6950 3100 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P2.54mm_Vertical" V 6880 3100 30  0001 C CNN
+F 3 "" H 6950 3100 30  0000 C CNN
+	1    6950 3100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7250 3100 7100 3100
+Wire Wire Line
+	6800 3100 6600 3100
+Connection ~ 6600 3100
 $EndSCHEMATC
