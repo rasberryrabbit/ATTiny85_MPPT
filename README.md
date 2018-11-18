@@ -7,7 +7,8 @@ Coding by Arduino 1.8.7 / ATTinycore.
 It implement new simple algorithm that work well with high solar output.
 But it have low power output under low solar output condition(stuck in high voltage).
 It has less PWM noise at high load.(hopely)
-It has 16KHz switching frequency. But with 16kHz, Vgs exceed 10V, it is about 20V.
+It has 16KHz switching frequency. ~But with 16kHz, Vgs exceed 10V, it is about 20V.~
+It works better than old 16f676 or 12f675 due to better FET bootstrap voltage.
 
 
 11 milli-ohm N-ch logic level FET(BUK9511) used for current sensor. 
