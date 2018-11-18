@@ -160,34 +160,34 @@ $EndComp
 $Comp
 L Device:R R8
 U 1 1 55C3B177
-P 4550 4400
-F 0 "R8" V 4630 4400 50  0000 C CNN
-F 1 "100k" V 4550 4400 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4480 4400 30  0001 C CNN
-F 3 "" H 4550 4400 30  0000 C CNN
-	1    4550 4400
+P 3850 4400
+F 0 "R8" V 3930 4400 50  0000 C CNN
+F 1 "100k" V 3850 4400 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 3780 4400 30  0001 C CNN
+F 3 "" H 3850 4400 30  0000 C CNN
+	1    3850 4400
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R R6
 U 1 1 55C3BCB8
-P 4900 4900
-F 0 "R6" V 4980 4900 50  0000 C CNN
-F 1 "1k" V 4900 4900 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4830 4900 30  0001 C CNN
-F 3 "" H 4900 4900 30  0000 C CNN
-	1    4900 4900
+P 4550 4900
+F 0 "R6" V 4630 4900 50  0000 C CNN
+F 1 "1k" V 4550 4900 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4480 4900 30  0001 C CNN
+F 3 "" H 4550 4900 30  0000 C CNN
+	1    4550 4900
 	-1   0    0    1   
 $EndComp
 $Comp
 L 12f675-mppt-rescue:LED D4
 U 1 1 55C3BFD1
-P 4900 5350
-F 0 "D4" H 4900 5450 50  0000 C CNN
-F 1 "LED" H 4900 5250 50  0000 C CNN
-F 2 "LEDs:LED_D4.0mm" H 4900 5350 60  0001 C CNN
-F 3 "" H 4900 5350 60  0000 C CNN
-	1    4900 5350
+P 4550 5300
+F 0 "D4" H 4550 5400 50  0000 C CNN
+F 1 "LED" H 4550 5200 50  0000 C CNN
+F 2 "LEDs:LED_D4.0mm" H 4550 5300 60  0001 C CNN
+F 3 "" H 4550 5300 60  0000 C CNN
+	1    4550 5300
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -227,7 +227,7 @@ Text Label 5400 2350 2    60   ~ 0
 BootStrap
 Text Label 7050 3600 2    60   ~ 0
 PV-Current
-Text Label 4200 4400 2    60   ~ 0
+Text Label 2600 4400 2    60   ~ 0
 PV-Voltage
 Text Notes 8900 5200 2    60   ~ 0
 Heat Sink
@@ -326,12 +326,12 @@ $EndComp
 $Comp
 L Device:CP C6
 U 1 1 55D02AF9
-P 5200 5150
-F 0 "C6" H 5100 5400 50  0000 L CNN
-F 1 "10u" H 5000 5300 50  0000 L CNN
-F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 5238 5000 30  0001 C CNN
-F 3 "" H 5200 5150 60  0000 C CNN
-	1    5200 5150
+P 4300 5000
+F 0 "C6" H 4200 5250 50  0000 L CNN
+F 1 "10u" H 4100 5150 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 4338 4850 30  0001 C CNN
+F 3 "" H 4300 5000 60  0000 C CNN
+	1    4300 5000
 	1    0    0    -1  
 $EndComp
 Text Label 8550 6000 0    60   ~ 0
@@ -418,10 +418,10 @@ Wire Wire Line
 	2100 3500 1850 3500
 Connection ~ 1850 3500
 Wire Wire Line
-	4900 5550 4900 5600
-Connection ~ 4900 5600
+	4550 5500 4550 5600
+Connection ~ 4550 5600
 Wire Wire Line
-	4900 5150 4900 5050
+	4550 5100 4550 5050
 Wire Wire Line
 	2250 3050 2250 3400
 Wire Wire Line
@@ -490,19 +490,19 @@ Wire Wire Line
 Wire Wire Line
 	8150 6100 8150 4450
 Wire Wire Line
-	4900 4300 4900 4750
+	4550 4300 4550 4750
 Wire Wire Line
-	5200 5300 5200 5600
-Connection ~ 5200 5600
+	4300 5150 4300 5600
+Connection ~ 4300 5600
 Wire Wire Line
 	2100 3500 2100 4400
 Wire Wire Line
-	2100 4400 4400 4400
+	2100 4400 3700 4400
 Wire Wire Line
-	4700 4400 5200 4400
+	4000 4400 4300 4400
 Wire Wire Line
-	5200 5000 5200 4400
-Connection ~ 5200 4400
+	4300 4850 4300 4400
+Connection ~ 4300 4400
 Wire Wire Line
 	5650 4500 5500 4500
 Connection ~ 5650 4500
@@ -566,8 +566,6 @@ Connection ~ 3300 2200
 Wire Wire Line
 	2150 4000 2150 3100
 Wire Wire Line
-	2150 3100 3300 3100
-Wire Wire Line
 	3300 3100 3300 2900
 $Comp
 L Device:R R16
@@ -626,7 +624,7 @@ Wire Wire Line
 Wire Wire Line
 	1850 3500 1850 3900
 Wire Wire Line
-	4900 5600 2650 5600
+	4550 5600 4300 5600
 Wire Wire Line
 	3100 4000 3750 4000
 Wire Wire Line
@@ -648,9 +646,7 @@ Wire Wire Line
 Wire Wire Line
 	6200 3600 7150 3600
 Wire Wire Line
-	5200 5600 4900 5600
-Wire Wire Line
-	5200 4400 5300 4400
+	4300 4400 5300 4400
 Wire Wire Line
 	5650 4500 5650 4650
 Wire Wire Line
@@ -698,7 +694,7 @@ Wire Wire Line
 	4150 4200 4150 4650
 Connection ~ 4150 4650
 Wire Wire Line
-	4900 4300 5200 4300
+	4550 4300 5200 4300
 Wire Wire Line
 	5200 4300 5200 3400
 Wire Wire Line
@@ -707,8 +703,6 @@ Wire Wire Line
 	5650 5600 5900 5600
 Wire Wire Line
 	5500 3100 5500 4500
-Wire Wire Line
-	5050 3100 5500 3100
 Wire Wire Line
 	5050 3600 5100 3600
 Wire Wire Line
@@ -1075,8 +1069,6 @@ Wire Wire Line
 Wire Wire Line
 	7050 2950 7050 2900
 Wire Wire Line
-	5200 5600 5400 5600
-Wire Wire Line
 	6200 5600 6700 5600
 Wire Wire Line
 	5900 3200 5900 3450
@@ -1231,4 +1223,12 @@ Wire Wire Line
 Wire Wire Line
 	6800 3100 6600 3100
 Connection ~ 6600 3100
+Wire Wire Line
+	4550 5600 5400 5600
+Wire Wire Line
+	4300 5600 2650 5600
+Wire Wire Line
+	2150 3100 3300 3100
+Wire Wire Line
+	5050 3100 5500 3100
 $EndSCHEMATC
