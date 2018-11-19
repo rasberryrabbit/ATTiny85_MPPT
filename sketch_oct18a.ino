@@ -29,7 +29,7 @@
 #define PWM_MID (PWM_MAX+PWM_MIN)/2
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
-#define ADC_MAX_LOOP 8
+#define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 80
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
