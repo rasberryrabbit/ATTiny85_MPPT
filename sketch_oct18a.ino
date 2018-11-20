@@ -32,9 +32,10 @@
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 90
-#define _UPDATE_VOL 6
+#define _UPDATE_VOL 1
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 #define VOLTOL 5
+//#define USE_VOL_DELAY
 
 byte LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
@@ -147,10 +148,12 @@ void loop() {
       else
         digitalWrite(LED,HIGH);
   }
+#ifdef USE_VOL_DELAY
   currtime = millis();
   if(currtime - powertime < _UPDATE_VOL)
     goto CONTINUE;
   powertime = currtime;
+#endif
   // get voltage, current
   vol_prev2 = vol_prev1;
   vol_prev1 = adc_vol;
