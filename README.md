@@ -26,3 +26,5 @@ D8-D9 used for 3.6v Reference. Each has about 1.8v voltage drop.
 Q1 gate voltage is 3.6v. It's depend on FET specification.
 
 Q1, Q2 can skip heat spreader with low POWER Solar panel. No heat with 10W panel.
+
+![alt text](https://raw.githubusercontent.com/rasberryrabbit/ATTiny85_MPPT/master/attiny85-mppt-works.jpg)
