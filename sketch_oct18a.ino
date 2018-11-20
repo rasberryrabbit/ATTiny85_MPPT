@@ -31,8 +31,8 @@
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
-#define _UPDATE_INT 80
-#define _UPDATE_VOL 7
+#define _UPDATE_INT 90
+#define _UPDATE_VOL 6
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 #define VOLTOL 5
 
