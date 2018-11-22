@@ -32,9 +32,9 @@
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 90
+#define _CUR_LIMIT 40  // 0.14V
 #define _UPDATE_VOL 1
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
-#define VOLTOL 5
 //#define USE_VOL_DELAY
 
 byte LED1_tm;
@@ -173,6 +173,10 @@ int temp1, temp2;
   adc_vol /= ADC_MAX_LOOP;
   adc_vol *= VOLMUL;
 
+  if(adc_cur < _CUR_LIMIT)
+    update_int = _UPDATE_INT-20;
+    else
+      update_int = _UPDATE_INT;
   // long delay at low PWM
   currtime = millis();
   if(currtime - udtime < update_int)
