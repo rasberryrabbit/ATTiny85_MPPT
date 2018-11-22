@@ -24,8 +24,8 @@
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 // constants
-#define PWM_MIN 1
-#define PWM_MAX 250    // Not 255 due to FET Bootstrap capacitor charge
+#define PWM_MIN 5      // 10%
+#define PWM_MAX 250    // 90%
 #define PWM_MID (PWM_MAX+PWM_MIN)/2
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
