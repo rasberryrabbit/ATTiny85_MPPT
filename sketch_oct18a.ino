@@ -137,6 +137,13 @@ bool check_vdiff(int a,int b, int c) {
   return (c+a+1)/2<b;
 }
 
+bool check_cdiff(int a,int b) {
+  if(flag_inc)
+    return a>b;
+    else
+      return a<b;
+}
+
 void loop() {
   // LED
   currtime = millis();
@@ -202,7 +209,7 @@ int temp1, temp2;
       LED1_tm = 300;
       flag_inc = !flag_inc;
     }
-    if(check_vdiff(adc_vol,vol_prev1,vol_prev2))
+    if(check_vdiff(adc_vol,vol_prev1,vol_prev2) && check_cdiff(adc_cur,cur_prev))
       flag_inc = true;
   } else {
     LED1_tm = 300;
