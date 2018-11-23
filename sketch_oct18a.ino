@@ -180,12 +180,14 @@ int temp1, temp2;
   adc_vol /= ADC_MAX_LOOP;
   adc_vol *= VOLMUL;
 
-  if(adc_cur<30)
-    update_int = _UPDATE_INT+30;
-    else if(adc_cur<40)
-      update_int = _UPDATE_INT+20;
-      else
-        update_int = _UPDATE_INT;
+  if(adc_cur<25)
+    update_int = _UPDATE_INT+50;
+    else if(adc_cur<30)
+      update_int = _UPDATE_INT+35;
+      else if(adc_cur<40)
+        update_int = _UPDATE_INT+20;
+        else
+          update_int = _UPDATE_INT;
 
   // long delay at low PWM
   currtime = millis();
