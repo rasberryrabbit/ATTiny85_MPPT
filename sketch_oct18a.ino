@@ -24,7 +24,7 @@
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 // constants
-#define PWM_MIN 5      // 10%
+#define PWM_MIN 1     // 10%
 #define PWM_MAX 250    // 90%
 #define PWM_MID (PWM_MAX+PWM_MIN)/2
 #define CLM358_DIFF 0
@@ -173,10 +173,15 @@ int temp1, temp2;
   adc_vol /= ADC_MAX_LOOP;
   adc_vol *= VOLMUL;
 
-  if(adc_cur < _CUR_LIMIT)
-    update_int = _UPDATE_INT-20;
-    else
-      update_int = _UPDATE_INT;
+  if(adc_cur<30)
+    update_int = _UPDATE_INT-30;
+    else if(adc_cur<40)
+      update_int = _UPDATE_INT-20;
+      else if(adc_cur<50)
+        update_int = _UPDATE_INT-10;
+        else
+          update_int = _UPDATE_INT;
+
   // long delay at low PWM
   currtime = millis();
   if(currtime - udtime < update_int)
