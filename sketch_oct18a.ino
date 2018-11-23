@@ -200,6 +200,7 @@ int temp1, temp2;
 
   // active condition
   if(adc_cur > LM358_diff) {
+bool cdiff=check_cdiff(adc_cur,cur_prev);
     if(power_curr == power_prev) {
       LED1_tm = 500;
       goto CONTINUE;
@@ -209,7 +210,7 @@ int temp1, temp2;
       LED1_tm = 300;
       flag_inc = !flag_inc;
     }
-    if(check_vdiff(adc_vol,vol_prev1,vol_prev2) && check_cdiff(adc_cur,cur_prev))
+    if(check_vdiff(adc_vol,vol_prev1,vol_prev2) && cdiff)
       flag_inc = true;
   } else {
     LED1_tm = 300;
