@@ -177,10 +177,8 @@ int temp1, temp2;
     update_int = _UPDATE_INT-30;
     else if(adc_cur<40)
       update_int = _UPDATE_INT-20;
-      else if(adc_cur<50)
-        update_int = _UPDATE_INT-10;
-        else
-          update_int = _UPDATE_INT;
+      else
+        update_int = _UPDATE_INT;
 
   // long delay at low PWM
   currtime = millis();
