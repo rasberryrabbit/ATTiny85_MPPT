@@ -181,9 +181,9 @@ int temp1, temp2;
   adc_vol *= VOLMUL;
 
   if(adc_cur<30)
-    update_int = _UPDATE_INT-30;
+    update_int = _UPDATE_INT+30;
     else if(adc_cur<40)
-      update_int = _UPDATE_INT-20;
+      update_int = _UPDATE_INT+20;
       else
         update_int = _UPDATE_INT;
 
