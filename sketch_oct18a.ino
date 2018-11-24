@@ -24,8 +24,8 @@
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 // constants
-#define PWM_MIN 30     // 10%
-#define PWM_MAX 240    // 90%
+#define PWM_MIN 1     // 10%
+#define PWM_MAX 250    // 90%
 #define PWM_MID (PWM_MAX+PWM_MIN)/2
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
@@ -77,8 +77,8 @@ void setup() {
   TCCR1 = (1<<CTC1)    |  // Enable PWM
           (1<<PWM1A)   |
           (1<<CS12)    |  // PCK/64
-          //(1<<CS11)    |
-          (1<<CS10)    |
+          (1<<CS11)    |
+          //(1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
   
@@ -137,13 +137,6 @@ bool check_vdiff(int a,int b, int c) {
   return (c+a+1)/2<b;
 }
 
-bool check_cdiff(int a,int b) {
-  if(flag_inc)
-    return a>b;
-    else
-      return a<b;
-}
-
 void loop() {
   // LED
   currtime = millis();
@@ -180,15 +173,6 @@ int temp1, temp2;
   adc_vol /= ADC_MAX_LOOP;
   adc_vol *= VOLMUL;
 
-  if(adc_cur<25)
-    update_int = _UPDATE_INT+50;
-    else if(adc_cur<30)
-      update_int = _UPDATE_INT+35;
-      else if(adc_cur<40)
-        update_int = _UPDATE_INT+20;
-        else
-          update_int = _UPDATE_INT;
-
   // long delay at low PWM
   currtime = millis();
   if(currtime - udtime < update_int)
@@ -202,7 +186,6 @@ int temp1, temp2;
 
   // active condition
   if(adc_cur > LM358_diff) {
-bool cdiff=check_cdiff(adc_cur,cur_prev);
     if(power_curr == power_prev) {
       LED1_tm = 500;
       goto CONTINUE;
@@ -212,7 +195,7 @@ bool cdiff=check_cdiff(adc_cur,cur_prev);
       LED1_tm = 300;
       flag_inc = !flag_inc;
     }
-    if(check_vdiff(adc_vol,vol_prev1,vol_prev2) && cdiff)
+    if(check_vdiff(adc_vol,vol_prev1,vol_prev2))
       flag_inc = true;
   } else {
     LED1_tm = 300;
