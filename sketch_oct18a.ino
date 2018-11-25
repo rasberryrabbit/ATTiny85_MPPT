@@ -8,6 +8,7 @@
 
 #include <ATTinyCore.h>
 #include <EEPROM.h>
+#include <avr/wdt.h>
 
 /* re-define Reference for ATTiny x5, bug fix */
 // X 0 0 VCC used as Voltage Reference, disconnected from PB0 (AREF).
@@ -64,6 +65,10 @@ void setup() {
   analogReference(EXTERNAL);
   analogRead(ADC_CUR);  // prevent short
 
+  MCUSR &= 0xF7;                    // clear WDRF
+  WDTCR = (1<<WDE) | (1<<WDCE);
+  WDTCR = (1<<WDP3) | (1<<WDP0);    // 8 seconds watchdog
+
   pinMode(PWM, OUTPUT);
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
   PLLCSR |= (1<<PLLE);
@@ -89,6 +94,7 @@ void setup() {
   LED1_tm = 500;
 
   LM358_diff = CLM358_DIFF;
+  wdt_reset();
 
 // calibration @ reset
   if(MCUSR & (1<<EXTRF)) {
@@ -100,6 +106,7 @@ void setup() {
     digitalWrite(LED,1);
     delay(700);
     digitalWrite(LED,0);
+    wdt_reset();
   }  
   delay(100);
   LM358_diff = EEPROM.read(0);
@@ -230,5 +237,5 @@ CONT_PWM:
   }
 
 CONTINUE:
-  ;
+  wdt_reset();
 }
