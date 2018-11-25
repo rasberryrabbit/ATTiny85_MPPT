@@ -41,11 +41,18 @@
 byte LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
 long power_prev, power_curr;
-byte i, LM358_diff;
-boolean flag_inc, p_equal;
+byte i, LM358_diff, streg;
+boolean flag_inc, p_equal, wdtreset;
 byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
 int power_flag;
+
+const char wdtdetect[] = "wdtreset";
+char *p = (char *) malloc(sizeof(wdtdetect));
+
+bool CheckWDT() {
+  return(strcmp(p, wdtdetect) == 0);
+}
 
 // pin 
 #define AREF PIN_B0
@@ -65,9 +72,11 @@ void setup() {
   analogReference(EXTERNAL);
   analogRead(ADC_CUR);  // prevent short
 
-  MCUSR &= 0xF7;                    // clear WDRF
+  wdtreset = CheckWDT();
+  p[0]=0;
+  MCUSR &= ~(1<<WDRF);
   WDTCR = (1<<WDE) | (1<<WDCE);
-  WDTCR = (1<<WDP3) | (1<<WDP0);    // 8 seconds watchdog
+  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3) | (1<<WDP0);    // 8 seconds watchdog
 
   pinMode(PWM, OUTPUT);
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
@@ -97,7 +106,7 @@ void setup() {
   wdt_reset();
 
 // calibration @ reset
-  if(MCUSR & (1<<EXTRF)) {
+  if((MCUSR & (1<<EXTRF)) && (!wdtreset)) {
     delay(500);    
     adc_cur = analogRead(ADC_CUR);
     EEPROM.write(0,lowByte(adc_cur));
@@ -238,4 +247,8 @@ CONT_PWM:
 
 CONTINUE:
   wdt_reset();
+}
+
+ISR(WDT_vect) {
+  memcpy(p, wdtdetect, sizeof(wdtdetect));    // store watdog signature
 }
