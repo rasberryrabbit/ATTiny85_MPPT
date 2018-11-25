@@ -193,6 +193,7 @@ int temp1, temp2;
   currtime = millis();
   if(currtime - udtime < update_int)
     goto CONTINUE;
+  wdt_reset();
   udtime = currtime;
   // save previous adc values
   power_prev = power_curr;
@@ -246,7 +247,7 @@ CONT_PWM:
   }
 
 CONTINUE:
-  wdt_reset();
+  ;
 }
 
 ISR(WDT_vect) {
