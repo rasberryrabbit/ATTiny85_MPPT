@@ -212,7 +212,7 @@ int temp1, temp2;
       LED1_tm = 300;
       flag_inc = !flag_inc;
     }
-    if(check_vdiff(adc_vol,vol_prev1,vol_prev2) || adc_cur<LM358_diff+_CUR_LIMIT)
+    if(check_vdiff(adc_vol,vol_prev1,vol_prev2))
       flag_inc = true;
   } else {
     LED1_tm = 300;
