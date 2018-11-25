@@ -33,7 +33,7 @@
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 90
-#define _CUR_LIMIT 40  // 0.14V
+#define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 //#define USE_VOL_DELAY
@@ -202,7 +202,7 @@ int temp1, temp2;
       LED1_tm = 300;
       flag_inc = !flag_inc;
     }
-    if(check_vdiff(adc_vol,vol_prev1,vol_prev2))
+    if(check_vdiff(adc_vol,vol_prev1,vol_prev2) || adc_cur<LM358_diff+_CUR_LIMIT)
       flag_inc = true;
   } else {
     LED1_tm = 300;
