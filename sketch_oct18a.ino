@@ -25,9 +25,11 @@
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 // constants
-#define PWM_MIN 1     // 10%
-#define PWM_MAX 250    // 90%
+#define PWM_MIN 1                     // 10%
+#define PWM_MAX 250                   // 90%
 #define PWM_MID (PWM_MAX+PWM_MIN)/2
+#define PWM_CHECK PWM_MID
+#define PWM_CHECK_TIME 4500          // 4.5sec
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 4
@@ -36,7 +38,6 @@
 #define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
-//#define USE_VOL_DELAY
 
 byte LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
@@ -45,7 +46,7 @@ byte i, LM358_diff, streg;
 boolean flag_inc, p_equal, wdtreset;
 byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
-int power_flag;
+byte power_flag;
 
 const char wdtdetect[] = "wdtreset";
 char *p = (char *) malloc(sizeof(wdtdetect));
@@ -130,7 +131,7 @@ void setup() {
   cur_power = 0;
   inc_pwm = 1;
   update_int = _UPDATE_INT;
-  power_flag = 0;
+  power_flag = 1;
   vol_power = 0;
   
   prevtime = millis();
@@ -164,12 +165,6 @@ void loop() {
       else
         digitalWrite(LED,HIGH);
   }
-#ifdef USE_VOL_DELAY
-  currtime = millis();
-  if(currtime - powertime < _UPDATE_VOL)
-    goto CONTINUE;
-  powertime = currtime;
-#endif
   // get voltage, current
   vol_prev2 = vol_prev1;
   vol_prev1 = adc_vol;
@@ -201,8 +196,19 @@ int temp1, temp2;
   // get power
   power_curr = adc_cur * adc_vol;
 
+  // avoid low voltage condition
+  currtime = millis();
+  if(OCR1A>PWM_CHECK) {
+    if(currtime - powertime > PWM_CHECK_TIME) {
+      powertime = currtime;
+      adc_cur = LM358_diff; 
+    }
+  } else 
+    powertime = currtime;
+
   // active condition
   if(adc_cur > LM358_diff) {
+    power_flag = 1;
     if(power_curr == power_prev) {
       LED1_tm = 500;
       goto CONTINUE;
@@ -222,7 +228,7 @@ int temp1, temp2;
     power_curr = 0;
     adc_cur = 0;
     cur_power = 0;
-    power_flag = 0;
+    power_flag = 1;
     vol_power = 0;
 
     goto CONTINUE;
