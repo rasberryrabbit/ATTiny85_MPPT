@@ -34,7 +34,7 @@
   )
 
   (setup
-    (last_trace_width 1.5)
+    (last_trace_width 0.25)
     (user_trace_width 0.5)
     (user_trace_width 1)
     (user_trace_width 1.2)
@@ -3012,7 +3012,7 @@
     )
   )
 
-  (module Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5874F706) (tstamp 5BC9E494)
+  (module Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal (layer F.Cu) (tedit 5BFA50CE) (tstamp 5BC9E494)
     (at 102.82936 60.20816 90)
     (descr "Resistor, Axial_DIN0309 series, Axial, Horizontal, pin pitch=12.7mm, 0.5W = 1/2W, length*diameter=9*3.2mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
     (tags "Resistor Axial_DIN0309 series Axial Horizontal pin pitch 12.7mm 0.5W = 1/2W length 9mm diameter 3.2mm")
@@ -3020,7 +3020,7 @@
     (fp_text reference R11 (at 0.42672 3.08356 90) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 100k (at 7.07644 -2.13868 90) (layer F.Fab)
+    (fp_text value 4.7k (at 7.07644 -2.13868 90) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start 13.75 -1.95) (end -1.05 -1.95) (layer F.CrtYd) (width 0.05))
