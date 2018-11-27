@@ -46,7 +46,7 @@ byte i, LM358_diff, streg;
 boolean flag_inc, p_equal, wdtreset;
 byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
-byte power_flag;
+byte power_flag, doADCRead;
 
 const char wdtdetect[] = "wdtreset";
 char *p = (char *) malloc(sizeof(wdtdetect));
@@ -141,6 +141,7 @@ void setup() {
 
   flag_inc = false;
   OCR1A = PWM_MID;
+  TIMSK |= (1<<TOIE1);
   delay(300);
 }
 
@@ -172,6 +173,9 @@ void loop() {
   // get voltage, current
   adc_cur = 0;
   adc_vol = 0;
+  // wait timer1 overflow
+  doADCRead = 0;
+  while(doADCRead == 0) ;
 int temp1, temp2;
   for(i=0;i<ADC_MAX_LOOP;i++) {
     // read adc value
@@ -258,4 +262,8 @@ CONTINUE:
 
 ISR(WDT_vect) {
   memcpy(p, wdtdetect, sizeof(wdtdetect));    // store watdog signature
+}
+
+ISR(TIMER1_OVF_vect) {
+  doADCRead=1;
 }
