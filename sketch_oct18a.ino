@@ -141,7 +141,6 @@ void setup() {
 
   flag_inc = false;
   OCR1A = PWM_MID;
-  TIMSK |= (1<<TOIE1);
   delay(300);
 }
 
@@ -174,8 +173,7 @@ void loop() {
   adc_cur = 0;
   adc_vol = 0;
   // wait timer1 overflow
-  doADCRead = 0;
-  while(doADCRead == 0) ;
+  while(bitRead(TIFR,TOV1)==0) ;
 int temp1, temp2;
   for(i=0;i<ADC_MAX_LOOP;i++) {
     // read adc value
@@ -262,8 +260,4 @@ CONTINUE:
 
 ISR(WDT_vect) {
   memcpy(p, wdtdetect, sizeof(wdtdetect));    // store watdog signature
-}
-
-ISR(TIMER1_OVF_vect) {
-  doADCRead=1;
 }
