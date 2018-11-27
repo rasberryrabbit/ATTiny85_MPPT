@@ -39,7 +39,7 @@
 #define _UPDATE_VOL 1
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
-byte LED1_tm;
+int LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
 long power_prev, power_curr;
 byte i, LM358_diff, streg;
