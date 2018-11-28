@@ -32,7 +32,7 @@
 #define PWM_CHECK_TIME 4500          // 4.5sec
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
-#define ADC_MAX_LOOP 4
+#define ADC_MAX_LOOP 5
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 90
 #define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
@@ -169,21 +169,19 @@ void loop() {
   vol_prev2 = vol_prev1;
   vol_prev1 = adc_vol;
   cur_prev = adc_cur;
-  // get voltage, current
-  adc_cur = 0;
-  adc_vol = 0;
   // wait timer1 overflow
   while(bitRead(TIFR,TOV1)==0) ;
+  // get voltage, current
+  adc_vol = analogRead(ADC_VOL);
+  adc_cur = analogRead(ADC_CUR);
 int temp1, temp2;
-  for(i=0;i<ADC_MAX_LOOP;i++) {
+  for(i=0;i<ADC_MAX_LOOP-1;i++) {
     // read adc value
     temp1 = analogRead(ADC_VOL);
     temp2 = analogRead(ADC_CUR);
-    adc_vol += temp1;
-    adc_cur += temp2;
+    adc_vol = (adc_vol+temp1) / 2;
+    adc_cur = (adc_cur+temp2) / 2;
   }
-  adc_cur /= ADC_MAX_LOOP;
-  adc_vol /= ADC_MAX_LOOP;
   adc_vol *= VOLMUL;
 
   // long delay at low PWM
