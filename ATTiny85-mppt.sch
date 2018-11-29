@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2018-11-17"
-Rev "1.6"
+Date "2018-11-29"
+Rev "1.7"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -231,17 +231,6 @@ Text Label 2600 4400 2    60   ~ 0
 PV-Voltage
 Text Notes 8900 5200 2    60   ~ 0
 Heat Sink
-$Comp
-L Device:R R11
-U 1 1 55C4C21C
-P 7300 3600
-F 0 "R11" V 7380 3600 50  0000 C CNN
-F 1 "4.7k" V 7300 3600 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 7230 3600 30  0001 C CNN
-F 3 "" H 7300 3600 30  0000 C CNN
-	1    7300 3600
-	0    1    1    0   
-$EndComp
 $Comp
 L Device:R R12
 U 1 1 55C48C57
@@ -526,8 +515,6 @@ Wire Wire Line
 Wire Wire Line
 	8850 3850 8850 3600
 Wire Wire Line
-	7450 3600 8850 3600
-Wire Wire Line
 	9450 4450 9450 4850
 Connection ~ 8400 5600
 Wire Wire Line
@@ -643,8 +630,6 @@ Wire Wire Line
 	6700 4750 6700 5150
 Wire Wire Line
 	8400 3950 8400 5200
-Wire Wire Line
-	6200 3600 7150 3600
 Wire Wire Line
 	4300 4400 5300 4400
 Wire Wire Line
@@ -1231,4 +1216,6 @@ Wire Wire Line
 	2150 3100 3300 3100
 Wire Wire Line
 	5050 3100 5500 3100
+Wire Wire Line
+	6200 3600 8850 3600
 $EndSCHEMATC
