@@ -1192,21 +1192,6 @@ Wire Wire Line
 	3300 2200 7050 2200
 Wire Wire Line
 	7450 2200 7750 2200
-$Comp
-L Device:R R17
-U 1 1 5BF0956D
-P 6950 3100
-F 0 "R17" V 7030 3100 50  0000 C CNN
-F 1 "1k" V 6950 3100 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P2.54mm_Vertical" V 6880 3100 30  0001 C CNN
-F 3 "" H 6950 3100 30  0000 C CNN
-	1    6950 3100
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	7250 3100 7100 3100
-Wire Wire Line
-	6800 3100 6600 3100
 Connection ~ 6600 3100
 Wire Wire Line
 	4550 5600 5400 5600
@@ -1218,4 +1203,6 @@ Wire Wire Line
 	5050 3100 5500 3100
 Wire Wire Line
 	6200 3600 8850 3600
+Wire Wire Line
+	6600 3100 7250 3100
 $EndSCHEMATC
