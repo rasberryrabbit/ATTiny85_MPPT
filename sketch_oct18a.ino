@@ -32,7 +32,7 @@
 #define PWM_CHECK_TIME 4500          // 4.5sec
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
-#define ADC_MAX_LOOP 4  // 3~6
+#define ADC_MAX_LOOP 3  // 3~6
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 50
 #define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
