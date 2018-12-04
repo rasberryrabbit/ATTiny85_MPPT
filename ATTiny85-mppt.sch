@@ -1205,4 +1205,6 @@ Wire Wire Line
 	6200 3600 8850 3600
 Wire Wire Line
 	6600 3100 7250 3100
+Text Notes 2000 6800 0    50   ~ 0
+D12, C8 - optional
 $EndSCHEMATC
