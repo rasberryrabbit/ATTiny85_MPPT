@@ -34,7 +34,7 @@
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 3  // 3~6
 #define INC_PWM_MIN 0
-#define _UPDATE_INT 20
+#define _UPDATE_INT 90
 #define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
@@ -172,13 +172,13 @@ void loop() {
   // wait timer1 overflow
   while(bitRead(TIFR,TOV1)==0) ;
   // get voltage, current
-  adc_vol = analogRead(ADC_VOL);
   adc_cur = analogRead(ADC_CUR);
+  adc_vol = analogRead(ADC_VOL);
 int temp1, temp2;
   for(i=0;i<ADC_MAX_LOOP-1;i++) {
     // read adc value
-    temp1 = analogRead(ADC_VOL);
     temp2 = analogRead(ADC_CUR);
+    temp1 = analogRead(ADC_VOL);
     adc_vol = (adc_vol+temp1) / 2;
     adc_cur = (adc_cur+temp2) / 2;
   }
