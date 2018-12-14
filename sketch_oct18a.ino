@@ -32,7 +32,7 @@
 #define PWM_CHECK_TIME 4500          // 4.5sec
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
-#define ADC_MAX_LOOP 3  // 3~6
+#define ADC_MAX_LOOP 5  // 3~6
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 50
 #define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
@@ -196,7 +196,7 @@ int temp1, temp2;
   power_prev = power_curr;
 
   // get power
-  power_curr = adc_cur * adc_vol;
+  power_curr = (long) adc_cur * adc_vol;
 
   // avoid low voltage condition
   currtime = millis();
