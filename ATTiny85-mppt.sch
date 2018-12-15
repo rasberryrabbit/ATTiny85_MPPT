@@ -1206,5 +1206,7 @@ Wire Wire Line
 Wire Wire Line
 	6600 3100 7250 3100
 Text Notes 2000 6800 0    50   ~ 0
-D12, C8, C6 - optional
+D12, C8 - optional
+Text Notes 2000 6900 0    50   ~ 0
+C6 - It is bad for power calculation. Remove it.
 $EndSCHEMATC
