@@ -3,7 +3,9 @@
   
   It need ATTinycore. https://github.com/SpenceKonde/ATTinyCore
 
-  it works 1MHz clock.
+  [Tool Option]
+  Clock = 1MHz internal, BOD disabled, EEPROM retained, Timer1 clock = CPU, LTO disabled,
+  No Bootloader.
  */
 
 #include <ATTinyCore.h>
