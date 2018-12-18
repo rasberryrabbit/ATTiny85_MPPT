@@ -15,6 +15,7 @@ It works better than old 16f676 or 12f675 version due to no PWM noise.
 11 milli-ohm N-ch logic level FET(BUK9511) used for current sensor. 
 It can replace by 11 mili-ohm or higher Rds-on(<40 milli) resistance logic level FET.
 
+BUK9511-55A -> BUK9508-55A
 Transistor 2N2222A -> BC547 or compatible
 Transistor 2N2907A -> BC557 or compatible
 
