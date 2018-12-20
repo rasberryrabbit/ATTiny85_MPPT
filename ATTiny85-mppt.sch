@@ -48,7 +48,7 @@ F 3 "" H 6900 5300 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 12f675-mppt-rescue:LM358N-RESCUE-12f675-mppt U2
+L ATTiny85-mppt-rescue:LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue U2
 U 2 1 55C3383E
 P 7500 4850
 F 0 "U2" H 7450 5050 60  0000 L CNN
@@ -59,7 +59,7 @@ F 3 "" H 7500 4850 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 12f675-mppt-rescue:INDUCTOR L1
+L ATTiny85-mppt-rescue:INDUCTOR-12f675-mppt-rescue L1
 U 1 1 55C35536
 P 9050 2200
 F 0 "L1" V 9000 2200 50  0000 C CNN
@@ -180,7 +180,7 @@ F 3 "" H 4550 4900 30  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L 12f675-mppt-rescue:LED D4
+L ATTiny85-mppt-rescue:LED-12f675-mppt-rescue D4
 U 1 1 55C3BFD1
 P 4550 5300
 F 0 "D4" H 4550 5400 50  0000 C CNN
@@ -267,7 +267,7 @@ $EndComp
 Text Notes 1400 3650 0    60   ~ 0
 Max 25V
 $Comp
-L 12f675-mppt-rescue:LED D9
+L ATTiny85-mppt-rescue:LED-12f675-mppt-rescue D9
 U 1 1 55CCC105
 P 5650 5350
 F 0 "D9" H 5650 5450 50  0000 C CNN
@@ -278,7 +278,7 @@ F 3 "" H 5650 5350 60  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L 12f675-mppt-rescue:LED D8
+L ATTiny85-mppt-rescue:LED-12f675-mppt-rescue D8
 U 1 1 55CCC217
 P 5650 4850
 F 0 "D8" H 5650 4950 50  0000 C CNN
@@ -315,7 +315,7 @@ $EndComp
 Text Label 8550 6000 0    60   ~ 0
 3.6v
 $Comp
-L 12f675-mppt-rescue:LM358N-RESCUE-12f675-mppt U2
+L ATTiny85-mppt-rescue:LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue U2
 U 1 1 56E669E2
 P 8850 4350
 F 0 "U2" H 8800 4550 60  0000 L CNN
@@ -341,7 +341,7 @@ L Device:R R15
 U 1 1 56E68956
 P 9650 4300
 F 0 "R15" V 9730 4300 50  0000 C CNN
-F 1 "10k" V 9650 4300 50  0000 C CNN
+F 1 "4.7k" V 9650 4300 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9580 4300 50  0001 C CNN
 F 3 "" H 9650 4300 50  0000 C CNN
 	1    9650 4300
@@ -554,7 +554,7 @@ Wire Wire Line
 Wire Wire Line
 	4150 5000 4050 5000
 $Comp
-L 12f675-mppt-rescue:SW_PUSH SW1
+L ATTiny85-mppt-rescue:SW_PUSH-12f675-mppt-rescue SW1
 U 1 1 56ECBA1E
 P 3100 4650
 F 0 "SW1" H 3250 4760 50  0000 C CNN
@@ -630,7 +630,7 @@ Wire Wire Line
 Wire Wire Line
 	2650 4650 2650 5600
 $Comp
-L MCU_Microchip_ATtiny:ATtiny85-20PU U3
+L ATTiny85-mppt-rescue:ATtiny85-20PU-MCU_Microchip_ATtiny U3
 U 1 1 5BC87E53
 P 4450 3400
 F 0 "U3" H 3920 3446 50  0000 R CNN
@@ -764,7 +764,7 @@ Connection ~ 8700 3050
 Wire Wire Line
 	8700 3050 9500 3050
 $Comp
-L 12f675-mppt-rescue:INDUCTOR L2
+L ATTiny85-mppt-rescue:INDUCTOR-12f675-mppt-rescue L2
 U 1 1 5BCF09F4
 P 9050 1850
 F 0 "L2" V 9000 1850 50  0000 C CNN
