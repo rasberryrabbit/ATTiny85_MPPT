@@ -995,21 +995,17 @@ Text Notes 5850 6250 0    50   ~ 0
 Q1 = IRLZ44NPBF ->
 Text Notes 6750 6250 0    50   ~ 0
 3.6{Aref}/(35*10-3{rds}*6{current})=17.14/10{U2B}=1.74-1
-Text Notes 6750 6350 0    50   ~ 0
-R15 = 2.2k{R1} * 0.74 = 2.97k
-Text Notes 8150 6350 0    50   ~ 0
-or
-Text Notes 8400 6350 0    50   ~ 0
-R1 = 10k{R15}/0.74 = 13.51k{12k}
+Text Notes 6100 6350 0    50   ~ 0
+R15 = 2.2k{R1} * 0.74 = 2.97k / 2 = 1.48k(1k) or R1 = 10k{R15}/0.74 = 13.51k{12k} * 2 = 27k(33k)
 Text Notes 2000 6250 0    50   ~ 0
 Q1 = BUK9511-55A127 ->
 Text Notes 3150 6250 0    50   ~ 0
 3.6{Aref}/(11*10-3{rds}*6{current}=54.54/10{U2B}=5.45-1
 Text Notes 3150 6350 0    50   ~ 0
 R1 = 10k{R15}/4.45 = 2.24k{2.2k}
-Text Notes 6200 6450 0    50   ~ 0
-40milli Ohm, R15 = 2.2k{R1} * (1.5-1) = 1.1{best, 1k} or R1 = 10k{R15} / (1.5-1) = 20k(22k)
-Text Notes 2000 6450 0    50   ~ 0
+Text Notes 6100 6450 0    50   ~ 0
+40milli Ohm, R15 = 2.2k{R1} * (1.5-1) = 1.1k/2 = 550(580) or R1 = 10k{R15} / (1.5-1) = 20k(22k) * 2 = 47k
+Text Notes 2000 6750 0    50   ~ 0
 Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
 $Comp
 L Device:R R7
@@ -1180,10 +1176,14 @@ Wire Wire Line
 	6200 3600 8850 3600
 Wire Wire Line
 	6600 3100 7250 3100
-Text Notes 2000 6800 0    50   ~ 0
+Text Notes 2000 6900 0    50   ~ 0
 D12, C8 - optional
 Wire Wire Line
 	2650 5600 4550 5600
 Wire Wire Line
 	4000 4400 5300 4400
+Text Notes 3150 6450 0    50   ~ 0
+Crrent Sensing twitce higher than expected. R1*2 or R15/2
+Text Notes 3150 6550 0    50   ~ 0
+R1 = 4.7k or R15 = 4.7k
 $EndSCHEMATC
