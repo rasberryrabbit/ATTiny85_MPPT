@@ -341,7 +341,7 @@ L Device:R R15
 U 1 1 56E68956
 P 9650 4300
 F 0 "R15" V 9730 4300 50  0000 C CNN
-F 1 "4.7k" V 9650 4300 50  0000 C CNN
+F 1 "2.2k" V 9650 4300 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9580 4300 50  0001 C CNN
 F 3 "" H 9650 4300 50  0000 C CNN
 	1    9650 4300
@@ -994,18 +994,18 @@ Wire Wire Line
 Text Notes 5850 6250 0    50   ~ 0
 Q1 = IRLZ44NPBF ->
 Text Notes 6750 6250 0    50   ~ 0
-3.6{Aref}/(35*10-3{rds}*6{current})=17.14/10{U2B}=1.74-1
+3.6{Aref}/(35*10-3{rds}*6{current})=17.14/10{U2B}=(1.74-1)/4=0.185
 Text Notes 6100 6350 0    50   ~ 0
-R15 = 2.2k{R1} * 0.74 = 2.97k / 2 = 1.48k(1k) or R1 = 10k{R15}/0.74 = 13.51k{12k} * 2 = 27k(33k)
+R15 = 2.2k{R1} * 0.185 = 407(330) or R1 = 10k{R15}/0.185 = 54k(58k)
 Text Notes 2000 6250 0    50   ~ 0
 Q1 = BUK9511-55A127 ->
 Text Notes 3150 6250 0    50   ~ 0
 3.6{Aref}/(11*10-3{rds}*6{current}=54.54/10{U2B}=5.45-1
-Text Notes 3150 6350 0    50   ~ 0
-R1 = 10k{R15}/4.45 = 2.24k{2.2k}
+Text Notes 3150 6450 0    50   ~ 0
+R1 = 10k{R15}/1.1125 = 11.1k(10k)
 Text Notes 6100 6450 0    50   ~ 0
-40milli Ohm, R15 = 2.2k{R1} * (1.5-1) = 1.1k/2 = 550(580) or R1 = 10k{R15} / (1.5-1) = 20k(22k) * 2 = 47k
-Text Notes 2000 6750 0    50   ~ 0
+40milli Ohm, R15 = 2.2k{R1} * (1.5-1)/4 = 270(330) or R1 = 10k{R15} / (1.5-1)/4 = 5k(4.7k)
+Text Notes 2000 6950 0    50   ~ 0
 Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
 $Comp
 L Device:R R7
@@ -1176,14 +1176,14 @@ Wire Wire Line
 	6200 3600 8850 3600
 Wire Wire Line
 	6600 3100 7250 3100
-Text Notes 2000 6900 0    50   ~ 0
+Text Notes 2000 7050 0    50   ~ 0
 D12, C8 - optional
 Wire Wire Line
 	2650 5600 4550 5600
 Wire Wire Line
 	4000 4400 5300 4400
-Text Notes 3150 6450 0    50   ~ 0
-Crrent Sensing twitce higher than expected. R1*2 or R15/2
+Text Notes 3150 6350 0    50   ~ 0
+due to peak voltage division by 4 -> 4.45/4 = 1.1125
 Text Notes 3150 6550 0    50   ~ 0
-R1 = 4.7k or R15 = 4.7k
+R1 : R15 = 1:1
 $EndSCHEMATC
