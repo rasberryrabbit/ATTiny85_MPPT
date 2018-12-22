@@ -29,6 +29,6 @@ Q1 gate voltage is 3.6v. It's depend on FET specification.
 
 Q1, Q2 can skip heat spreader with low POWER Solar panel. No heat with 10W panel.
 
-To do : Current sensing voltage is slightly high, it caused by C5 capacitor. I guess it works under 3A.
+To do : Current sensing voltage is slightly high due to ampilify FET peak current value. OP-AMP amplification parts is ok.
 
 ![alt text](https://raw.githubusercontent.com/rasberryrabbit/ATTiny85_MPPT/master/attiny85-mppt-works.jpg)
