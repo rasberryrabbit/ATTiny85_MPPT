@@ -815,7 +815,7 @@ Wire Notes Line
 Wire Notes Line
 	9200 2350 8550 2350
 Text Notes 9200 3750 0    50   ~ 0
-45x (6A)
+20x (6A)
 Text Notes 3100 1650 0    50   ~ 0
 100W
 Text Notes 8150 1650 0    50   ~ 0
@@ -1186,4 +1186,6 @@ Text Notes 3150 6350 0    50   ~ 0
 due to peak voltage division by 4 -> 4.45/4 = 1.1125
 Text Notes 3150 6550 0    50   ~ 0
 R1 : R15 = 1:1
+Text Notes 9850 4350 0    50   ~ 0
+R15\n6A = 2.2k, 3A = 4.7k
 $EndSCHEMATC
