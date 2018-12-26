@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2018-12-17"
-Rev "1.8"
+Date "2018-12-26"
+Rev "1.9"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -586,7 +586,7 @@ Wire Wire Line
 Wire Wire Line
 	2250 2200 2500 2200
 Wire Wire Line
-	2650 5600 1850 5600
+	2650 5600 2100 5600
 Wire Wire Line
 	1850 2200 2250 2200
 Wire Wire Line
@@ -1188,4 +1188,50 @@ Text Notes 3150 6550 0    50   ~ 0
 R1 : R15 = 1:1
 Text Notes 9850 4350 0    50   ~ 0
 R15\n6A = 2.2k, 3A = 4.7k
+$Comp
+L Device:Q_NPN_EBC Q6
+U 1 1 5C237CD3
+P 2200 4750
+F 0 "Q6" H 2390 4704 50  0000 L CNN
+F 1 "2N2222A" H 2390 4795 50  0000 L CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Inline_Wide" H 2400 4850 50  0001 C CNN
+F 3 "~" H 2200 4750 50  0001 C CNN
+	1    2200 4750
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:Q_NPN_EBC Q7
+U 1 1 5C237FCB
+P 2200 5250
+F 0 "Q7" H 2390 5296 50  0000 L CNN
+F 1 "2N2222A" H 2390 5205 50  0000 L CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Inline_Wide" H 2400 5350 50  0001 C CNN
+F 3 "~" H 2200 5250 50  0001 C CNN
+	1    2200 5250
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 4550 2100 4400
+Connection ~ 2100 4400
+Wire Wire Line
+	2100 4950 2100 5000
+Wire Wire Line
+	2100 5450 2100 5600
+Connection ~ 2100 5600
+Wire Wire Line
+	2100 5600 1850 5600
+Wire Wire Line
+	2400 4750 2400 5000
+Wire Wire Line
+	2400 5000 2100 5000
+Connection ~ 2400 5000
+Wire Wire Line
+	2400 5000 2400 5250
+Connection ~ 2100 5000
+Wire Wire Line
+	2100 5000 2100 5050
+Text Notes 2150 4950 0    50   ~ 0
+Clamp Voltage
+Text Notes 2000 7350 0    50   ~ 0
+Q6, Q7 - vEBO as low as 5V. It's clamp voltage for protection.
 $EndSCHEMATC
