@@ -83,7 +83,7 @@ void setup() {
 
   pinMode(PWM, OUTPUT);
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
-  PLLCSR |= (1<<PLLE);
+  PLLCSR |= (1<<PLLE) | (1<<LSM);
   while ((PLLCSR & (1<<PLOCK)) == 0x00)
     {
         // Do nothing
@@ -93,9 +93,9 @@ void setup() {
   OCR1C = 255;
   TCCR1 = (1<<CTC1)    |  // Enable PWM
           (1<<PWM1A)   |
-          (1<<CS12)    |  // PCK/64
-          (1<<CS11)    |
-          //(1<<CS10)    |
+          (1<<CS12)    |  // PCK/16
+          //(1<<CS11)    |
+          (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
   
