@@ -79,7 +79,7 @@ void setup() {
   p[0]=0;
   MCUSR &= ~(1<<WDRF);
   WDTCR = (1<<WDE) | (1<<WDCE);
-  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3) | (1<<WDP0);    // 8 seconds watchdog
+  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
 
   pinMode(PWM, OUTPUT);
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
@@ -144,6 +144,7 @@ void setup() {
   flag_inc = false;
   OCR1A = PWM_MID;
   delay(300);
+  sei();
 }
 
 void debug_led() {
