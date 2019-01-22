@@ -41,6 +41,8 @@
 #define _UPDATE_VOL 1
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
+#define USE_PLL
+
 int LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
 long power_prev, power_curr;
@@ -84,6 +86,7 @@ void setup() {
   pinMode(PWM, OUTPUT);
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
   PLLCSR |= (1<<PLLE) | (1<<LSM);
+  delayMicroseconds(200);
   while ((PLLCSR & (1<<PLOCK)) == 0x00)
     {
         // Do nothing
