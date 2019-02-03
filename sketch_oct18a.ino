@@ -80,10 +80,33 @@ void setup() {
   analogRead(ADC_CUR);  // prevent short
 
   wdtreset = CheckWDT();
-  extreset = MCUSR & (1<<EXTRF) != 0;
   p[0]=0;
-  cli();
+
+  // LED
+  pinMode(LED, OUTPUT);
+
+  // init
+  LED1_tm = 500;
+
+// calibration @ reset
+  LM358_diff = CLM358_DIFF;
+  if(MCUSR & (1<<EXTRF) && (!wdtreset)) {
+    delay(500);    
+    adc_cur = analogRead(ADC_CUR);
+    EEPROM.write(0,lowByte(adc_cur));
+    // EEPROM Write
+    delay(100);
+    digitalWrite(LED,1);
+    delay(700);
+    digitalWrite(LED,0);
+  }  
+  delay(100);
+  LM358_diff = EEPROM.read(0);
+  if(LM358_diff>0x3f)
+    LM358_diff=0;
+
   wdt_reset();
+  cli();
   MCUSR &= ~(1<<WDRF);  
   WDTCR = (1<<WDE) | (1<<WDCE);
   WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
@@ -107,32 +130,6 @@ void setup() {
           (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
-  
-  // LED
-  pinMode(LED, OUTPUT);
-
-  // init
-  LED1_tm = 500;
-
-  LM358_diff = CLM358_DIFF;
-  wdt_reset();
-
-// calibration @ reset
-  if(extreset && (!wdtreset)) {
-    delay(500);    
-    adc_cur = analogRead(ADC_CUR);
-    EEPROM.write(0,lowByte(adc_cur));
-    // EEPROM Write
-    delay(100);
-    digitalWrite(LED,1);
-    delay(700);
-    digitalWrite(LED,0);
-    wdt_reset();
-  }  
-  delay(100);
-  LM358_diff = EEPROM.read(0);
-  if(LM358_diff>0x3f)
-    LM358_diff=0;
 
   delay(500);
 
