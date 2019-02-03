@@ -6,6 +6,8 @@
   [Tool Option]
   Clock = 1MHz internal, BOD disabled, EEPROM retained, Timer1 clock = CPU, LTO disabled,
   No Bootloader.
+
+  high fuse word = 0xDD for BOD 2.7v
  */
 
 #include <ATTinyCore.h>
@@ -47,7 +49,7 @@ int LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
 long power_prev, power_curr;
 byte i, LM358_diff, streg;
-boolean flag_inc, p_equal, wdtreset;
+boolean flag_inc, p_equal, wdtreset, extreset;
 byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
 byte power_flag, doADCRead;
@@ -78,10 +80,14 @@ void setup() {
   analogRead(ADC_CUR);  // prevent short
 
   wdtreset = CheckWDT();
+  extreset = MCUSR & (1<<EXTRF) != 0;
   p[0]=0;
-  MCUSR &= ~(1<<WDRF);
+  cli();
+  wdt_reset();
+  MCUSR &= ~(1<<WDRF);  
   WDTCR = (1<<WDE) | (1<<WDCE);
   WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
+  sei();
 
   pinMode(PWM, OUTPUT);
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
@@ -112,7 +118,7 @@ void setup() {
   wdt_reset();
 
 // calibration @ reset
-  if((MCUSR & (1<<EXTRF)) && (!wdtreset)) {
+  if(extreset && (!wdtreset)) {
     delay(500);    
     adc_cur = analogRead(ADC_CUR);
     EEPROM.write(0,lowByte(adc_cur));
