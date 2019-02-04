@@ -54,11 +54,11 @@ byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
 byte power_flag, doADCRead;
 
-const char wdtdetect[] = "wdtreset";
+const char wdtdetect[] = "wdrs";
 char *p = (char *) malloc(sizeof(wdtdetect));
 
 bool CheckWDT() {
-  return(strcmp(p, wdtdetect) == 0);
+  return(memcmp(p, wdtdetect, sizeof(wdtdetect)) == 0);
 }
 
 // pin 
