@@ -71,6 +71,13 @@ bool CheckWDT() {
 #define ADC_VOL A2
 
 void setup() {
+  wdtreset = CheckWDT();
+  p[0]=0;
+  wdt_reset();
+  MCUSR &= ~(1<<WDRF);  
+  WDTCR = (1<<WDE) | (1<<WDCE);
+  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
+
   // ADC current
   pinMode(ADC_CUR_PIN, INPUT);
   // ADC Voltage
@@ -78,9 +85,6 @@ void setup() {
   pinMode(AREF, INPUT);
   analogReference(EXTERNAL);
   analogRead(ADC_CUR);  // prevent short
-
-  wdtreset = CheckWDT();
-  p[0]=0;
 
   // LED
   pinMode(LED, OUTPUT);
@@ -104,13 +108,6 @@ void setup() {
   LM358_diff = EEPROM.read(0);
   if(LM358_diff>0x3f)
     LM358_diff=0;
-
-  wdt_reset();
-  cli();
-  MCUSR &= ~(1<<WDRF);  
-  WDTCR = (1<<WDE) | (1<<WDCE);
-  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
-  sei();
 
   pinMode(PWM, OUTPUT);
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
