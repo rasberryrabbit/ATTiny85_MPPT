@@ -7,7 +7,7 @@
   Clock = 1MHz internal, BOD disabled, EEPROM retained, Timer1 clock = CPU, LTO disabled,
   No Bootloader.
 
-  high fuse word = 0xDD for BOD 2.7v
+  High Fuse = 0xDD, BOD 2.7
  */
 
 #include <ATTinyCore.h>
@@ -49,16 +49,16 @@ int LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
 long power_prev, power_curr;
 byte i, LM358_diff, streg;
-boolean flag_inc, p_equal, wdtreset, extreset;
+boolean flag_inc, p_equal, wdtreset;
 byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
 byte power_flag, doADCRead;
 
-const char wdtdetect[] = "wdrs";
+const char wdtdetect[] = "wdtreset";
 char *p = (char *) malloc(sizeof(wdtdetect));
 
 bool CheckWDT() {
-  return(memcmp(p, wdtdetect, sizeof(wdtdetect)) == 0);
+  return(strcmp(p, wdtdetect) == 0);
 }
 
 // pin 
@@ -71,13 +71,6 @@ bool CheckWDT() {
 #define ADC_VOL A2
 
 void setup() {
-  wdtreset = CheckWDT();
-  p[0]=0;
-  wdt_reset();
-  MCUSR &= ~(1<<WDRF);  
-  WDTCR = (1<<WDE) | (1<<WDCE);
-  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
-
   // ADC current
   pinMode(ADC_CUR_PIN, INPUT);
   // ADC Voltage
@@ -86,28 +79,11 @@ void setup() {
   analogReference(EXTERNAL);
   analogRead(ADC_CUR);  // prevent short
 
-  // LED
-  pinMode(LED, OUTPUT);
-
-  // init
-  LED1_tm = 500;
-
-// calibration @ reset
-  LM358_diff = CLM358_DIFF;
-  if(MCUSR & (1<<EXTRF) && (!wdtreset)) {
-    delay(500);    
-    adc_cur = analogRead(ADC_CUR);
-    EEPROM.write(0,lowByte(adc_cur));
-    // EEPROM Write
-    delay(100);
-    digitalWrite(LED,1);
-    delay(700);
-    digitalWrite(LED,0);
-  }  
-  delay(100);
-  LM358_diff = EEPROM.read(0);
-  if(LM358_diff>0x3f)
-    LM358_diff=0;
+  wdtreset = CheckWDT();
+  p[0]=0;
+  MCUSR &= ~(1<<WDRF);
+  WDTCR = (1<<WDE) | (1<<WDCE);
+  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
 
   pinMode(PWM, OUTPUT);
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
@@ -127,6 +103,32 @@ void setup() {
           (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
+  
+  // LED
+  pinMode(LED, OUTPUT);
+
+  // init
+  LED1_tm = 500;
+
+  LM358_diff = CLM358_DIFF;
+  wdt_reset();
+
+// calibration @ reset
+  if((MCUSR & (1<<EXTRF)) && (!wdtreset)) {
+    delay(500);    
+    adc_cur = analogRead(ADC_CUR);
+    EEPROM.write(0,lowByte(adc_cur));
+    // EEPROM Write
+    delay(100);
+    digitalWrite(LED,1);
+    delay(700);
+    digitalWrite(LED,0);
+    wdt_reset();
+  }  
+  delay(100);
+  LM358_diff = EEPROM.read(0);
+  if(LM358_diff>0x3f)
+    LM358_diff=0;
 
   delay(500);
 
