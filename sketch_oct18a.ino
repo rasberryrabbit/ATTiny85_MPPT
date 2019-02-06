@@ -43,7 +43,7 @@
 #define _UPDATE_VOL 1
 #define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
-#define USE_PLL
+//#define USE_PLL
 
 int LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
@@ -71,6 +71,14 @@ bool CheckWDT() {
 #define ADC_VOL A2
 
 void setup() {
+  wdtreset = CheckWDT();
+  p[0]=0;
+  cli();
+  MCUSR &= ~(1<<WDRF);
+  WDTCR = (1<<WDE) | (1<<WDCE);
+  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
+  sei();
+
   // ADC current
   pinMode(ADC_CUR_PIN, INPUT);
   // ADC Voltage
@@ -79,27 +87,25 @@ void setup() {
   analogReference(EXTERNAL);
   analogRead(ADC_CUR);  // prevent short
 
-  wdtreset = CheckWDT();
-  p[0]=0;
-  MCUSR &= ~(1<<WDRF);
-  WDTCR = (1<<WDE) | (1<<WDCE);
-  WDTCR = (1<<WDE) | (1<<WDIE) | (1<<WDP3);    // 4 seconds watchdog
-
-  pinMode(PWM, OUTPUT);
+pinMode(PWM, OUTPUT);
+#ifdef USE_PLL
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
   PLLCSR |= (1<<PLLE) | (1<<LSM);
-  delayMicroseconds(200);
+  //delayMicroseconds(200);
   while ((PLLCSR & (1<<PLOCK)) == 0x00)
     {
         // Do nothing
     }
   PLLCSR |= (1<<PCKE);
+#endif
   OCR1A = 0;
   OCR1C = 255;
   TCCR1 = (1<<CTC1)    |  // Enable PWM
           (1<<PWM1A)   |
+#ifdef USE_PLL
           (1<<CS12)    |  // PCK/16
           //(1<<CS11)    |
+#endif
           (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
@@ -149,7 +155,6 @@ void setup() {
   flag_inc = false;
   OCR1A = PWM_MID;
   delay(300);
-  sei();
 }
 
 void debug_led() {
