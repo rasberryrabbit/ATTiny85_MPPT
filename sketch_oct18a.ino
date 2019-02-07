@@ -99,9 +99,9 @@ pinMode(PWM, OUTPUT);
   PLLCSR |= (1<<PCKE);
 #endif
   OCR1A = 0;
-  OCR1C = 255;
-  TCCR1 = (1<<CTC1)    |  // Enable PWM
-          (1<<PWM1A)   |
+  //OCR1C = 255;
+  TCCR1 = (1<<PWM1A)   |  // Enable PWM
+          //(1<<CTC1)    |  
 #ifdef USE_PLL
           (1<<CS12)    |  // PCK/16
           //(1<<CS11)    |
@@ -155,6 +155,7 @@ pinMode(PWM, OUTPUT);
   flag_inc = false;
   OCR1A = PWM_MID;
   delay(300);
+  digitalWrite(LED,HIGH);
 }
 
 void debug_led() {
