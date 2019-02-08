@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2019-02-06"
-Rev "2.0"
+Date "2019-02-09"
+Rev "2.1"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -30,7 +30,7 @@ L Device:R R4
 U 1 1 55C33F64
 P 7050 4250
 F 0 "R4" V 7130 4250 50  0000 C CNN
-F 1 "200k" V 7050 4250 50  0000 C CNN
+F 1 "100k" V 7050 4250 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6980 4250 30  0001 C CNN
 F 3 "" H 7050 4250 30  0000 C CNN
 	1    7050 4250
@@ -247,7 +247,7 @@ L Device:R R2
 U 1 1 55CA080E
 P 6700 5300
 F 0 "R2" V 6780 5300 50  0000 C CNN
-F 1 "200k" V 6700 5300 50  0000 C CNN
+F 1 "100k" V 6700 5300 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6630 5300 30  0001 C CNN
 F 3 "" H 6700 5300 30  0000 C CNN
 	1    6700 5300
@@ -945,15 +945,15 @@ Q1 = IRLZ44NPBF ->
 Text Notes 6750 6250 0    50   ~ 0
 3.6{Aref}/(35*10-3{rds}*6{current})=17.14, 17.14/4=4.285
 Text Notes 6100 6350 0    50   ~ 0
-R2 = 10k{R3} * 4.285 = 42.85(47k)
+R2 = 10k{R3} * 4.285 = 42.85(33k)
 Text Notes 2000 6250 0    50   ~ 0
 Q1 = BUK9511-55A127 ->
 Text Notes 3150 6250 0    50   ~ 0
 3.6{Aref}/(11*10-3{rds}*6{current}=54.54
 Text Notes 3150 6450 0    50   ~ 0
-R2 = 10k{R3}/13.635 = 136.35(180k, 200k)
+R2 = 10k{R3}/13.635 = 136.35(120k, 100k)
 Text Notes 6100 6450 0    50   ~ 0
-40milli ohm, R3 = 10k{R3} * (15/4) = 37.5k(47k)
+40milli ohm, R3 = 10k{R3} * (15/4) = 37.5k(33k)
 Text Notes 2000 6950 0    50   ~ 0
 Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
 $Comp
