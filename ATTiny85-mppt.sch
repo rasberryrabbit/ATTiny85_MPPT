@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2019-02-09"
-Rev "2.1"
+Date "2019-02-13"
+Rev "1.92"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -313,28 +313,39 @@ F 3 "" H 6200 4900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text Label 8550 6000 0    60   ~ 0
-1.8v
+3.6v
+$Comp
+L ATTiny85-mppt-rescue:LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue U2
+U 1 1 56E669E2
+P 8850 4350
+F 0 "U2" H 8800 4550 60  0000 L CNN
+F 1 "LM358N" H 8800 4100 60  0000 L CNN
+F 2 "Housings_DIP:DIP-8_W7.62mm" H 8850 4350 60  0001 C CNN
+F 3 "" H 8850 4350 60  0000 C CNN
+	1    8850 4350
+	0    -1   -1   0   
+$EndComp
 $Comp
 L Device:R R1
 U 1 1 56E67518
-P 8950 5000
-F 0 "R1" V 9030 5000 50  0000 C CNN
-F 1 "47k" V 8950 5000 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 8880 5000 50  0001 C CNN
-F 3 "" H 8950 5000 50  0000 C CNN
-	1    8950 5000
-	0    -1   -1   0   
+P 9200 4850
+F 0 "R1" V 9280 4850 50  0000 C CNN
+F 1 "2.2k" V 9200 4850 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9130 4850 50  0001 C CNN
+F 3 "" H 9200 4850 50  0000 C CNN
+	1    9200 4850
+	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R15
 U 1 1 56E68956
-P 9500 5800
-F 0 "R15" V 9580 5800 50  0000 C CNN
-F 1 "1k" V 9500 5800 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9430 5800 50  0001 C CNN
-F 3 "" H 9500 5800 50  0000 C CNN
-	1    9500 5800
-	1    0    0    -1  
+P 9650 4300
+F 0 "R15" V 9730 4300 50  0000 C CNN
+F 1 "2.2k" V 9650 4300 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9580 4300 50  0001 C CNN
+F 3 "" H 9650 4300 50  0000 C CNN
+	1    9650 4300
+	-1   0    0    1   
 $EndComp
 Wire Wire Line
 	2150 4000 2650 4000
@@ -373,7 +384,7 @@ Wire Wire Line
 	9500 2200 9500 2350
 Connection ~ 7750 2200
 Wire Wire Line
-	5400 2350 3500 2350
+	5400 2350 5050 2350
 Connection ~ 2250 2200
 Connection ~ 2650 5600
 Connection ~ 1850 2200
@@ -415,7 +426,7 @@ Connection ~ 8400 3050
 Connection ~ 9500 3050
 Connection ~ 9500 2200
 Wire Notes Line
-	6050 5850 8600 5850
+	6050 5850 9800 5850
 Wire Wire Line
 	1850 4200 1850 5600
 Wire Wire Line
@@ -432,7 +443,7 @@ Connection ~ 8400 3950
 Wire Wire Line
 	5650 4350 5650 4500
 Wire Wire Line
-	5650 5050 5650 5100
+	5650 5050 5650 5150
 Wire Wire Line
 	5650 5550 5650 5600
 Connection ~ 5650 5600
@@ -443,6 +454,7 @@ Wire Wire Line
 Connection ~ 6200 5600
 Wire Wire Line
 	6200 4750 6200 3600
+Connection ~ 6200 3600
 Wire Notes Line
 	6050 3500 6050 5850
 Wire Notes Line
@@ -450,9 +462,11 @@ Wire Notes Line
 Wire Notes Line
 	6500 3500 6700 3750
 Wire Notes Line
-	6700 3750 8600 3750
+	6700 3750 9800 3750
 Wire Wire Line
 	3500 6100 8150 6100
+Wire Wire Line
+	8150 6100 8150 4450
 Wire Wire Line
 	4550 4300 4550 4750
 Wire Wire Line
@@ -465,15 +479,44 @@ Connection ~ 5650 4500
 Wire Wire Line
 	6000 4050 6000 4450
 Wire Wire Line
+	8850 5400 8700 5400
+Wire Wire Line
+	5500 6000 8850 6000
+Wire Wire Line
+	8850 6000 8850 5400
+Connection ~ 5500 4500
+Wire Wire Line
 	6000 4450 7400 4450
 Wire Wire Line
-	9800 5600 9300 5600
+	9450 5600 8400 5600
 Wire Wire Line
 	8000 4250 8000 4850
+Wire Wire Line
+	8000 4850 8750 4850
+Wire Wire Line
+	8850 3850 8850 3600
+Wire Wire Line
+	9450 4450 9450 4850
 Connection ~ 8400 5600
+Wire Wire Line
+	9050 4850 8950 4850
+Wire Wire Line
+	9450 4450 9250 4450
+Connection ~ 9450 4850
 Connection ~ 8150 4450
+Wire Wire Line
+	9650 5100 9650 4450
+Wire Wire Line
+	9650 3600 9650 4150
+Connection ~ 8850 3600
 Wire Notes Line
-	8600 3750 8600 5850
+	9800 3750 9800 5850
+Wire Wire Line
+	9350 4850 9450 4850
+Wire Wire Line
+	9650 5100 8950 5100
+Wire Wire Line
+	8950 5100 8950 4850
 $Comp
 L Device:CP C7
 U 1 1 56E7CE1F
@@ -569,9 +612,15 @@ Wire Wire Line
 Wire Wire Line
 	5650 4500 5650 4650
 Wire Wire Line
+	5500 4500 5500 6000
+Wire Wire Line
 	8400 5600 7400 5600
 Wire Wire Line
-	8150 4450 9000 4450
+	9450 4850 9450 5600
+Wire Wire Line
+	8150 4450 8450 4450
+Wire Wire Line
+	8850 3600 9650 3600
 Wire Wire Line
 	3300 2200 3000 2200
 Wire Wire Line
@@ -612,6 +661,8 @@ Wire Wire Line
 	5200 4300 5200 3400
 Wire Wire Line
 	5200 3400 5050 3400
+Wire Wire Line
+	5650 5600 5900 5600
 Wire Wire Line
 	5500 3100 5500 4500
 Wire Wire Line
@@ -763,7 +814,7 @@ Wire Notes Line
 	9200 2900 9200 2350
 Wire Notes Line
 	9200 2350 8550 2350
-Text Notes 7100 3750 0    50   ~ 0
+Text Notes 9200 3750 0    50   ~ 0
 20x (6A)
 Text Notes 3100 1650 0    50   ~ 0
 100W
@@ -943,17 +994,17 @@ Wire Wire Line
 Text Notes 5850 6250 0    50   ~ 0
 Q1 = IRLZ44NPBF ->
 Text Notes 6750 6250 0    50   ~ 0
-3.6{Aref}/(35*10-3{rds}*6{current})=17.14, 17.14/4=4.285
+3.6{Aref}/(35*10-3{rds}*6{current})=17.14/10{U2B}=(1.74-1)/4=0.185
 Text Notes 6100 6350 0    50   ~ 0
-R2 = 10k{R3} * 4.285 = 42.85(33k)
+R15 = 2.2k{R1} * 0.185 = 407(330) or R1 = 10k{R15}/0.185 = 54k(58k)
 Text Notes 2000 6250 0    50   ~ 0
 Q1 = BUK9511-55A127 ->
 Text Notes 3150 6250 0    50   ~ 0
-3.6{Aref}/(11*10-3{rds}*6{current}=54.54
+3.6{Aref}/(11*10-3{rds}*6{current}=54.54/10{U2B}=5.45-1
 Text Notes 3150 6450 0    50   ~ 0
-R2 = 10k{R3}/13.635 = 136.35(120k, 100k)
+R1 = 10k{R15}/1.1125 = 11.1k(10k)
 Text Notes 6100 6450 0    50   ~ 0
-40milli ohm, R3 = 10k{R3} * (15/4) = 37.5k(33k)
+40milli Ohm, R15 = 2.2k{R1} * (1.5-1)/4 = 270(330) or R1 = 10k{R15} / (1.5-1)/4 = 5k(4.7k)
 Text Notes 2000 6950 0    50   ~ 0
 Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
 $Comp
@@ -1064,11 +1115,31 @@ F 3 "" H 5800 3000 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5300 3200 5300 2700
+	5300 3200 5300 2800
 Wire Wire Line
 	5300 2700 5450 2700
 Wire Wire Line
 	5450 3000 5600 3000
+$Comp
+L Device:CP C8
+U 1 1 5BE62CB0
+P 5900 4900
+F 0 "C8" H 5925 5000 50  0000 L CNN
+F 1 "10u" H 5925 4800 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm" H 5938 4750 30  0001 C CNN
+F 3 "" H 5900 4900 60  0000 C CNN
+	1    5900 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 4750 5900 4500
+Wire Wire Line
+	5900 4500 5650 4500
+Wire Wire Line
+	5900 5050 5900 5600
+Connection ~ 5900 5600
+Wire Wire Line
+	5900 5600 6200 5600
 $Comp
 L Device:D_Zener D12
 U 1 1 5BEB0C16
@@ -1102,17 +1173,21 @@ Wire Wire Line
 Wire Wire Line
 	5050 3100 5500 3100
 Wire Wire Line
+	6200 3600 8850 3600
+Wire Wire Line
 	6600 3100 7250 3100
 Text Notes 2000 7050 0    50   ~ 0
-D12 - optional
+D12, C8 - optional
 Wire Wire Line
 	2650 5600 4550 5600
 Wire Wire Line
 	4000 4400 5300 4400
 Text Notes 3150 6350 0    50   ~ 0
-due to peak voltage division by 4 -> 54.54/4 = 13.635
+due to peak voltage division by 4 -> 4.45/4 = 1.1125
 Text Notes 3150 6550 0    50   ~ 0
-R3:R2 = R13:R4 = 13.635
+R1 : R15 = 1:1
+Text Notes 9850 4350 0    50   ~ 0
+R15\n6A = 2.2k, 3A = 4.7k
 $Comp
 L Device:Q_NPN_EBC Q6
 U 1 1 5C237CD3
@@ -1159,76 +1234,27 @@ Text Notes 2150 4950 0    50   ~ 0
 Clamp Voltage
 Text Notes 2000 7350 0    50   ~ 0
 Q6, Q7 - vEBO as low as 5V. It's clamp voltage for protection.
-Wire Wire Line
-	8000 4250 8000 3600
-Wire Wire Line
-	8000 3600 6200 3600
-Connection ~ 8000 4250
-Connection ~ 6200 3600
-Wire Wire Line
-	9800 4450 9800 5600
-$Comp
-L ATTiny85-mppt-rescue:LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue U2
-U 1 1 56E669E2
-P 9400 4350
-F 0 "U2" H 9350 4550 60  0000 L CNN
-F 1 "LM358N" H 9350 4100 60  0000 L CNN
-F 2 "Housings_DIP:DIP-8_W7.62mm" H 9400 4350 60  0001 C CNN
-F 3 "" H 9400 4350 60  0000 C CNN
-	1    9400 4350
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	9400 3850 10050 3850
-Wire Wire Line
-	10050 3850 10050 5400
-Wire Wire Line
-	10050 5400 8700 5400
-Wire Wire Line
-	8150 4450 8150 5000
-Wire Wire Line
-	8800 5000 8150 5000
-Connection ~ 8150 5000
-Wire Wire Line
-	8150 5000 8150 6100
-Wire Wire Line
-	9300 4850 9300 5000
-Wire Wire Line
-	9100 5000 9300 5000
-Wire Wire Line
-	5650 5100 5200 5100
-Wire Wire Line
-	5200 5100 5200 6000
-Wire Wire Line
-	5200 6000 9500 6000
-Wire Wire Line
-	9500 6000 9500 5950
-Connection ~ 5650 5100
-Wire Wire Line
-	5650 5100 5650 5150
-Wire Wire Line
-	9500 4850 9500 5650
 $Comp
 L Device:R R11
-U 1 1 5C6A7369
-P 9300 5200
-F 0 "R11" V 9380 5200 50  0000 C CNN
-F 1 "33k" V 9300 5200 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9230 5200 50  0001 C CNN
-F 3 "" H 9300 5200 50  0000 C CNN
-	1    9300 5200
-	-1   0    0    1   
+U 1 1 5C645AD6
+P 5050 2600
+F 0 "R11" V 5130 2600 50  0000 C CNN
+F 1 "10k" V 5050 2600 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4980 2600 30  0001 C CNN
+F 3 "" H 5050 2600 30  0000 C CNN
+	1    5050 2600
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9300 5000 9300 5050
-Connection ~ 9300 5000
+	5050 2750 5050 2800
 Wire Wire Line
-	9300 5350 9300 5600
-Connection ~ 9300 5600
+	5050 2800 5300 2800
+Connection ~ 5300 2800
 Wire Wire Line
-	9300 5600 8400 5600
-Text Label 9100 5000 0    50   ~ 0
-2.06v
+	5300 2800 5300 2700
 Wire Wire Line
-	5650 5600 6200 5600
+	5050 2450 5050 2350
+Connection ~ 5050 2350
+Wire Wire Line
+	5050 2350 3500 2350
 $EndSCHEMATC
