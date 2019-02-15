@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Simple MPPT with ATTiny85"
-Date "2019-02-13"
-Rev "1.92"
+Date "2019-02-15"
+Rev "1.93"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -330,7 +330,7 @@ L Device:R R1
 U 1 1 56E67518
 P 9200 4850
 F 0 "R1" V 9280 4850 50  0000 C CNN
-F 1 "2.2k" V 9200 4850 50  0000 C CNN
+F 1 "10k" V 9200 4850 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9130 4850 50  0001 C CNN
 F 3 "" H 9200 4850 50  0000 C CNN
 	1    9200 4850
@@ -341,7 +341,7 @@ L Device:R R15
 U 1 1 56E68956
 P 9650 4300
 F 0 "R15" V 9730 4300 50  0000 C CNN
-F 1 "2.2k" V 9650 4300 50  0000 C CNN
+F 1 "3.3k" V 9650 4300 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 9580 4300 50  0001 C CNN
 F 3 "" H 9650 4300 50  0000 C CNN
 	1    9650 4300
@@ -994,17 +994,15 @@ Wire Wire Line
 Text Notes 5850 6250 0    50   ~ 0
 Q1 = IRLZ44NPBF ->
 Text Notes 6750 6250 0    50   ~ 0
-3.6{Aref}/(35*10-3{rds}*6{current})=17.14/10{U2B}=(1.74-1)/4=0.185
+3.6{Aref}/(35*10-3{rds}*6{current})=17.14/3.3{U2B}/4=1.298-1=0.298
 Text Notes 6100 6350 0    50   ~ 0
-R15 = 2.2k{R1} * 0.185 = 407(330) or R1 = 10k{R15}/0.185 = 54k(58k)
+R2=R4=33k, R15 = 10k{R1} * 0.298 = 2.98k(2.7k or 2.2k)
 Text Notes 2000 6250 0    50   ~ 0
 Q1 = BUK9511-55A127 ->
 Text Notes 3150 6250 0    50   ~ 0
-3.6{Aref}/(11*10-3{rds}*6{current}=54.54/10{U2B}=5.45-1
+3.6{Aref}/(11*10-3{rds}*6{current}=54.54/10{U2B}/4=1.36-1
 Text Notes 3150 6450 0    50   ~ 0
-R1 = 10k{R15}/1.1125 = 11.1k(10k)
-Text Notes 6100 6450 0    50   ~ 0
-40milli Ohm, R15 = 2.2k{R1} * (1.5-1)/4 = 270(330) or R1 = 10k{R15} / (1.5-1)/4 = 5k(4.7k)
+R15 = 10k{R1}*0.36 = 3.6k(3.3k)
 Text Notes 2000 6950 0    50   ~ 0
 Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
 $Comp
@@ -1183,11 +1181,7 @@ Wire Wire Line
 Wire Wire Line
 	4000 4400 5300 4400
 Text Notes 3150 6350 0    50   ~ 0
-due to peak voltage division by 4 -> 4.45/4 = 1.1125
-Text Notes 3150 6550 0    50   ~ 0
-R1 : R15 = 1:1
-Text Notes 9850 4350 0    50   ~ 0
-R15\n6A = 2.2k, 3A = 4.7k
+due to peak voltage division by 4
 $Comp
 L Device:Q_NPN_EBC Q6
 U 1 1 5C237CD3
@@ -1257,4 +1251,6 @@ Wire Wire Line
 Connection ~ 5050 2350
 Wire Wire Line
 	5050 2350 3500 2350
+Text Notes 9850 4300 0    50   ~ 0
+R15 3A = 4.7k
 $EndSCHEMATC
