@@ -29,9 +29,9 @@
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 // constants
-#define PWM_MIN 1                     // 10%
+#define PWM_MIN 10                    // 10%
 #define PWM_MAX 250                   // 90%
-#define PWM_MID (PWM_MAX+PWM_MIN)/2
+#define PWM_MID PWM_MAX/2
 #define PWM_CHECK PWM_MID
 #define PWM_CHECK_TIME 4500          // 4.5sec
 #define CLM358_DIFF 0
@@ -152,8 +152,8 @@ pinMode(PWM, OUTPUT);
   udtime = prevtime;
   
 
-  flag_inc = false;
-  OCR1A = PWM_MID;
+  flag_inc = true;
+  OCR1A = PWM_MIN;
   delay(300);
 }
 
@@ -240,8 +240,8 @@ int temp1, temp2;
   } else {
     LED1_tm = 300;
     // low current
-    OCR1A = PWM_MID;
-    flag_inc = false;
+    OCR1A = PWM_MIN;
+    flag_inc = true;
     power_curr = 0;
     adc_cur = 0;
     cur_power = 0;
