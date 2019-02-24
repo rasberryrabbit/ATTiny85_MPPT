@@ -30,7 +30,7 @@ L Device:R R4
 U 1 1 55C33F64
 P 7050 4250
 F 0 "R4" V 7130 4250 50  0000 C CNN
-F 1 "100k" V 7050 4250 50  0000 C CNN
+F 1 "47k" V 7050 4250 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6980 4250 30  0001 C CNN
 F 3 "" H 7050 4250 30  0000 C CNN
 	1    7050 4250
@@ -247,7 +247,7 @@ L Device:R R2
 U 1 1 55CA080E
 P 6700 5300
 F 0 "R2" V 6780 5300 50  0000 C CNN
-F 1 "100k" V 6700 5300 50  0000 C CNN
+F 1 "47k" V 6700 5300 50  0000 C CNN
 F 2 "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6630 5300 30  0001 C CNN
 F 3 "" H 6700 5300 30  0000 C CNN
 	1    6700 5300
@@ -814,8 +814,8 @@ Wire Notes Line
 	9200 2900 9200 2350
 Wire Notes Line
 	9200 2350 8550 2350
-Text Notes 9200 3750 0    50   ~ 0
-20x (6A)
+Text Notes 8850 3750 0    50   ~ 0
+13.3(3A), 6.251(6A)
 Text Notes 3100 1650 0    50   ~ 0
 100W
 Text Notes 8150 1650 0    50   ~ 0
@@ -994,14 +994,14 @@ Wire Wire Line
 Text Notes 5850 6250 0    50   ~ 0
 Q1 = IRLZ44NPBF ->
 Text Notes 6750 6250 0    50   ~ 0
-3.6{Aref}/(35*10-3{rds}*6{current})=17.14/3.3{U2B}/4=1.298-1=0.298
+3.6{Aref}/(35*10-3{rds}*3{current})=17.14/3.3{U2B}/8=1.298-1=0.298
 Text Notes 6100 6350 0    50   ~ 0
-R2=R4=33k, R15 = 10k{R1} * 0.298 = 2.98k(2.7k or 2.2k)
+R2=R4=33k(3A)/2=15k, R15 = 10k{R1, 3A} * 0.298 = 2.98k(2.7k or 2.2k)
 Text Notes 2000 6250 0    50   ~ 0
 Q1 = BUK9511-55A127 ->
 Text Notes 3150 6250 0    50   ~ 0
-3.6{Aref}/(11*10-3{rds}*6{current}=54.54/10{U2B}/4=1.36-1
-Text Notes 3150 6450 0    50   ~ 0
+3.6{Aref}/(11*10-3{rds}*3{current})->54.54/10{U2B}/8=1.36-1
+Text Notes 3150 6350 0    50   ~ 0
 R15 = 10k{R1}*0.36 = 3.6k(3.3k)
 Text Notes 2000 6950 0    50   ~ 0
 Q1 rds <= 55milli Ohm. If bigger, R2/R3 and R4/R13 must change.
@@ -1180,8 +1180,6 @@ Wire Wire Line
 	2650 5600 4550 5600
 Wire Wire Line
 	4000 4400 5300 4400
-Text Notes 3150 6350 0    50   ~ 0
-due to peak voltage division by 4
 $Comp
 L Device:Q_NPN_EBC Q6
 U 1 1 5C237CD3
@@ -1252,5 +1250,7 @@ Connection ~ 5050 2350
 Wire Wire Line
 	5050 2350 3500 2350
 Text Notes 9850 4300 0    50   ~ 0
-R15 3A = 4.7k
+3A, R2 = R4 = 100k
+Text Notes 3150 6450 0    50   ~ 0
+R2 = R4 = 100k / 2 = 50k(47k)
 $EndSCHEMATC
