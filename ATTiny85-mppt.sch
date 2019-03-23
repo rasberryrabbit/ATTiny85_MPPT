@@ -1253,4 +1253,6 @@ Text Notes 9850 4300 0    50   ~ 0
 3A, R2 = R4 = 100k
 Text Notes 3150 6450 0    50   ~ 0
 R2 = R4 = 100k / 2 = 50k(47k)
+Text Notes 1000 4100 0    50   ~ 0
+48v -> R12 = 22k
 $EndSCHEMATC

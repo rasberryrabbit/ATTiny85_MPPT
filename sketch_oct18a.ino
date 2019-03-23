@@ -41,7 +41,15 @@
 #define _UPDATE_INT 30
 #define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
-#define VOLMUL ((int)25/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
+
+//#define USE_48V
+#ifdef USE_48V
+#define VINPUT 48
+#else
+#define VINPUT 25
+#endif
+
+#define VOLMUL ((int)VINPUT/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
 //#define USE_PLL
 
