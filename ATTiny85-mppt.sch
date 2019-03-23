@@ -1255,4 +1255,18 @@ Text Notes 3150 6450 0    50   ~ 0
 R2 = R4 = 100k / 2 = 50k(47k)
 Text Notes 1000 4100 0    50   ~ 0
 48v -> R12 = 22k
+Text Notes 850  4200 0    50   ~ 0
+At 48V, U1 must change.
+Wire Notes Line
+	750  3900 750  4250
+Wire Notes Line
+	750  4250 2950 4250
+Wire Notes Line
+	2950 4250 2950 3000
+Wire Notes Line
+	2950 3000 2350 3000
+Wire Notes Line
+	2350 3000 2350 3900
+Wire Notes Line
+	750  3900 2350 3900
 $EndSCHEMATC
