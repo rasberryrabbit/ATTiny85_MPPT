@@ -191,7 +191,7 @@ void loop() {
   vol_prev1 = adc_vol;
   cur_prev = adc_cur;
   // wait timer1 overflow
-  //while(bitRead(TIFR,TOV1)==0) ;
+  while(bitRead(TIFR,TOV1)==0) ;
   // get voltage, current
   adc_cur = analogRead(ADC_CUR);
   adc_vol = analogRead(ADC_VOL);
