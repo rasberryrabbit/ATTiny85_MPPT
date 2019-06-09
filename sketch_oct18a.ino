@@ -219,6 +219,7 @@ int temp1, temp2;
   // get power
   power_curr = (long) adc_cur * adc_vol;
 
+  /*
   // avoid low voltage condition
   currtime = millis();
   if(OCR1A>PWM_CHECK) {
@@ -228,6 +229,7 @@ int temp1, temp2;
     }
   } else 
     powertime = currtime;
+   */
 
   // active condition
   if(adc_cur > LM358_diff) {
