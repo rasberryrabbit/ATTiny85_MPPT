@@ -29,8 +29,9 @@
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 // constants
-#define PWM_MIN 10                    // 10%
-#define PWM_MAX 250                   // 90%
+#define PWM_MIN 10
+#define PWM_MAX 200
+#define PWM_START ((int)PWM_MAX * 30 / 100)
 #define PWM_MID PWM_MAX/2
 #define PWM_CHECK PWM_MID
 #define PWM_CHECK_TIME 4500          // 4.5sec
@@ -38,7 +39,7 @@
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 5  // 3~6
 #define INC_PWM_MIN 0
-#define _UPDATE_INT 30
+#define _UPDATE_INT 25
 #define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
 
@@ -95,7 +96,7 @@ void setup() {
   analogReference(EXTERNAL);
   analogRead(ADC_CUR);  // prevent short
 
-pinMode(PWM, OUTPUT);
+  pinMode(PWM, OUTPUT);
 #ifdef USE_PLL
   // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
   PLLCSR |= (1<<PLLE) | (1<<LSM);
@@ -107,9 +108,9 @@ pinMode(PWM, OUTPUT);
   PLLCSR |= (1<<PCKE);
 #endif
   OCR1A = 0;
-  OCR1C = 255;
-  TCCR1 = (1<<CTC1)    |  // Enable PWM
-          (1<<PWM1A)   |
+  OCR1C = PWM_MAX - 1;    // 1000000 / 5000 - 1 = 199
+  TCCR1 = (1<<PWM1A)   |  // Enable PWM
+          //(1<<CTC1)    |
 #ifdef USE_PLL
           (1<<CS12)    |  // PCK/16
           //(1<<CS11)    |
@@ -117,6 +118,7 @@ pinMode(PWM, OUTPUT);
           (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
+  //GTCCR = (1 << PWM1B);
   
   // LED
   pinMode(LED, OUTPUT);
@@ -161,7 +163,7 @@ pinMode(PWM, OUTPUT);
   
 
   flag_inc = true;
-  OCR1A = PWM_MIN;
+  OCR1A = PWM_START;
   delay(300);
 }
 
@@ -200,10 +202,9 @@ int temp1, temp2;
     // read adc value
     temp2 = analogRead(ADC_CUR);
     temp1 = analogRead(ADC_VOL);
-    adc_vol = (adc_vol+temp1) / 2;
     if(temp2 > adc_cur)
       adc_cur = temp2;
-    //adc_cur = (adc_cur+temp2) / 2;
+      adc_vol = temp1;
   }
   adc_vol *= VOLMUL;
 
@@ -250,7 +251,7 @@ int temp1, temp2;
   } else {
     LED1_tm = 300;
     // low current
-    OCR1A = PWM_MIN;
+    OCR1A = PWM_START;
     flag_inc = true;
     power_curr = 0;
     adc_cur = 0;
