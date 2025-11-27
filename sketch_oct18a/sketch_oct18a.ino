@@ -4,10 +4,14 @@
   It need ATTinycore. https://github.com/SpenceKonde/ATTinyCore
 
   [Tool Option]
-  Clock = 1MHz internal, BOD disabled, EEPROM retained, Timer1 clock = CPU, LTO disabled,
-  No Bootloader.
+  BOD Enabled 2.7V,
+  ATTiny85 (No Bootloader),
+  Clock = 1MHz(internal),
+  EEPROM retained, 
+  LTO disabled,
+  millis()/micros() enabled
+  Timer1 clock = 32MHz
 
-  High Fuse = 0xDD, BOD 2.7
  */
 
 #include <ATTinyCore.h>
@@ -37,10 +41,10 @@
 #define PWM_CHECK_TIME 4500          // 4.5sec
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
-#define ADC_MAX_LOOP 5  // 3~6
+#define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
-#define _UPDATE_INT 25
-#define _CUR_LIMIT 12  // 0.04V / 3.6 * 1024
+#define _UPDATE_INT 25  // 25ms
+#define _CUR_LIMIT 12   // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
 
 //#define USE_48V
@@ -51,8 +55,6 @@
 #endif
 
 #define VOLMUL ((int)VINPUT/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
-
-//#define USE_PLL
 
 int LED1_tm;
 int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
@@ -97,24 +99,10 @@ void setup() {
   analogRead(ADC_CUR);  // prevent short
 
   pinMode(PWM, OUTPUT);
-#ifdef USE_PLL
-  // Timer1 PWM, 8KHz - FET Bootstrap don't work with higher clock.
-  PLLCSR |= (1<<PLLE) | (1<<LSM);
-  //delayMicroseconds(200);
-  while ((PLLCSR & (1<<PLOCK)) == 0x00)
-    {
-        // Do nothing
-    }
-  PLLCSR |= (1<<PCKE);
-#endif
   OCR1A = 0;
-  OCR1C = PWM_MAX - 1;    // 1000000 / 5000 - 1 = 199
+  OCR1C = PWM_MAX - 1;
   TCCR1 = (1<<PWM1A)   |  // Enable PWM
-          //(1<<CTC1)    |
-#ifdef USE_PLL
-          (1<<CS12)    |  // PCK/16
-          //(1<<CS11)    |
-#endif
+          (1<<CS12)    |  // PCK/16, 2000000 / (199+1) = 10kHz
           (1<<CS10)    |
           (1<<COM1A0)  |
           (1<<COM1A1);    // inverting mode
