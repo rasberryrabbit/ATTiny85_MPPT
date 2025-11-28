@@ -12,6 +12,7 @@
   millis()/micros() enabled
   Timer1 clock = 32MHz
 
+  High Fuse = DC (BOD 4.3V)
  */
 
 #include <ATTinyCore.h>
