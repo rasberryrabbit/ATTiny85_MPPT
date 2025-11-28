@@ -4,7 +4,7 @@
   It need ATTinycore. https://github.com/SpenceKonde/ATTinyCore
 
   [Tool Option]
-  BOD Enabled 2.7V,
+  BOD Enabled 4.3V,
   ATTiny85 (No Bootloader),
   Clock = 1MHz(internal),
   EEPROM retained, 
