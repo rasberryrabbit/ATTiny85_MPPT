@@ -39,7 +39,6 @@
 #define PWM_START ((int)PWM_MAX * 30 / 100)
 #define PWM_MID PWM_MAX/2
 #define PWM_CHECK PWM_MID
-#define PWM_CHECK_TIME 4500          // 4.5sec
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 4
@@ -208,18 +207,6 @@ int temp1, temp2;
 
   // get power
   power_curr = (long) adc_cur * adc_vol;
-
-  /*
-  // avoid low voltage condition
-  currtime = millis();
-  if(OCR1A>PWM_CHECK) {
-    if(currtime - powertime > PWM_CHECK_TIME) {
-      powertime = currtime;
-      adc_cur = LM358_diff; 
-    }
-  } else 
-    powertime = currtime;
-   */
 
   // active condition
   if(adc_cur > LM358_diff) {
