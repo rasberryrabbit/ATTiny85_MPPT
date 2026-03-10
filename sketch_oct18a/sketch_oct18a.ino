@@ -44,7 +44,7 @@
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
-#define _UPDATE_INT 12  // 25ms
+#define _UPDATE_INT 18  // 25ms
 #define _CUR_LIMIT 12   // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
 
