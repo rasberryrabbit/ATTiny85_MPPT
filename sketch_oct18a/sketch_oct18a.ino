@@ -138,6 +138,7 @@ void setup() {
 
   adc_vol = 0;
   adc_cur = 0;
+  cur_prev = 0;
   power_curr = 0;
   cur_power = 0;
   inc_pwm = 1;
@@ -218,7 +219,10 @@ int temp1, temp2;
       LED1_tm = 400;
     } else {
       LED1_tm = 300;
-      flag_inc = !flag_inc;
+      if(adc_cur<cur_prev) {
+        flag_inc = true;
+      } else
+        flag_inc = !flag_inc;
     }
     /*
     if(check_vdiff(adc_vol,vol_prev1,vol_prev2))
