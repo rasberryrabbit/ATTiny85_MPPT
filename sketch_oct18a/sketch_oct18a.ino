@@ -57,7 +57,7 @@
 #define VOLMUL ((int)VINPUT/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
 int LED1_tm;
-int adc_cur, cur_prev, adc_vol, vol_prev1, vol_prev2, cur_power, vol_power, vol_last;
+int adc_cur, cur_prev, adc_vol;
 long power_prev, power_curr;
 byte i, LM358_diff, streg;
 boolean flag_inc, p_equal, wdtreset;
@@ -140,11 +140,9 @@ void setup() {
   adc_cur = 0;
   cur_prev = 0;
   power_curr = 0;
-  cur_power = 0;
   inc_pwm = 1;
   update_int = _UPDATE_INT;
   power_flag = 1;
-  vol_power = 0;
   
   prevtime = millis();
   powertime = prevtime;
@@ -178,8 +176,6 @@ void loop() {
         digitalWrite(LED,HIGH);
   }
   // get voltage, current
-  vol_prev2 = vol_prev1;
-  vol_prev1 = adc_vol;
   cur_prev = adc_cur;
   // wait timer1 overflow
   //while(bitRead(TIFR,TOV1)==0) ;
@@ -224,10 +220,6 @@ int temp1, temp2;
       } else
         flag_inc = !flag_inc;
     }
-    /*
-    if(check_vdiff(adc_vol,vol_prev1,vol_prev2))
-      flag_inc = true;
-    */
   } else {
     LED1_tm = 300;
     // low current
@@ -235,9 +227,7 @@ int temp1, temp2;
     flag_inc = true;
     power_curr = 0;
     adc_cur = 0;
-    cur_power = 0;
     power_flag = 1;
-    vol_power = 0;
 
     goto CONTINUE;
   }
