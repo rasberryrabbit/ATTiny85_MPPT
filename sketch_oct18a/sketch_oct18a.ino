@@ -187,7 +187,7 @@ int temp1, temp2;
     // read adc value
     temp2 = analogRead(ADC_CUR);
     temp1 = analogRead(ADC_VOL);
-    if(temp2 > adc_cur)
+    if(temp2 < adc_cur)
       adc_cur = temp2;
       adc_vol = temp1;
   }
