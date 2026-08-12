@@ -191,7 +191,7 @@ int temp1, temp2;
       adc_cur = temp2;
       adc_vol = temp1;
   }
-  //adc_vol *= VOLMUL;
+  adc_vol *= VOLMUL;
 
   // long delay at low PWM
   currtime = millis();
