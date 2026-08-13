@@ -44,6 +44,7 @@
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 40  // 25ms+
+#define _CHECK_P_LOW ((int)500 / _UPDATE_INT)
 #define _CUR_LIMIT 12   // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
 
@@ -63,7 +64,7 @@ byte i, LM358_diff, streg;
 boolean flag_inc, p_equal, wdtreset;
 byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
-byte power_flag, doADCRead;
+byte power_flag, doADCRead, power_low;
 
 const char wdtdetect[] = "wdtreset";
 char *p = (char *) malloc(sizeof(wdtdetect));
@@ -143,6 +144,7 @@ void setup() {
   inc_pwm = 1;
   update_int = _UPDATE_INT;
   power_flag = 1;
+  power_low = 0;
   
   prevtime = millis();
   powertime = prevtime;
@@ -210,24 +212,28 @@ int temp1, temp2;
     power_flag = 1;
     if(power_curr == power_prev) {
       LED1_tm = 500;
+      power_low = 0;
       goto CONTINUE;
     } else if(power_curr > power_prev) {
-      LED1_tm = 400;
-    } else {
       LED1_tm = 300;
-      if(adc_cur<cur_prev) {
+      power_low = 0;
+    } else {
+      LED1_tm = 150;
+      power_low++;
+      if(power_low>=_CHECK_P_LOW && adc_cur<cur_prev) {
         flag_inc = true;
       } else
         flag_inc = !flag_inc;
     }
   } else {
-    LED1_tm = 300;
+    LED1_tm = 150;
     // low current
     OCR1A = PWM_START;
     flag_inc = true;
     power_curr = 0;
     adc_cur = 0;
     power_flag = 1;
+    power_low = 0;
 
     goto CONTINUE;
   }
