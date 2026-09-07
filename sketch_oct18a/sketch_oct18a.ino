@@ -34,7 +34,7 @@
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 // constants
-#define PWM_MIN 10
+#define PWM_MIN 20
 #define PWM_MAX 200
 #define PWM_START ((int)PWM_MAX * 30 / 100)
 #define PWM_MID PWM_MAX/2
@@ -54,6 +54,8 @@
 #else
 #define VINPUT 25
 #endif
+
+//#define ADC_LOOP
 
 #define VOLMUL ((int)VINPUT/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
@@ -180,10 +182,14 @@ void loop() {
   // get voltage, current
   cur_prev = adc_cur;
   // wait timer1 overflow
-  //while(bitRead(TIFR,TOV1)==0) ;
+  while(bitRead(TIFR,TOV1)==0) ;
+#ifndef ADC_LOOP
+  delayMicroseconds(80);         // 10kHz, 100us, 100-20=80
+#endif
   // get voltage, current
   adc_cur = analogRead(ADC_CUR);
   adc_vol = analogRead(ADC_VOL);
+#ifdef ADC_LOOP
 int temp1, temp2;
   for(i=0;i<ADC_MAX_LOOP-1;i++) {
     // read adc value
@@ -196,6 +202,7 @@ int temp1, temp2;
     //  adc_vol = temp1;
     //}
   }
+#endif
   adc_vol *= VOLMUL;
 
   // long delay at low PWM
