@@ -56,6 +56,7 @@
 #endif
 
 //#define ADC_LOOP
+//#define USE_CAL_ADC
 
 #define VOLMUL ((int)VINPUT/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
@@ -121,6 +122,7 @@ void setup() {
   wdt_reset();
 
 // calibration @ reset
+#ifdef USE_CAL_ADC
   if((MCUSR & (1<<EXTRF)) && (!wdtreset)) {
     delay(500);    
     adc_cur = analogRead(ADC_CUR);
@@ -131,7 +133,8 @@ void setup() {
     delay(700);
     digitalWrite(LED,0);
     wdt_reset();
-  }  
+  }
+#endif
   delay(100);
   LM358_diff = EEPROM.read(0);
   if(LM358_diff>0x3f)
@@ -271,5 +274,5 @@ CONTINUE:
 }
 
 ISR(WDT_vect) {
-  memcpy(p, wdtdetect, sizeof(wdtdetect));    // store watdog signature
+  memcpy(p, wdtdetect, sizeof(wdtdetect));    // store watchdog signature
 }
