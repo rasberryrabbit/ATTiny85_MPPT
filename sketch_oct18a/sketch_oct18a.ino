@@ -44,9 +44,10 @@
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
 #define _UPDATE_INT 40  // 25ms+
-#define _CHECK_P_LOW ((int)500 / _UPDATE_INT)
+#define _CHECK_P_LOW 2 // ((int)500 / _UPDATE_INT)
 #define _CUR_LIMIT 12   // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
+#define _DEAD_BAND_LIMIT 2000  // 1000, 500 = RC filter(low noise), 2000 = high noise
 
 //#define USE_48V
 #ifdef USE_48V
@@ -62,7 +63,7 @@
 
 int LED1_tm;
 int adc_cur, cur_prev, adc_vol;
-long power_prev, power_curr;
+long power_prev, power_curr, dead_band;
 byte i, LM358_diff, streg;
 boolean flag_inc, p_equal, wdtreset;
 byte inc_pwm, pwm_power;
@@ -219,6 +220,10 @@ int temp1, temp2;
 
   // get power
   power_curr = (long) adc_cur * adc_vol;
+  // 0.5~1% , dead_band, 0.5%
+  dead_band = power_curr / 200;
+  if(dead_band < _DEAD_BAND_LIMIT)
+    dead_band = _DEAD_BAND_LIMIT;
 
   // active condition
   if(adc_cur > LM358_diff) {
@@ -228,9 +233,19 @@ int temp1, temp2;
       power_low = 0;
       goto CONTINUE;
     } else if(power_curr > power_prev) {
+      if(power_curr-power_prev<dead_band) {
+        LED1_tm = 500;
+        power_low=0;
+        goto CONTINUE;
+      }
       LED1_tm = 300;
       power_low = 0;
     } else {
+      if(power_prev-power_curr<dead_band) {
+        LED1_tm = 500;
+        power_low=0;
+        goto CONTINUE;
+      }
       LED1_tm = 150;
       power_low++;
       if(power_low>=_CHECK_P_LOW && adc_cur<cur_prev) {
