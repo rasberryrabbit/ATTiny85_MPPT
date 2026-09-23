@@ -48,6 +48,7 @@
 #define _CUR_LIMIT 12   // 0.04V / 3.6 * 1024
 #define _UPDATE_VOL 1
 #define _DEAD_BAND_LIMIT 2000  // 1000, 500 = RC filter(low noise), 2000 = high noise
+#define BAND_FAST_DIV
 
 //#define USE_48V
 #ifdef USE_48V
@@ -220,8 +221,13 @@ int temp1, temp2;
 
   // get power
   power_curr = (long) adc_cur * adc_vol;
+  #ifndef BAND_FAST_DIV
   // 0.5~1% , dead_band, 0.5%
   dead_band = power_curr / 200;
+  #else
+  // 0.537% ( / 256 + / 1024 + / 2048 )
+  dead_band = power_curr / 256 + power_curr / 1024 + power_curr / 2048;
+  #endif
   if(dead_band < _DEAD_BAND_LIMIT)
     dead_band = _DEAD_BAND_LIMIT;
 
