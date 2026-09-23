@@ -225,8 +225,8 @@ int temp1, temp2;
   // 0.5~1% , dead_band, 0.5%
   dead_band = power_curr / 200;
   #else
-  // 0.537% ( / 256 + / 1024 + / 2048 )
-  dead_band = power_curr / 256 + power_curr / 1024 + power_curr / 2048;
+  // 0.561% ( / 256 + / 1024 + / 2048 + / 4096 )
+  dead_band = power_curr / 256 + power_curr / 1024 + power_curr / 2048 + power_curr / 4096;
   #endif
   if(dead_band < _DEAD_BAND_LIMIT)
     dead_band = _DEAD_BAND_LIMIT;
