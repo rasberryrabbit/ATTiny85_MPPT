@@ -254,9 +254,11 @@ int temp1, temp2;
       }
       LED1_tm = 150;
       power_low++;
+#ifdef FIX_LOW_CURR
       if(power_low>=_CHECK_P_LOW && adc_cur<cur_prev) {
         flag_inc = true;
       } else
+#endif
         flag_inc = !flag_inc;
     }
   } else {
