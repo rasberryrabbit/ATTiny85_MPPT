@@ -34,21 +34,20 @@
 #define INTERNAL2V56NOBP INTERNAL2V56_NO_CAP
 
 // constants
-#define PWM_MIN 20
 #define PWM_MAX 200
-#define PWM_START ((int)PWM_MAX * 30 / 100)
-#define PWM_MID PWM_MAX/2
+#define PWM_START ((int)PWM_MAX * 10 / 100)
+#define PWM_MIN ((int)PWM_MAX * 6 / 100)
+#define PWM_END ((int)PWM_MAX * 45 / 100)
+#define PWM_MID PWM_MAX/2-5
 #define PWM_CHECK PWM_MID
 #define CLM358_DIFF 0
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
-#define _UPDATE_INT 40  // 25ms+
-#define _CHECK_P_LOW 2 // ((int)500 / _UPDATE_INT)
-#define _CUR_LIMIT 12   // 0.04V / 3.6 * 1024
+#define _UPDATE_INT 50  // 25ms+
 #define _UPDATE_VOL 1
-#define _DEAD_BAND_LIMIT 2000  // 1000, 500 = RC filter(low noise), 2000 = high noise
-#define BAND_FAST_DIV
+#define _DEAD_BAND_LIMIT 50
+#define NOISE_MARGIN 2
 
 //#define USE_48V
 #ifdef USE_48V
@@ -63,13 +62,13 @@
 #define VOLMUL ((int)VINPUT/6)  // Voltage vs Current = 25V(1024) / 6A(1024)
 
 int LED1_tm;
-int adc_cur, cur_prev, adc_vol;
+int adc_cur, adc_vol, raw_vol;
 long power_prev, power_curr, dead_band;
 byte i, LM358_diff, streg;
 boolean flag_inc, p_equal, wdtreset;
 byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
-byte power_flag, doADCRead, power_low;
+byte power_flag, doADCRead;
 
 const char wdtdetect[] = "wdtreset";
 char *p = (char *) malloc(sizeof(wdtdetect));
@@ -86,7 +85,6 @@ bool CheckWDT() {
 #define LED PIN_B3
 #define ADC_CUR A1
 #define ADC_VOL A2
-#define NOISE_MARGIN 3
 
 void setup() {
   wdtreset = CheckWDT();
@@ -147,13 +145,11 @@ void setup() {
 
   adc_vol = 0;
   adc_cur = 0;
-  cur_prev = 0;
   power_curr = 0;
   inc_pwm = 1;
   update_int = _UPDATE_INT;
   power_flag = 1;
-  power_low = 0;
-  
+    
   prevtime = millis();
   powertime = prevtime;
   udtime = prevtime;
@@ -186,7 +182,6 @@ void loop() {
         digitalWrite(LED,HIGH);
   }
   // get voltage, current
-  cur_prev = adc_cur;
   // wait timer1 overflow
   while(bitRead(TIFR,TOV1)==0) ;
 #ifndef ADC_LOOP
@@ -194,7 +189,7 @@ void loop() {
 #endif
   // get voltage, current
   adc_cur = analogRead(ADC_CUR);
-  adc_vol = analogRead(ADC_VOL);
+  raw_vol = analogRead(ADC_VOL);
 #ifdef ADC_LOOP
 int temp1, temp2;
   for(i=0;i<ADC_MAX_LOOP-1;i++) {
@@ -202,14 +197,14 @@ int temp1, temp2;
     temp2 = analogRead(ADC_CUR);
     temp1 = analogRead(ADC_VOL);
     adc_cur = (adc_cur+temp2) >> 1;
-    adc_vol = (adc_vol+temp1) >> 1;
+    raw_vol = (raw_vol+temp1) >> 1;
     //if(temp2 < adc_cur) {
     //  adc_cur = temp2;
     //  adc_vol = temp1;
     //}
   }
 #endif
-  adc_vol *= VOLMUL;
+  adc_vol = raw_vol * VOLMUL;
 
   // long delay at low PWM
   currtime = millis();
@@ -223,60 +218,46 @@ int temp1, temp2;
   // get power
   power_curr = (long) adc_cur * adc_vol;
 
-  dead_band = (long)(adc_cur + adc_vol) * VOLMUL * NOISE_MARGIN;
-  if(dead_band < 50)
-    dead_band = 50;
+  dead_band = (long)(adc_cur + raw_vol) * VOLMUL * NOISE_MARGIN;
+  if(dead_band < _DEAD_BAND_LIMIT)
+    dead_band = _DEAD_BAND_LIMIT;
 
   // active condition
-  if(adc_cur > LM358_diff) {
+  if(adc_cur > (LM358_diff+5)) {
     power_flag = 1;
     if(power_curr == power_prev) {
       LED1_tm = 500;
-      power_low = 0;
       goto CONTINUE;
     } else if(power_curr > power_prev) {
       if(power_curr-power_prev<dead_band) {
         LED1_tm = 500;
-        power_low=0;
         goto CONTINUE;
       }
       LED1_tm = 300;
-      power_low = 0;
     } else {
       if(power_prev-power_curr<dead_band) {
         LED1_tm = 500;
-        power_low=0;
         goto CONTINUE;
       }
       LED1_tm = 150;
-      power_low++;
-#ifdef FIX_LOW_CURR
-      if(power_low>=_CHECK_P_LOW && adc_cur<cur_prev) {
-        flag_inc = true;
-      } else
-#endif
-        flag_inc = !flag_inc;
+      flag_inc = !flag_inc;
     }
   } else {
     LED1_tm = 150;
     // low current
-    OCR1A = PWM_START;
     flag_inc = true;
     power_curr = 0;
     adc_cur = 0;
     power_flag = 1;
-    power_low = 0;
-
-    goto CONTINUE;
   }
 
 CONT_PWM:
 
   if(flag_inc) {
-    if(OCR1A < PWM_MAX)
+    if(OCR1A < PWM_END)
       ++OCR1A;
       else {
-        OCR1A = PWM_MAX;
+        OCR1A = PWM_END;
         flag_inc = false;
       }
   } else {
