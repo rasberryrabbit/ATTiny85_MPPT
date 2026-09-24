@@ -86,6 +86,7 @@ bool CheckWDT() {
 #define LED PIN_B3
 #define ADC_CUR A1
 #define ADC_VOL A2
+#define NOISE_MARGIN 3
 
 void setup() {
   wdtreset = CheckWDT();
@@ -221,15 +222,10 @@ int temp1, temp2;
 
   // get power
   power_curr = (long) adc_cur * adc_vol;
-  #ifndef BAND_FAST_DIV
-  // 0.5~1% , dead_band, 0.5%
-  dead_band = power_curr / 200;
-  #else
-  // 0.561% ( / 256 + / 1024 + / 2048 + / 4096 )
-  dead_band = power_curr / 256 + power_curr / 1024 + power_curr / 2048 + power_curr / 4096;
-  #endif
-  if(dead_band < _DEAD_BAND_LIMIT)
-    dead_band = _DEAD_BAND_LIMIT;
+
+  dead_band = (long)(adc_cur + adc_vol) * VOLMUL * NOISE_MARGIN;
+  if(dead_band < 50)
+    dead_band = 50;
 
   // active condition
   if(adc_cur > LM358_diff) {
