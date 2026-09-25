@@ -44,7 +44,7 @@
 #define INC_PWM_MAX 1
 #define ADC_MAX_LOOP 4
 #define INC_PWM_MIN 0
-#define _UPDATE_INT 50  // 25ms+
+#define _UPDATE_INT 100
 #define _UPDATE_VOL 1
 #define _DEAD_BAND_LIMIT 50
 #define NOISE_MARGIN 2
@@ -221,6 +221,11 @@ int temp1, temp2;
   dead_band = (long)(adc_cur + raw_vol) * VOLMUL * NOISE_MARGIN;
   if(dead_band < _DEAD_BAND_LIMIT)
     dead_band = _DEAD_BAND_LIMIT;
+  // dead band limit 0.78% on high power
+  if(power_curr > 10000) {
+    if(dead_band > power_curr / 128)
+      dead_band = power_curr / 128;
+  }
 
   // active condition
   if(adc_cur > (LM358_diff+5)) {
