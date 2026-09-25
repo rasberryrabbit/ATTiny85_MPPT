@@ -68,7 +68,9 @@ byte i, LM358_diff, streg;
 boolean flag_inc, p_equal, wdtreset;
 byte inc_pwm, pwm_power;
 long prevtime, currtime, udtime, powertime, update_int;
-byte power_flag, doADCRead;
+byte doADCRead;
+boolean startup_mode;
+long startup_timer;
 
 const char wdtdetect[] = "wdtreset";
 char *p = (char *) malloc(sizeof(wdtdetect));
@@ -148,11 +150,11 @@ void setup() {
   power_curr = 0;
   inc_pwm = 1;
   update_int = _UPDATE_INT;
-  power_flag = 1;
     
   prevtime = millis();
   powertime = prevtime;
   udtime = prevtime;
+  startup_mode = false;
   
 
   flag_inc = true;
@@ -166,14 +168,17 @@ void debug_led() {
   digitalWrite(LED,0);
 }
 
-bool check_vdiff(int a,int b, int c) {
-  return (c+a+1)/2<b;
+long tick_diff(long a, long b) {
+  if(a>=b)
+    return a-b;
+  else
+    return b-a+1;
 }
 
 void loop() {
   // LED
   currtime = millis();
-  if(currtime - prevtime >= LED1_tm) {
+  if(tick_diff(currtime, prevtime) >= LED1_tm) {
     prevtime = currtime;
     boolean lv=digitalRead(LED);
     if(lv)
@@ -208,7 +213,7 @@ int temp1, temp2;
 
   // long delay at low PWM
   currtime = millis();
-  if(currtime - udtime < update_int)
+  if(tick_diff(currtime, udtime) < update_int)
     goto CONTINUE;
   wdt_reset();
   udtime = currtime;
@@ -228,32 +233,42 @@ int temp1, temp2;
   }
 
   // active condition
-  if(adc_cur > (LM358_diff+5)) {
-    power_flag = 1;
-    if(power_curr == power_prev) {
-      LED1_tm = 500;
-      goto CONTINUE;
-    } else if(power_curr > power_prev) {
-      if(power_curr-power_prev<dead_band) {
+  if(adc_cur > (LM358_diff+2)) {
+    // startup delay
+    if(startup_mode) {
+      if(tick_diff(millis(), startup_timer)<3000) {
+        LED1_tm=1000;
+        flag_inc=raw_vol<400;
+      } else
+        startup_mode=false;
+    }
+    if(!startup_mode) {
+      if(power_curr == power_prev) {
         LED1_tm = 500;
         goto CONTINUE;
+      } else if(power_curr > power_prev) {
+        if(power_curr-power_prev<dead_band) {
+          LED1_tm = 500;
+          goto CONTINUE;
+        }
+        LED1_tm = 300;
+      } else {
+        if(power_prev-power_curr<dead_band) {
+          LED1_tm = 500;
+          goto CONTINUE;
+        }
+        LED1_tm = 150;
+        flag_inc = !flag_inc;
       }
-      LED1_tm = 300;
-    } else {
-      if(power_prev-power_curr<dead_band) {
-        LED1_tm = 500;
-        goto CONTINUE;
-      }
-      LED1_tm = 150;
-      flag_inc = !flag_inc;
     }
   } else {
     LED1_tm = 150;
+    startup_mode=true;
+    startup_timer=millis();
     // low current
     flag_inc = true;
     power_curr = 0;
     adc_cur = 0;
-    power_flag = 1;
   }
 
 CONT_PWM:
