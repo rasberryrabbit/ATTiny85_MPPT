@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20250114)
+	(version 20260306)
 	(generator "eeschema")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(uuid "82bc8250-aeb5-4852-a0df-bdcc0394aed5")
 	(paper "A4")
 	(title_block
@@ -14,8 +14,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
 				(at -12.7 13.97 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -25,6 +29,8 @@
 			)
 			(property "Value" "ATtiny85-20PU-MCU_Microchip_ATtiny"
 				(at 2.54 -13.97 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -34,39 +40,47 @@
 			)
 			(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 						(italic yes)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "DIP*W7.62mm*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "ATtiny85-20PU-MCU_Microchip_ATtiny_0_1"
@@ -83,17 +97,53 @@
 				)
 			)
 			(symbol "ATtiny85-20PU-MCU_Microchip_ATtiny_1_1"
-				(pin power_in line
-					(at 0 15.24 270)
+				(pin bidirectional line
+					(at 15.24 -5.08 180)
 					(length 2.54)
-					(name "VCC"
+					(name "~{RESET}/PB5"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "8"
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 15.24 0 180)
+					(length 2.54)
+					(name "XTAL1/PB3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 15.24 -2.54 180)
+					(length 2.54)
+					(name "XTAL2/PB4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -173,53 +223,17 @@
 						)
 					)
 				)
-				(pin bidirectional line
-					(at 15.24 0 180)
+				(pin power_in line
+					(at 0 15.24 270)
 					(length 2.54)
-					(name "XTAL1/PB3"
+					(name "VCC"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 15.24 -2.54 180)
-					(length 2.54)
-					(name "XTAL2/PB4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 15.24 -5.08 180)
-					(length 2.54)
-					(name "~{RESET}/PB5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
+					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -241,8 +255,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "L"
 				(at -1.27 0 90)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -251,6 +269,8 @@
 			)
 			(property "Value" "INDUCTOR-12f675-mppt-rescue"
 				(at 2.54 0 90)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -259,6 +279,8 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -267,6 +289,8 @@
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -275,26 +299,16 @@
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "INDUCTOR-12f675-mppt-rescue_0_1"
-				(arc
-					(start 0.0254 4.9784)
-					(mid 1.2195 3.7595)
-					(end 0.0254 2.5654)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
 				(arc
 					(start 0.0254 2.5908)
 					(mid 1.2956 1.2957)
@@ -311,6 +325,18 @@
 					(start 0.0254 0.0508)
 					(mid 1.2956 -1.2443)
 					(end 0.0254 -2.5146)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0.0254 4.9784)
+					(mid 1.2195 3.7595)
+					(end 0.0254 2.5654)
 					(stroke
 						(width 0)
 						(type solid)
@@ -380,8 +406,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "D"
 				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -390,6 +420,8 @@
 			)
 			(property "Value" "LED-12f675-mppt-rescue"
 				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -398,6 +430,8 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -406,6 +440,8 @@
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -414,20 +450,24 @@
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "LED-3MM LED-5MM LED-10MM LED-0603 LED-0805 LED-1206 LEDV"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "LED-12f675-mppt-rescue_0_1"
@@ -524,8 +564,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
 				(at -1.27 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.524 1.524)
@@ -535,6 +579,8 @@
 			)
 			(property "Value" "LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue"
 				(at -1.27 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.524 1.524)
@@ -544,6 +590,8 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.524 1.524)
@@ -552,6 +600,8 @@
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.524 1.524)
@@ -560,11 +610,13 @@
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue_0_1"
@@ -578,24 +630,6 @@
 					)
 					(fill
 						(type background)
-					)
-				)
-				(pin power_in line
-					(at -2.54 10.16 270)
-					(length 6.35)
-					(name "V+"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
 					)
 				)
 				(pin power_in line
@@ -616,19 +650,37 @@
 						)
 					)
 				)
-			)
-			(symbol "LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue_1_1"
-				(pin input line
-					(at -12.7 2.54 0)
-					(length 7.62)
-					(name "+"
+				(pin power_in line
+					(at -2.54 10.16 270)
+					(length 6.35)
+					(name "V+"
 						(effects
 							(font
 								(size 1.016 1.016)
 							)
 						)
 					)
-					(number "3"
+					(number "8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(symbol "LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue_1_1"
+				(pin output line
+					(at 12.7 0 180)
+					(length 7.62)
+					(name ""
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -654,17 +706,17 @@
 						)
 					)
 				)
-				(pin output line
-					(at 12.7 0 180)
+				(pin input line
+					(at -12.7 2.54 0)
 					(length 7.62)
-					(name "~"
+					(name "+"
 						(effects
 							(font
 								(size 1.016 1.016)
 							)
 						)
 					)
-					(number "1"
+					(number "3"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -713,7 +765,7 @@
 				(pin output line
 					(at 12.7 0 180)
 					(length 7.62)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -742,8 +794,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "SW"
 				(at 3.81 2.794 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -752,6 +808,8 @@
 			)
 			(property "Value" "SW_PUSH-12f675-mppt-rescue"
 				(at 0 -2.032 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -760,6 +818,8 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -768,6 +828,8 @@
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -776,11 +838,13 @@
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "SW_PUSH-12f675-mppt-rescue_0_1"
@@ -854,8 +918,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "J"
 				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -864,6 +932,8 @@
 			)
 			(property "Value" "Connector_Conn_01x01_Male"
 				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -872,38 +942,46 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "Connector*:*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "Conn_01x01_Male_1_1"
@@ -961,8 +1039,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "C"
 				(at 0.635 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -972,6 +1054,8 @@
 			)
 			(property "Value" "C"
 				(at 0.635 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -981,47 +1065,57 @@
 			)
 			(property "Footprint" ""
 				(at 0.9652 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
-			(property "Datasheet" "~"
+			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Unpolarized capacitor"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "cap capacitor"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "C_*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "C_0_1"
@@ -1054,7 +1148,7 @@
 				(pin passive line
 					(at 0 3.81 270)
 					(length 2.794)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1072,7 +1166,7 @@
 				(pin passive line
 					(at 0 -3.81 90)
 					(length 2.794)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1100,8 +1194,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "C"
 				(at 0.635 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1111,6 +1209,8 @@
 			)
 			(property "Value" "Device_CP"
 				(at 0.635 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1120,38 +1220,46 @@
 			)
 			(property "Footprint" ""
 				(at 0.9652 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "CP_*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "CP_0_1"
@@ -1206,7 +1314,7 @@
 				(pin passive line
 					(at 0 3.81 270)
 					(length 2.794)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1224,7 +1332,7 @@
 				(pin passive line
 					(at 0 -3.81 90)
 					(length 2.794)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1253,8 +1361,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "D"
 				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1263,6 +1375,8 @@
 			)
 			(property "Value" "D"
 				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1271,65 +1385,79 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
-			(property "Datasheet" "~"
+			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Diode"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Sim.Device" "D"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Sim.Pins" "1=K 2=A"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "diode"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "D_0_1"
@@ -1421,8 +1549,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "D"
 				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1431,6 +1563,8 @@
 			)
 			(property "Value" "D_Schottky"
 				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1439,47 +1573,57 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
-			(property "Datasheet" "~"
+			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Schottky diode"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "diode Schottky"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "D_Schottky_0_1"
@@ -1571,8 +1715,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "D"
 				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1581,6 +1729,8 @@
 			)
 			(property "Value" "D_Zener"
 				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1589,47 +1739,57 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
-			(property "Datasheet" "~"
+			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Zener diode"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "diode"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "D_Zener_0_1"
@@ -1718,8 +1878,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "Q"
 				(at 5.08 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1729,6 +1893,8 @@
 			)
 			(property "Value" "Device_Q_NMOS_GDS"
 				(at 5.08 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1738,29 +1904,35 @@
 			)
 			(property "Footprint" ""
 				(at 5.08 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "Q_NMOS_GDS_0_1"
@@ -1996,8 +2168,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "Q"
 				(at 5.08 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2007,6 +2183,8 @@
 			)
 			(property "Value" "Device_Q_NPN_EBC"
 				(at 5.08 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2016,29 +2194,35 @@
 			)
 			(property "Footprint" ""
 				(at 5.08 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "Q_NPN_EBC_0_1"
@@ -2104,6 +2288,24 @@
 			)
 			(symbol "Q_NPN_EBC_1_1"
 				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "E"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
 					(at -5.08 0 0)
 					(length 5.715)
 					(name "B"
@@ -2139,24 +2341,6 @@
 						)
 					)
 				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
 			(embedded_fonts no)
 		)
@@ -2168,8 +2352,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "Q"
 				(at 5.08 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2179,6 +2367,8 @@
 			)
 			(property "Value" "Device_Q_PNP_EBC"
 				(at 5.08 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2188,29 +2378,35 @@
 			)
 			(property "Footprint" ""
 				(at 5.08 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "Q_PNP_EBC_0_1"
@@ -2275,6 +2471,24 @@
 				)
 			)
 			(symbol "Q_PNP_EBC_1_1"
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "E"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 				(pin input line
 					(at -5.08 0 0)
 					(length 5.715)
@@ -2311,24 +2525,6 @@
 						)
 					)
 				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
 			(embedded_fonts no)
 		)
@@ -2342,8 +2538,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "R"
 				(at 2.032 0 90)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2352,6 +2552,8 @@
 			)
 			(property "Value" "R"
 				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2360,47 +2562,57 @@
 			)
 			(property "Footprint" ""
 				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
-			(property "Datasheet" "~"
+			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Resistor"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "R res resistor"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "R_*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "R_0_1"
@@ -2420,7 +2632,7 @@
 				(pin passive line
 					(at 0 3.81 270)
 					(length 1.27)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2438,7 +2650,7 @@
 				(pin passive line
 					(at 0 -3.81 90)
 					(length 1.27)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2463,8 +2675,12 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
 				(at -3.81 3.175 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2473,6 +2689,8 @@
 			)
 			(property "Value" "LM7805_TO220"
 				(at 0 3.175 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2482,48 +2700,58 @@
 			)
 			(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
 				(at 0 5.715 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 						(italic yes)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" "https://www.onsemi.cn/PowerSolutions/document/MC7800-D.PDF"
 				(at 0 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Positive 1A 35V Linear Regulator, Fixed Output 5V, TO-220"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "Voltage Regulator 1A Positive"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_fp_filters" "TO?220*"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "LM7805_TO220_0_1"
@@ -2598,7 +2826,7 @@
 			(embedded_fonts no)
 		)
 		(symbol "power:+24V"
-			(power)
+			(power global)
 			(pin_numbers
 				(hide yes)
 			)
@@ -2609,17 +2837,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "#PWR"
 				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Value" "+24V"
 				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2628,38 +2862,46 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Power symbol creates a global label with name \"+24V\""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "global power"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "+24V_0_1"
@@ -2704,7 +2946,7 @@
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2723,7 +2965,7 @@
 			(embedded_fonts no)
 		)
 		(symbol "power:GND"
-			(power)
+			(power global)
 			(pin_numbers
 				(hide yes)
 			)
@@ -2734,17 +2976,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "#PWR"
 				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Value" "GND"
 				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2753,38 +3001,46 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "global power"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "GND_0_1"
@@ -2805,7 +3061,7 @@
 				(pin power_in line
 					(at 0 0 270)
 					(length 0)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2824,7 +3080,7 @@
 			(embedded_fonts no)
 		)
 		(symbol "power:PRI_HI"
-			(power)
+			(power global)
 			(pin_numbers
 				(hide yes)
 			)
@@ -2835,17 +3091,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "#PWR"
 				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Value" "PRI_HI"
 				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2854,38 +3116,46 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Power symbol creates a global label with name \"PRI_HI\""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "global power"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "PRI_HI_0_1"
@@ -2930,7 +3200,7 @@
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2949,7 +3219,7 @@
 			(embedded_fonts no)
 		)
 		(symbol "power:PRI_LO"
-			(power)
+			(power global)
 			(pin_numbers
 				(hide yes)
 			)
@@ -2960,17 +3230,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "#PWR"
 				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Value" "PRI_LO"
 				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2979,38 +3255,46 @@
 			)
 			(property "Footprint" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Description" "Power symbol creates a global label with name \"PRI_LO\""
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "ki_keywords" "global power"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(symbol "PRI_LO_0_1"
@@ -3043,7 +3327,7 @@
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
-					(name "~"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3354,12 +3638,6 @@
 		(uuid "3b4de6a9-e5bc-483d-a326-3c982a27317b")
 	)
 	(junction
-		(at 196.85 74.93)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3cc53160-bfa6-43c7-8478-d14ebb6577c6")
-	)
-	(junction
 		(at 175.26 142.24)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3478,6 +3756,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "844eeacb-a833-4664-849c-88fba7c560d6")
+	)
+	(junction
+		(at 179.07 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "886a1761-2c4c-4ec3-a8ec-fcf183ebaf50")
 	)
 	(junction
 		(at 63.5 55.88)
@@ -3723,16 +4007,6 @@
 	)
 	(wire
 		(pts
-			(xy 196.85 74.93) (xy 179.07 74.93)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0a9bc327-1cd8-41c3-8ace-a656ac1bb33f")
-	)
-	(wire
-		(pts
 			(xy 83.82 45.72) (xy 83.82 55.88)
 		)
 		(stroke
@@ -3920,6 +4194,16 @@
 			(type default)
 		)
 		(uuid "1bb4928e-5203-454b-8894-d416d243c8c1")
+	)
+	(wire
+		(pts
+			(xy 179.07 88.9) (xy 196.85 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1dff3206-2c5c-45d2-bc3a-ec19f290de26")
 	)
 	(wire
 		(pts
@@ -4623,7 +4907,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 88.9) (xy 196.85 88.9)
+			(xy 167.64 88.9) (xy 179.07 88.9)
 		)
 		(stroke
 			(width 0)
@@ -4863,7 +5147,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 74.93) (xy 179.07 73.66)
+			(xy 179.07 73.66) (xy 179.07 88.9)
 		)
 		(stroke
 			(width 0)
@@ -4893,7 +5177,7 @@
 	)
 	(wire
 		(pts
-			(xy 196.85 88.9) (xy 196.85 74.93)
+			(xy 196.85 67.31) (xy 196.85 88.9)
 		)
 		(stroke
 			(width 0)
@@ -4990,16 +5274,6 @@
 			(type default)
 		)
 		(uuid "84977d27-1db0-4251-9784-c2e967dcec7d")
-	)
-	(wire
-		(pts
-			(xy 196.85 67.31) (xy 196.85 74.93)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8869eeb6-d320-46cf-92dc-7d7fd4eb8997")
 	)
 	(wire
 		(pts
@@ -6075,13 +6349,17 @@
 		(lib_id "ATTiny85-mppt-rescue:LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue")
 		(at 190.5 123.19 0)
 		(unit 2)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3383e")
 		(property "Reference" "U2"
 			(at 189.23 118.11 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6091,6 +6369,8 @@
 		)
 		(property "Value" "LM358N"
 			(at 189.23 129.54 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6100,15 +6380,19 @@
 		)
 		(property "Footprint" "Housings_DIP:DIP-8_W7.62mm"
 			(at 190.5 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 190.5 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6117,6 +6401,8 @@
 		)
 		(property "Description" ""
 			(at 190.5 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6148,7 +6434,7 @@
 			(uuid "d7ca576e-1cd4-49e4-997e-904edb7692cb")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "U2")
 					(unit 2)
@@ -6161,13 +6447,17 @@
 		(at 215.9 137.16 0)
 		(mirror y)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c339a5")
 		(property "Reference" "Q1"
 			(at 209.55 139.7 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6177,6 +6467,8 @@
 		)
 		(property "Value" "BUK9511-55A127"
 			(at 210.82 144.78 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6186,15 +6478,19 @@
 		)
 		(property "Footprint" "TO_SOT_Packages_THT-2:TO-220_Neutral123_Vertical"
 			(at 210.82 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.7366 0.7366)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 215.9 137.16 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6203,6 +6499,8 @@
 		)
 		(property "Description" ""
 			(at 215.9 137.16 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6219,7 +6517,7 @@
 			(uuid "7c1eef72-4317-4018-92f0-9bac81f46437")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "Q1")
 					(unit 1)
@@ -6231,13 +6529,17 @@
 		(lib_id "Device:R")
 		(at 179.07 107.95 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c33f64")
 		(property "Reference" "R4"
 			(at 179.07 109.982 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6246,6 +6548,8 @@
 		)
 		(property "Value" "47k"
 			(at 179.07 107.95 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6254,15 +6558,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 179.07 106.172 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 179.07 107.95 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -6271,6 +6579,8 @@
 		)
 		(property "Description" ""
 			(at 179.07 107.95 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6284,7 +6594,7 @@
 			(uuid "ac405659-5341-47be-bd9b-201034a60a3e")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R4")
 					(unit 1)
@@ -6296,13 +6606,17 @@
 		(lib_id "Device:R")
 		(at 175.26 134.62 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c34015")
 		(property "Reference" "R3"
 			(at 177.292 134.62 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6311,6 +6625,8 @@
 		)
 		(property "Value" "10k"
 			(at 175.26 134.62 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6319,15 +6635,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 173.482 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 175.26 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -6336,6 +6656,8 @@
 		)
 		(property "Description" ""
 			(at 175.26 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6349,7 +6671,7 @@
 			(uuid "c4d95ba4-9314-4bee-a4f5-efaa3a5d6995")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R3")
 					(unit 1)
@@ -6361,13 +6683,17 @@
 		(lib_id "ATTiny85-mppt-rescue:INDUCTOR-12f675-mppt-rescue")
 		(at 229.87 55.88 90)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c35536")
 		(property "Reference" "L1"
 			(at 229.87 57.15 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6376,6 +6702,8 @@
 		)
 		(property "Value" "330uH"
 			(at 229.87 53.34 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6384,15 +6712,19 @@
 		)
 		(property "Footprint" "Inductors_THT:L_Toroid_Vertical_L33.0mm_W17.8mm_P12.70mm_Pulse_KM-5"
 			(at 229.87 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 229.87 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6401,6 +6733,8 @@
 		)
 		(property "Description" ""
 			(at 229.87 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6414,7 +6748,7 @@
 			(uuid "73d055b3-ce03-4f91-8b26-36c979f78be1")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "L1")
 					(unit 1)
@@ -6427,13 +6761,17 @@
 		(at 205.74 55.88 0)
 		(mirror y)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c35659")
 		(property "Reference" "D1"
 			(at 204.47 58.42 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6442,6 +6780,8 @@
 		)
 		(property "Value" "1N5822A"
 			(at 207.01 60.96 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6450,15 +6790,19 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-201AD_P15.24mm_Horizontal"
 			(at 205.74 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 205.74 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6467,6 +6811,8 @@
 		)
 		(property "Description" ""
 			(at 205.74 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6480,7 +6826,7 @@
 			(uuid "3958968f-c372-40eb-8bfa-7ea5d41abf50")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D1")
 					(unit 1)
@@ -6493,13 +6839,17 @@
 		(at 213.36 68.58 90)
 		(mirror x)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c356eb")
 		(property "Reference" "D2"
 			(at 209.55 68.58 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6508,6 +6858,8 @@
 		)
 		(property "Value" "1N5822A"
 			(at 208.28 71.12 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6516,15 +6868,19 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-201AD_P15.24mm_Horizontal"
 			(at 213.36 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 213.36 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6533,6 +6889,8 @@
 		)
 		(property "Description" ""
 			(at 213.36 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6546,7 +6904,7 @@
 			(uuid "2b46220b-4aa1-4198-b566-4f141480984e")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D2")
 					(unit 1)
@@ -6558,13 +6916,17 @@
 		(lib_id "Device:CP")
 		(at 241.3 63.5 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3588b")
 		(property "Reference" "C1"
 			(at 241.935 60.96 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6574,6 +6936,8 @@
 		)
 		(property "Value" "100u"
 			(at 241.935 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6583,15 +6947,19 @@
 		)
 		(property "Footprint" "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm"
 			(at 242.2652 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 241.3 63.5 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6600,6 +6968,8 @@
 		)
 		(property "Description" ""
 			(at 241.3 63.5 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6613,7 +6983,7 @@
 			(uuid "541f2b89-6d82-4680-980e-29c12390f7b9")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "C1")
 					(unit 1)
@@ -6625,13 +6995,17 @@
 		(lib_id "Device:Q_NPN_EBC")
 		(at 165.1 73.66 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c35d82")
 		(property "Reference" "Q4"
 			(at 172.72 76.2 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6641,6 +7015,8 @@
 		)
 		(property "Value" "2N2222A"
 			(at 177.8 72.39 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6650,15 +7026,19 @@
 		)
 		(property "Footprint" "TO_SOT_Packages_THT:TO-92_Inline_Wide"
 			(at 170.18 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.7366 0.7366)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 165.1 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6667,6 +7047,8 @@
 		)
 		(property "Description" ""
 			(at 165.1 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6683,76 +7065,9 @@
 			(uuid "97e13f28-6dc4-46ce-9771-359be0f747e7")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "Q4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:CP")
-		(at 179.07 69.85 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "00000000-0000-0000-0000-000055c35fb2")
-		(property "Reference" "C2"
-			(at 179.705 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "4.7uF 50v"
-			(at 179.705 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm"
-			(at 180.0352 73.66 0)
-			(effects
-				(font
-					(size 0.762 0.762)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 179.07 69.85 0)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 179.07 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "149d7637-e26c-40fd-8c67-b275e403b076")
-		)
-		(pin "1"
-			(uuid "c8a14867-3933-4f93-bed5-b2fff424711a")
-		)
-		(instances
-			(project ""
-				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
-					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -6763,13 +7078,17 @@
 		(at 140.97 59.69 0)
 		(mirror y)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c36e30")
 		(property "Reference" "D3"
 			(at 140.97 57.15 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6778,6 +7097,8 @@
 		)
 		(property "Value" "1N4148"
 			(at 140.97 62.23 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6786,15 +7107,19 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
 			(at 140.97 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 140.97 59.69 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -6803,6 +7128,8 @@
 		)
 		(property "Description" ""
 			(at 140.97 59.69 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6816,7 +7143,7 @@
 			(uuid "b87f8385-d5c5-46af-bd79-2e8fa460b1e6")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D3")
 					(unit 1)
@@ -6828,13 +7155,17 @@
 		(lib_id "Device:R")
 		(at 138.43 72.39 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c376f8")
 		(property "Reference" "R10"
 			(at 140.462 72.39 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6843,6 +7174,8 @@
 		)
 		(property "Value" "1k"
 			(at 138.43 72.39 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6851,15 +7184,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 136.652 72.39 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 138.43 72.39 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -6868,6 +7205,8 @@
 		)
 		(property "Description" ""
 			(at 138.43 72.39 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6881,7 +7220,7 @@
 			(uuid "48497eb6-0ee8-40bf-b23b-fa74e3459727")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R10")
 					(unit 1)
@@ -6893,13 +7232,17 @@
 		(lib_id "Device:R")
 		(at 46.99 81.28 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3a8b1")
 		(property "Reference" "R5"
 			(at 49.022 81.28 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6908,6 +7251,8 @@
 		)
 		(property "Value" "300k"
 			(at 46.99 81.28 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6916,15 +7261,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 45.212 81.28 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 46.99 81.28 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -6933,6 +7282,8 @@
 		)
 		(property "Description" ""
 			(at 46.99 81.28 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6946,7 +7297,7 @@
 			(uuid "5f9f935f-7a95-454d-8cae-df0becb61505")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R5")
 					(unit 1)
@@ -6958,13 +7309,17 @@
 		(lib_id "Device:R")
 		(at 97.79 111.76 90)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3b177")
 		(property "Reference" "R8"
 			(at 97.79 109.728 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6973,6 +7328,8 @@
 		)
 		(property "Value" "100k"
 			(at 97.79 111.76 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6981,15 +7338,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 97.79 113.538 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 97.79 111.76 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -6998,6 +7359,8 @@
 		)
 		(property "Description" ""
 			(at 97.79 111.76 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7011,7 +7374,7 @@
 			(uuid "58a8ca29-aea2-452e-8892-9b3010746528")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R8")
 					(unit 1)
@@ -7023,13 +7386,17 @@
 		(lib_id "Device:R")
 		(at 115.57 124.46 180)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3bcb8")
 		(property "Reference" "R6"
 			(at 113.538 124.46 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7038,6 +7405,8 @@
 		)
 		(property "Value" "1k"
 			(at 115.57 124.46 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7046,15 +7415,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 117.348 124.46 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 115.57 124.46 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -7063,6 +7436,8 @@
 		)
 		(property "Description" ""
 			(at 115.57 124.46 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7076,7 +7451,7 @@
 			(uuid "e11b14da-2be8-4cd7-9b58-58c38d31cc4b")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R6")
 					(unit 1)
@@ -7088,13 +7463,17 @@
 		(lib_id "ATTiny85-mppt-rescue:LED-12f675-mppt-rescue")
 		(at 115.57 134.62 90)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3bfd1")
 		(property "Reference" "D4"
 			(at 113.03 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7103,6 +7482,8 @@
 		)
 		(property "Value" "LED"
 			(at 118.11 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7111,15 +7492,19 @@
 		)
 		(property "Footprint" "LEDs:LED_D4.0mm"
 			(at 115.57 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 115.57 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7128,6 +7513,8 @@
 		)
 		(property "Description" ""
 			(at 115.57 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7141,7 +7528,7 @@
 			(uuid "c70e5701-88b9-4bb6-b84c-c2dc0f84b793")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D4")
 					(unit 1)
@@ -7154,13 +7541,17 @@
 		(at 57.15 73.66 270)
 		(mirror x)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3d464")
 		(property "Reference" "D5"
 			(at 59.69 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7169,6 +7560,8 @@
 		)
 		(property "Value" "1N4007"
 			(at 54.61 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7177,15 +7570,19 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
 			(at 57.15 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 57.15 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7194,6 +7591,8 @@
 		)
 		(property "Description" ""
 			(at 57.15 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7207,7 +7606,7 @@
 			(uuid "d2c81a85-abd3-4444-a16e-554f0cef7161")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D5")
 					(unit 1)
@@ -7219,13 +7618,17 @@
 		(lib_id "Device:C")
 		(at 95.25 93.98 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3db01")
 		(property "Reference" "C4"
 			(at 95.885 91.44 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7235,6 +7638,8 @@
 		)
 		(property "Value" "0.1u"
 			(at 95.885 96.52 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7244,15 +7649,19 @@
 		)
 		(property "Footprint" "Capacitors_THT:C_Disc_D12.5mm_W5.0mm_P7.50mm"
 			(at 96.2152 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 95.25 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7261,6 +7670,8 @@
 		)
 		(property "Description" ""
 			(at 95.25 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7274,7 +7685,7 @@
 			(uuid "8086115a-f71c-4a7f-9ea4-1defcadb3ed9")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "C4")
 					(unit 1)
@@ -7286,13 +7697,17 @@
 		(lib_id "Device:CP")
 		(at 78.74 93.98 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c3dbaa")
 		(property "Reference" "C3"
 			(at 79.375 91.44 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7302,6 +7717,8 @@
 		)
 		(property "Value" "100u"
 			(at 79.375 96.52 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7311,15 +7728,19 @@
 		)
 		(property "Footprint" "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm"
 			(at 79.7052 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 78.74 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7328,6 +7749,8 @@
 		)
 		(property "Description" ""
 			(at 78.74 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7341,7 +7764,7 @@
 			(uuid "7eb4e262-7b42-4b1f-be56-f13dfa1815dd")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "C3")
 					(unit 1)
@@ -7353,13 +7776,17 @@
 		(lib_id "Device:R")
 		(at 46.99 102.87 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055c48c57")
 		(property "Reference" "R12"
 			(at 49.022 102.87 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7368,6 +7795,8 @@
 		)
 		(property "Value" "47k"
 			(at 46.99 102.87 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7376,15 +7805,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 45.212 102.87 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 46.99 102.87 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -7393,6 +7826,8 @@
 		)
 		(property "Description" ""
 			(at 46.99 102.87 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7406,7 +7841,7 @@
 			(uuid "753ad01c-838a-4475-b722-1e8261f63516")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R12")
 					(unit 1)
@@ -7418,13 +7853,17 @@
 		(lib_id "Device:R")
 		(at 170.18 134.62 180)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055ca080e")
 		(property "Reference" "R2"
 			(at 168.148 134.62 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7433,6 +7872,8 @@
 		)
 		(property "Value" "47k"
 			(at 170.18 134.62 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7441,15 +7882,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 171.958 134.62 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 170.18 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -7458,6 +7903,8 @@
 		)
 		(property "Description" ""
 			(at 170.18 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7471,7 +7918,7 @@
 			(uuid "773a077c-660d-4223-9fd7-7f760830da69")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R2")
 					(unit 1)
@@ -7483,13 +7930,17 @@
 		(lib_id "Device:R")
 		(at 179.07 100.33 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055ca08c8")
 		(property "Reference" "R13"
 			(at 179.07 102.362 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7498,6 +7949,8 @@
 		)
 		(property "Value" "10k"
 			(at 179.07 100.33 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7506,15 +7959,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 179.07 98.552 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 179.07 100.33 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -7523,6 +7980,8 @@
 		)
 		(property "Description" ""
 			(at 179.07 100.33 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7536,7 +7995,7 @@
 			(uuid "5f980d14-61e4-4a85-b00d-43cfde4b826b")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R13")
 					(unit 1)
@@ -7548,13 +8007,17 @@
 		(lib_id "ATTiny85-mppt-rescue:LED-12f675-mppt-rescue")
 		(at 143.51 135.89 90)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055ccc105")
 		(property "Reference" "D9"
 			(at 140.97 135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7563,6 +8026,8 @@
 		)
 		(property "Value" "LED"
 			(at 146.05 135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7571,15 +8036,19 @@
 		)
 		(property "Footprint" "LEDs:LED_D4.0mm"
 			(at 143.51 135.89 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 143.51 135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7588,6 +8057,8 @@
 		)
 		(property "Description" ""
 			(at 143.51 135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7601,7 +8072,7 @@
 			(uuid "d59e12e3-c6a6-417e-a42f-d3b85927cdcd")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D9")
 					(unit 1)
@@ -7613,13 +8084,17 @@
 		(lib_id "ATTiny85-mppt-rescue:LED-12f675-mppt-rescue")
 		(at 143.51 123.19 90)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055ccc217")
 		(property "Reference" "D8"
 			(at 140.97 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7628,6 +8103,8 @@
 		)
 		(property "Value" "LED"
 			(at 146.05 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7636,15 +8113,19 @@
 		)
 		(property "Footprint" "LEDs:LED_D4.0mm"
 			(at 143.51 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 143.51 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7653,6 +8134,8 @@
 		)
 		(property "Description" ""
 			(at 143.51 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7666,7 +8149,7 @@
 			(uuid "4a219087-0855-4cfa-ad78-bbd6dbc59dc3")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D8")
 					(unit 1)
@@ -7678,13 +8161,17 @@
 		(lib_id "Device:R")
 		(at 143.51 106.68 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000055ccc2b4")
 		(property "Reference" "R14"
 			(at 145.542 106.68 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7693,6 +8180,8 @@
 		)
 		(property "Value" "4.7k"
 			(at 143.51 106.68 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7701,15 +8190,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 141.732 106.68 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 143.51 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -7718,6 +8211,8 @@
 		)
 		(property "Description" ""
 			(at 143.51 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7731,76 +8226,9 @@
 			(uuid "d80c06e6-e634-4a45-aa0a-5d79ac0563c9")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:CP")
-		(at 157.48 124.46 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "00000000-0000-0000-0000-000055cddbd9")
-		(property "Reference" "C5"
-			(at 158.115 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10u"
-			(at 158.115 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm"
-			(at 158.4452 128.27 0)
-			(effects
-				(font
-					(size 0.762 0.762)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 157.48 124.46 0)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 157.48 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0e8a9ccd-7e52-489c-a9d7-15019f70de32")
-		)
-		(pin "2"
-			(uuid "86be5861-4fa0-45a0-a9c2-f4e8868f2ca0")
-		)
-		(instances
-			(project ""
-				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
-					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -7810,13 +8238,17 @@
 		(lib_id "ATTiny85-mppt-rescue:LM358N-RESCUE-12f675-mppt-12f675-mppt-rescue")
 		(at 224.79 110.49 90)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056e669e2")
 		(property "Reference" "U2"
 			(at 219.71 111.76 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7826,6 +8258,8 @@
 		)
 		(property "Value" "LM358N"
 			(at 231.14 111.76 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7835,15 +8269,19 @@
 		)
 		(property "Footprint" "Housings_DIP:DIP-8_W7.62mm"
 			(at 224.79 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 224.79 110.49 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -7852,6 +8290,8 @@
 		)
 		(property "Description" ""
 			(at 224.79 110.49 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7883,7 +8323,7 @@
 			(uuid "561f231b-6d53-4ad0-b95b-c1d447b7e66e")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "U2")
 					(unit 1)
@@ -7895,13 +8335,17 @@
 		(lib_id "Device:R")
 		(at 233.68 123.19 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056e67518")
 		(property "Reference" "R1"
 			(at 233.68 125.222 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7910,6 +8354,8 @@
 		)
 		(property "Value" "1k"
 			(at 233.68 123.19 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7918,15 +8364,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 233.68 121.412 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 233.68 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7935,6 +8385,8 @@
 		)
 		(property "Description" ""
 			(at 233.68 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7948,7 +8400,7 @@
 			(uuid "4fc372c5-b997-4c88-953a-68d651b8f0e7")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R1")
 					(unit 1)
@@ -7960,13 +8412,17 @@
 		(lib_id "Device:R")
 		(at 245.11 109.22 180)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056e68956")
 		(property "Reference" "R15"
 			(at 243.078 109.22 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7975,6 +8431,8 @@
 		)
 		(property "Value" "3.3k"
 			(at 245.11 109.22 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7983,15 +8441,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 246.888 109.22 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 245.11 109.22 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8000,6 +8462,8 @@
 		)
 		(property "Description" ""
 			(at 245.11 109.22 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8013,7 +8477,7 @@
 			(uuid "9445b4f1-86f7-4dd6-9fd6-0455ad0eac48")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R15")
 					(unit 1)
@@ -8025,13 +8489,17 @@
 		(lib_id "Device:CP")
 		(at 83.82 69.85 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056e7ce1f")
 		(property "Reference" "C7"
 			(at 84.455 67.31 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8041,6 +8509,8 @@
 		)
 		(property "Value" "47u"
 			(at 84.455 72.39 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8050,15 +8520,19 @@
 		)
 		(property "Footprint" "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm"
 			(at 84.7852 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 83.82 69.85 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -8067,6 +8541,8 @@
 		)
 		(property "Description" ""
 			(at 83.82 69.85 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8080,7 +8556,7 @@
 			(uuid "d1ef3e93-ddae-4f7d-86ad-24e4206cc96f")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "C7")
 					(unit 1)
@@ -8092,13 +8568,17 @@
 		(lib_id "Device:R")
 		(at 99.06 127 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056ecb4b6")
 		(property "Reference" "R16"
 			(at 99.06 129.032 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8107,6 +8587,8 @@
 		)
 		(property "Value" "10k"
 			(at 99.06 127 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8115,15 +8597,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 99.06 125.222 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 99.06 127 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8132,6 +8618,8 @@
 		)
 		(property "Description" ""
 			(at 99.06 127 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8145,7 +8633,7 @@
 			(uuid "6cd7b985-8e62-4fd8-88eb-348c5f4c1b3c")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R16")
 					(unit 1)
@@ -8157,13 +8645,17 @@
 		(lib_id "ATTiny85-mppt-rescue:SW_PUSH-12f675-mppt-rescue")
 		(at 78.74 118.11 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000056ecba1e")
 		(property "Reference" "SW1"
 			(at 82.55 115.316 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8172,6 +8664,8 @@
 		)
 		(property "Value" "Write OP-AMP DIFF"
 			(at 78.74 120.142 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8180,15 +8674,19 @@
 		)
 		(property "Footprint" "Buttons_Switches_THT:SW_PUSH_6mm"
 			(at 78.74 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 78.74 118.11 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8197,6 +8695,8 @@
 		)
 		(property "Description" ""
 			(at 78.74 118.11 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8210,7 +8710,7 @@
 			(uuid "b5c8b40b-3487-4816-8113-2b3ac831a02f")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "SW1")
 					(unit 1)
@@ -8222,13 +8722,17 @@
 		(lib_id "ATTiny85-mppt-rescue:ATtiny85-20PU-MCU_Microchip_ATtiny")
 		(at 113.03 86.36 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bc87e53")
 		(property "Reference" "U3"
 			(at 99.568 85.1916 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8238,6 +8742,8 @@
 		)
 		(property "Value" "ATtiny85-20PU"
 			(at 99.06 80.01 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8247,25 +8753,31 @@
 		)
 		(property "Footprint" "Housings_DIP:DIP-8_W7.62mm"
 			(at 113.03 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 					(italic yes)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf"
 			(at 113.03 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 113.03 86.36 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8297,7 +8809,7 @@
 			(uuid "745216e3-5e0a-4b6d-bc93-4f4acdfdf96e")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "U3")
 					(unit 1)
@@ -8310,13 +8822,17 @@
 		(at 72.39 55.88 0)
 		(mirror y)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bcad4db")
 		(property "Reference" "D6"
 			(at 71.12 58.42 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8325,6 +8841,8 @@
 		)
 		(property "Value" "1N5822A"
 			(at 73.66 60.96 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8333,15 +8851,19 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-201AD_P15.24mm_Horizontal"
 			(at 72.39 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 72.39 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -8350,6 +8872,8 @@
 		)
 		(property "Description" ""
 			(at 72.39 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8363,7 +8887,7 @@
 			(uuid "c9b1bae9-8d41-4303-8416-49f006d3dada")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D6")
 					(unit 1)
@@ -8376,13 +8900,17 @@
 		(at 72.39 45.72 0)
 		(mirror y)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bcae8f6")
 		(property "Reference" "D7"
 			(at 71.12 48.26 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8391,6 +8919,8 @@
 		)
 		(property "Value" "1N5822A"
 			(at 73.66 50.8 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8399,15 +8929,19 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-201AD_P15.24mm_Horizontal"
 			(at 72.39 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 72.39 45.72 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -8416,6 +8950,8 @@
 		)
 		(property "Description" ""
 			(at 72.39 45.72 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8429,7 +8965,7 @@
 			(uuid "201b4267-1c4f-413f-884b-83dfb8998c0d")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D7")
 					(unit 1)
@@ -8442,13 +8978,17 @@
 		(at 205.74 46.99 0)
 		(mirror y)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bccaca5")
 		(property "Reference" "D10"
 			(at 204.47 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8457,6 +8997,8 @@
 		)
 		(property "Value" "1N5822A"
 			(at 207.01 52.07 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8465,15 +9007,19 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-201AD_P15.24mm_Horizontal"
 			(at 205.74 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 205.74 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -8482,6 +9028,8 @@
 		)
 		(property "Description" ""
 			(at 205.74 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8495,7 +9043,7 @@
 			(uuid "4d90b912-b68c-4d6c-8fd8-6be010a1c346")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D10")
 					(unit 1)
@@ -8508,13 +9056,17 @@
 		(at 220.98 68.58 90)
 		(mirror x)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bce12e7")
 		(property "Reference" "D11"
 			(at 224.79 68.58 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8523,6 +9075,8 @@
 		)
 		(property "Value" "1N5822A"
 			(at 227.33 71.12 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8531,15 +9085,19 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-201AD_P15.24mm_Horizontal"
 			(at 220.98 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 220.98 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -8548,6 +9106,8 @@
 		)
 		(property "Description" ""
 			(at 220.98 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8561,7 +9121,7 @@
 			(uuid "defa5089-18e5-4dd7-90da-0bb0580b5f0c")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D11")
 					(unit 1)
@@ -8573,13 +9133,17 @@
 		(lib_id "ATTiny85-mppt-rescue:INDUCTOR-12f675-mppt-rescue")
 		(at 229.87 46.99 90)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bcf09f4")
 		(property "Reference" "L2"
 			(at 229.87 48.26 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8588,6 +9152,8 @@
 		)
 		(property "Value" "330uH"
 			(at 229.87 44.45 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8596,15 +9162,19 @@
 		)
 		(property "Footprint" "Inductors_THT:L_Toroid_Vertical_L33.0mm_W17.8mm_P12.70mm_Pulse_KM-5"
 			(at 229.87 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 229.87 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -8613,6 +9183,8 @@
 		)
 		(property "Description" ""
 			(at 229.87 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8626,7 +9198,7 @@
 			(uuid "add5bc19-503b-4563-aa10-01538bf42d23")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "L2")
 					(unit 1)
@@ -8638,13 +9210,17 @@
 		(lib_id "Regulator_Linear:LM7805_TO220")
 		(at 67.31 86.36 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bd8d22e")
 		(property "Reference" "U1"
 			(at 67.31 80.2132 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8653,6 +9229,8 @@
 		)
 		(property "Value" "LM7805_TO220"
 			(at 67.31 82.5246 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8661,25 +9239,31 @@
 		)
 		(property "Footprint" "TO_SOT_Packages_THT:TO-220-3_Vertical"
 			(at 67.31 80.645 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 					(italic yes)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" "http://www.fairchildsemi.com/ds/LM/LM7805.pdf"
 			(at 67.31 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 67.31 86.36 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8696,7 +9280,7 @@
 			(uuid "822caab3-a78c-4427-ae00-7b3ac03f5b2e")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "U1")
 					(unit 1)
@@ -8708,13 +9292,17 @@
 		(lib_id "Connector:Conn_01x01_Male")
 		(at 29.21 24.13 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bd97287")
 		(property "Reference" "J1"
 			(at 30.226 25.654 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8724,6 +9312,8 @@
 		)
 		(property "Value" "S+"
 			(at 30.226 27.9654 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8733,24 +9323,30 @@
 		)
 		(property "Footprint" "Connectors:1pin"
 			(at 29.21 24.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 29.21 24.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 29.21 24.13 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8761,7 +9357,7 @@
 			(uuid "e50fecb2-b4a7-4662-8841-c4718f4df358")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "J1")
 					(unit 1)
@@ -8773,13 +9369,17 @@
 		(lib_id "Connector:Conn_01x01_Male")
 		(at 49.53 24.13 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bd97502")
 		(property "Reference" "J2"
 			(at 50.546 25.654 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8789,6 +9389,8 @@
 		)
 		(property "Value" "S-"
 			(at 50.546 27.9654 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8798,24 +9400,30 @@
 		)
 		(property "Footprint" "Connectors:1pin"
 			(at 49.53 24.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 49.53 24.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 49.53 24.13 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8826,7 +9434,7 @@
 			(uuid "0b4fc2dd-9483-4abf-a346-d2c41d5c3715")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "J2")
 					(unit 1)
@@ -8838,13 +9446,17 @@
 		(lib_id "Connector:Conn_01x01_Male")
 		(at 229.87 25.4 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bd9774e")
 		(property "Reference" "J3"
 			(at 230.886 26.924 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8854,6 +9466,8 @@
 		)
 		(property "Value" "O+"
 			(at 229.87 22.86 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8863,24 +9477,30 @@
 		)
 		(property "Footprint" "Connectors:1pin"
 			(at 229.87 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 229.87 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 229.87 25.4 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8891,7 +9511,7 @@
 			(uuid "3714e2b0-5615-40c6-b549-48a8d25c8c19")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "J3")
 					(unit 1)
@@ -8903,13 +9523,17 @@
 		(lib_id "Connector:Conn_01x01_Male")
 		(at 251.46 25.4 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bd9781c")
 		(property "Reference" "J4"
 			(at 252.476 26.924 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8919,6 +9543,8 @@
 		)
 		(property "Value" "O-"
 			(at 251.46 22.86 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8928,24 +9554,30 @@
 		)
 		(property "Footprint" "Connectors:1pin"
 			(at 251.46 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 251.46 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 251.46 25.4 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8956,7 +9588,7 @@
 			(uuid "145474f5-15c9-437d-81af-875c512bb8d5")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "J4")
 					(unit 1)
@@ -8968,22 +9600,28 @@
 		(lib_id "power:+24V")
 		(at 30.48 48.26 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bd97b51")
 		(property "Reference" "#PWR02"
 			(at 30.48 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Value" "+24V"
 			(at 30.861 43.8658 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8992,24 +9630,30 @@
 		)
 		(property "Footprint" ""
 			(at 30.48 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 30.48 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 30.48 48.26 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9020,7 +9664,7 @@
 			(uuid "e9a6fcef-b39f-4732-a0ae-d29410c0f252")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "#PWR02")
 					(unit 1)
@@ -9032,13 +9676,17 @@
 		(lib_id "Device:Q_NPN_EBC")
 		(at 147.32 76.2 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bd9a966")
 		(property "Reference" "Q3"
 			(at 154.94 78.74 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9048,6 +9696,8 @@
 		)
 		(property "Value" "2N2222A"
 			(at 160.02 74.93 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9057,15 +9707,19 @@
 		)
 		(property "Footprint" "TO_SOT_Packages_THT:TO-92_Inline_Wide"
 			(at 152.4 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.7366 0.7366)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 147.32 76.2 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -9074,6 +9728,8 @@
 		)
 		(property "Description" ""
 			(at 147.32 76.2 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9090,7 +9746,7 @@
 			(uuid "741def2a-a7ab-4517-9d7a-86aa4665e48b")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "Q3")
 					(unit 1)
@@ -9102,22 +9758,28 @@
 		(lib_id "power:+24V")
 		(at 24.13 29.21 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bda0204")
 		(property "Reference" "#PWR01"
 			(at 24.13 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Value" "+24V"
 			(at 24.511 24.8158 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9126,24 +9788,30 @@
 		)
 		(property "Footprint" ""
 			(at 24.13 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 24.13 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 24.13 29.21 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9154,7 +9822,7 @@
 			(uuid "e4b93516-435e-42e5-a272-4a41b4bfce97")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "#PWR01")
 					(unit 1)
@@ -9166,22 +9834,28 @@
 		(lib_id "power:GND")
 		(at 55.88 30.48 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bda8f5a")
 		(property "Reference" "#PWR04"
 			(at 55.88 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Value" "GND"
 			(at 56.007 34.8742 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9190,24 +9864,30 @@
 		)
 		(property "Footprint" ""
 			(at 55.88 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 55.88 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 55.88 30.48 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9218,7 +9898,7 @@
 			(uuid "8353d7e3-487e-4f61-b8de-def5ec2e7808")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "#PWR04")
 					(unit 1)
@@ -9230,13 +9910,17 @@
 		(lib_id "Device:R")
 		(at 156.21 69.85 270)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bdafbe4")
 		(property "Reference" "R7"
 			(at 156.21 71.882 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9245,6 +9929,8 @@
 		)
 		(property "Value" "1k"
 			(at 156.21 69.85 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9253,15 +9939,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 156.21 68.072 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 156.21 69.85 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -9270,6 +9960,8 @@
 		)
 		(property "Description" ""
 			(at 156.21 69.85 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9283,7 +9975,7 @@
 			(uuid "c91dacb8-15cb-4198-8e24-93b9f60e741e")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R7")
 					(unit 1)
@@ -9295,22 +9987,28 @@
 		(lib_id "power:GND")
 		(at 31.75 147.32 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bdb22b1")
 		(property "Reference" "#PWR03"
 			(at 31.75 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Value" "GND"
 			(at 31.877 151.7142 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9319,24 +10017,30 @@
 		)
 		(property "Footprint" ""
 			(at 31.75 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 31.75 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 31.75 147.32 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9347,7 +10051,7 @@
 			(uuid "f402543e-4744-4ab8-b473-2f5b03be4bb1")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "#PWR03")
 					(unit 1)
@@ -9359,22 +10063,28 @@
 		(lib_id "power:PRI_HI")
 		(at 224.79 30.48 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bdb29af")
 		(property "Reference" "#PWR05"
 			(at 224.79 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Value" "PRI_HI"
 			(at 225.2218 26.0858 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9383,24 +10093,30 @@
 		)
 		(property "Footprint" ""
 			(at 224.79 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 224.79 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 224.79 30.48 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9411,7 +10127,7 @@
 			(uuid "db1e1756-285e-4287-a77a-8f27c73ba490")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "#PWR05")
 					(unit 1)
@@ -9423,22 +10139,28 @@
 		(lib_id "power:PRI_LO")
 		(at 256.54 30.48 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bdb2a67")
 		(property "Reference" "#PWR08"
 			(at 256.54 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Value" "PRI_LO"
 			(at 256.9718 26.0858 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9447,24 +10169,30 @@
 		)
 		(property "Footprint" ""
 			(at 256.54 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 256.54 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 256.54 30.48 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9475,7 +10203,7 @@
 			(uuid "c08cacec-08b6-4953-bb50-3b1f6b95ce97")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "#PWR08")
 					(unit 1)
@@ -9487,22 +10215,28 @@
 		(lib_id "power:PRI_HI")
 		(at 254 55.88 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bdb2ad7")
 		(property "Reference" "#PWR06"
 			(at 254 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Value" "PRI_HI"
 			(at 254.4318 51.4858 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9511,24 +10245,30 @@
 		)
 		(property "Footprint" ""
 			(at 254 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 254 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 254 55.88 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9539,7 +10279,7 @@
 			(uuid "bbc97156-6059-4469-a42b-657ee2d03333")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "#PWR06")
 					(unit 1)
@@ -9551,22 +10291,28 @@
 		(lib_id "power:PRI_LO")
 		(at 254 77.47 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bdb2b40")
 		(property "Reference" "#PWR07"
 			(at 254 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Value" "PRI_LO"
 			(at 254.4318 73.0758 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9575,24 +10321,30 @@
 		)
 		(property "Footprint" ""
 			(at 254 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 254 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 254 77.47 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9603,7 +10355,7 @@
 			(uuid "a68d718c-a5d0-4f0d-8656-9e5038c262f0")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "#PWR07")
 					(unit 1)
@@ -9615,13 +10367,17 @@
 		(lib_id "Device:Q_NMOS_GDS")
 		(at 184.15 58.42 90)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bdc3bbc")
 		(property "Reference" "Q2"
 			(at 184.15 49.7078 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9630,6 +10386,8 @@
 		)
 		(property "Value" "BUK9511-55A127"
 			(at 184.15 52.0192 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9638,24 +10396,30 @@
 		)
 		(property "Footprint" "TO_SOT_Packages_THT-2:TO-220_Neutral123_Vertical"
 			(at 181.61 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 184.15 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 184.15 58.42 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9672,7 +10436,7 @@
 			(uuid "cebd0b41-cd63-45ba-8307-e1b75a1bda9c")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "Q2")
 					(unit 1)
@@ -9684,13 +10448,17 @@
 		(lib_id "Device:R")
 		(at 149.86 66.04 180)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005bdd9d33")
 		(property "Reference" "R9"
 			(at 147.828 66.04 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9699,6 +10467,8 @@
 		)
 		(property "Value" "10k"
 			(at 149.86 66.04 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9707,15 +10477,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 151.638 66.04 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 149.86 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -9724,6 +10498,8 @@
 		)
 		(property "Description" ""
 			(at 149.86 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9737,7 +10513,7 @@
 			(uuid "3aa4bb42-53a9-4601-86d8-e5357e957b07")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R9")
 					(unit 1)
@@ -9750,13 +10526,17 @@
 		(at 165.1 83.82 0)
 		(mirror x)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005be09576")
 		(property "Reference" "Q5"
 			(at 169.9514 82.6516 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9766,6 +10546,8 @@
 		)
 		(property "Value" "2N2907A"
 			(at 169.9514 84.963 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9775,24 +10557,30 @@
 		)
 		(property "Footprint" "TO_SOT_Packages_THT:TO-92_Inline_Wide"
 			(at 170.18 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 165.1 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 165.1 83.82 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9809,7 +10597,7 @@
 			(uuid "603e1ba1-15cc-4c6a-834a-6c95a9c98ac4")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "Q5")
 					(unit 1)
@@ -9821,13 +10609,17 @@
 		(lib_id "Device:CP")
 		(at 149.86 124.46 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005be62cb0")
 		(property "Reference" "C8"
 			(at 150.495 121.92 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9837,6 +10629,8 @@
 		)
 		(property "Value" "10u"
 			(at 150.495 127 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9846,15 +10640,19 @@
 		)
 		(property "Footprint" "Capacitors_THT:CP_Radial_D12.5mm_P5.00mm"
 			(at 150.8252 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 149.86 124.46 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -9863,6 +10661,8 @@
 		)
 		(property "Description" ""
 			(at 149.86 124.46 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9876,7 +10676,7 @@
 			(uuid "dc7cc111-d90f-4aad-ae11-10ffb168bba2")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "C8")
 					(unit 1)
@@ -9888,13 +10688,17 @@
 		(lib_id "Device:D_Zener")
 		(at 190.5 67.31 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005beb0c16")
 		(property "Reference" "D12"
 			(at 190.5 61.8236 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9902,7 +10706,9 @@
 			)
 		)
 		(property "Value" "Optinal Zenner"
-			(at 190.5 64.135 0)
+			(at 191.516 64.516 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9911,24 +10717,30 @@
 		)
 		(property "Footprint" "Diodes_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
 			(at 190.5 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 190.5 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 190.5 67.31 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9942,7 +10754,7 @@
 			(uuid "9b8fbc1b-c33e-48e5-8ff2-1807a5e55267")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "D12")
 					(unit 1)
@@ -9954,13 +10766,17 @@
 		(lib_id "Device:Q_NPN_EBC")
 		(at 55.88 120.65 180)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005c237cd3")
 		(property "Reference" "Q6"
 			(at 51.054 119.4816 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9970,6 +10786,8 @@
 		)
 		(property "Value" "2N2222A"
 			(at 51.054 121.793 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9979,24 +10797,30 @@
 		)
 		(property "Footprint" "TO_SOT_Packages_THT:TO-92_Inline_Wide"
 			(at 50.8 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 55.88 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 55.88 120.65 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10013,7 +10837,7 @@
 			(uuid "075b05b8-b976-4cc4-afeb-bfa868f58723")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "Q6")
 					(unit 1)
@@ -10026,13 +10850,17 @@
 		(at 55.88 133.35 0)
 		(mirror y)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005c237fcb")
 		(property "Reference" "Q7"
 			(at 51.054 132.1816 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10042,6 +10870,8 @@
 		)
 		(property "Value" "2N2222A"
 			(at 51.054 134.493 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10051,24 +10881,30 @@
 		)
 		(property "Footprint" "TO_SOT_Packages_THT:TO-92_Inline_Wide"
 			(at 50.8 130.81 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" ""
 			(at 55.88 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
 		(property "Description" ""
 			(at 55.88 133.35 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10085,7 +10921,7 @@
 			(uuid "d6c3052d-e479-4f03-86a6-22b12f1c7e35")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "Q7")
 					(unit 1)
@@ -10097,13 +10933,17 @@
 		(lib_id "Device:R")
 		(at 128.27 66.04 0)
 		(unit 1)
+		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005c645ad6")
 		(property "Reference" "R11"
 			(at 130.302 66.04 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10112,6 +10952,8 @@
 		)
 		(property "Value" "10k"
 			(at 128.27 66.04 90)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10120,15 +10962,19 @@
 		)
 		(property "Footprint" "Resistors_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
 			(at 126.492 66.04 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
 				)
-				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
 			(at 128.27 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 0.762 0.762)
@@ -10137,6 +10983,8 @@
 		)
 		(property "Description" ""
 			(at 128.27 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10150,9 +10998,172 @@
 			(uuid "f15265fd-b38d-41e7-9b53-86618acf4547")
 		)
 		(instances
-			(project ""
+			(project "ATTiny85-mppt"
 				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
 					(reference "R11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 179.07 69.85 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "80650904-9657-4e5d-b14e-9193e61aa868")
+		(property "Reference" "C2"
+			(at 175.768 64.77 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 176.022 67.056 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitors_THT:C_Disc_D12.5mm_W5.0mm_P7.50mm"
+			(at 180.0352 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 179.07 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 179.07 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "8d251277-dcd4-497d-86e0-7d101c53a288")
+		)
+		(pin "1"
+			(uuid "a706fcd8-3e4a-44f4-8b3d-b51f0e149d41")
+		)
+		(instances
+			(project "ATTiny85-mppt"
+				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
+					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 157.48 124.46 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8ccc346b-36be-45f3-bb3c-7e18ed6d2b15")
+		(property "Reference" "C5"
+			(at 161.29 123.1899 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10u"
+			(at 161.29 125.7299 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitors_THT:C_Disc_D12.5mm_W5.0mm_P7.50mm"
+			(at 158.4452 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 157.48 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 157.48 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "fde999c7-b75c-4d76-9780-ca1e66322a90")
+		)
+		(pin "2"
+			(uuid "a89ebf14-dc5d-47d5-b4f2-f8735f45783d")
+		)
+		(instances
+			(project "ATTiny85-mppt"
+				(path "/82bc8250-aeb5-4852-a0df-bdcc0394aed5"
+					(reference "C5")
 					(unit 1)
 				)
 			)
